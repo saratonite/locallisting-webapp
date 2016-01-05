@@ -9,8 +9,14 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+	// Dashboard page
     public function getIndex(){
 
-    	return "Main";
+
+    	return view('admin.dashboard');
+    }
+
+    public function logout(){
+
     }
 }
