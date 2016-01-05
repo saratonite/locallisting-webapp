@@ -35,3 +35,10 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 });
+
+
+// Admin Dasbord routes
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+
+	Route::get('/','DashboardController@getIndex');
+});
