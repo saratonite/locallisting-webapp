@@ -38,10 +38,12 @@ Route::group(['middleware' => 'web'], function () {
 
 
 // Admin Dasbord routes
-Route::group(['prefix'=>'admin','namespace'=>'Admin','as'=>'admin::'],function(){
+Route::group(['middleware'=>'web','prefix'=>'admin','namespace'=>'Admin','as'=>'admin::'],function(){
 
 	Route::get('/',['uses'=>'DashboardController@getIndex','as'=>'dashboard']);
 
 	// Settings 
 	Route::get('settings','SettingsController@index')->name('settings');
+
+	Route::post('change-email','SettingsController@changeemail')->name('change-email');
 });

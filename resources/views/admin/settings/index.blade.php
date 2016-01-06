@@ -49,24 +49,32 @@
 	</div>
 	<!-- End App Settings -->
 	<div class="col-md-6">
+
 	<!-- Change email -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Chnage Email</h3>
 			</div>
 			<div class="panel-body">
-				<form method="post" >
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control">
-					</div>
-					<div class="form-group">
-						<label>Password</label>
-						<input type="password" class="form-control">
+				<form method="post" action="{{route('admin::change-email')}}" autocomplete="off" >
+				{{ csrf_field() }}
+					<div class="form-group @if($errors->changeEmail->has('email')) has-error @endif ">
+						<label class="control-label">Email</label>
+						<input type="email" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off">
+						@if($errors->changeEmail->has('email'))
+							<span class="text-danger">{{ $errors->changeEmail->first('email') }}</span>
+						@endif
+						
+					<div class="form-group @if($errors->changeEmail->has('password')) has-error @endif">
+						<label class="control-label">Password</label>
+						<input type="password" class="form-control" name="password" autocomplete="off">
+						@if($errors->changeEmail->has('password'))
+							<span class="text-danger">{{ $errors->changeEmail->first('password') }}</span>
+						@endif
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-danger" value="Change Email">
-
+						
 					</div>
 				</form>
 			</div>
@@ -75,7 +83,7 @@
 	<!-- Chnage password -->
 	<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Chnage Email</h3>
+				<h3 class="panel-title">Chnage Password</h3>
 			</div>
 			<div class="panel-body">
 				<form method="post" >
