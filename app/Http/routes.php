@@ -38,7 +38,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 // Admin Dasbord routes
-Route::group(['middleware'=>'web','prefix'=>'admin','namespace'=>'Admin','as'=>'admin::'],function(){
+Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin','as'=>'admin::'],function(){
 
 	Route::get('/',['uses'=>'DashboardController@getIndex','as'=>'dashboard']);
 
@@ -46,4 +46,6 @@ Route::group(['middleware'=>'web','prefix'=>'admin','namespace'=>'Admin','as'=>'
 	Route::get('settings','SettingsController@index')->name('settings');
 
 	Route::post('change-email','SettingsController@changeemail')->name('change-email');
+
+	Route::post('change-password','SettingsController@changePassword')->name('change-password');
 });
