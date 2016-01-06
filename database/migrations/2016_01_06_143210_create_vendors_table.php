@@ -14,10 +14,16 @@ class CreateVendorsTable extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('vendor_name');
             $table->text('description');
-            $table->integer('city'); // Referece to states table
-            $table->integer('category');
+            $table->integer('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->integer('city_id')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null'); // Referece to states table
+            $table->string('contact_number',15);
+            $table->string('mobile',15);
             $table->timestamps();
         });
     }
