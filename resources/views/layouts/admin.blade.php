@@ -51,8 +51,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('admin::dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ route('admin::all-vendors') }}">Vendors</a></li>
-                    <li><a href="{{ route('admin::dashboard') }}">Users</a></li>
-                    <li><a href="{{ route('admin::dashboard') }}">Enquiries</a></li>
+                    <li><a href="{{ route('admin::all-site-users') }}">Users</a></li>
+                    <li><a href="{{ route('admin::all-enquiries') }}">Enquiries</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

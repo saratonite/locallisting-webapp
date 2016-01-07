@@ -5,7 +5,7 @@
 <div class="page-header">
 	<h2>Vendors</h2>
 </div>
-x
+
 <!-- List vendors -->
 <table class="table table-bordered table-striped table-hover">
 	<thead>

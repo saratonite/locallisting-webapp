@@ -15,7 +15,7 @@ class VendorTableSeed extends Seeder
     	DB::table('users')->insert([
         	'first_name' => 'Bill',
         	'last_name' => 'Gates',
-        	'type' =>'admin',
+        	'type' =>'user',
         	'email'=> 'bill@moovooz.com',
         	'status' =>'active',
         	'password'=>bcrypt('123456'),

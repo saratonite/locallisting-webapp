@@ -51,4 +51,12 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 
 	/* Vendors */
 	Route::get('vendors','VendorController@index')->name('all-vendors');
+
+	/* Users */
+
+	Route::get('siteusers','SiteuserController@getAllUsers')->name('all-site-users');
+
+	Route::get('enquiries','EnquiryController@index')->name('all-enquiries');
+	
+
 });
