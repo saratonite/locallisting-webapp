@@ -48,4 +48,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	Route::post('change-email','SettingsController@changeemail')->name('change-email');
 
 	Route::post('change-password','SettingsController@changePassword')->name('change-password');
+
+	/* Vendors */
+	Route::get('vendors','VendorController@index')->name('all-vendors');
 });

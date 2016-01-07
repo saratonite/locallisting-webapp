@@ -1,4 +1,3 @@
-
 @if(Session::has('success'))
 <p class="alert alert-success">{{Session::get('success') }}
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
