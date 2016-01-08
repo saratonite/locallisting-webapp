@@ -12,7 +12,7 @@ class EnquiryController extends Controller
     
     public function index(){
 
-    	$enquiries = \App\Enquiry::with('vendor')->get();
+    	$enquiries = \App\Enquiry::with('vendor')->paginate(1);
     	//return $enquiries;
 
     	return view('admin.enquiry.index',compact('enquiries'));

@@ -13,6 +13,7 @@
 		</tr>
 	</thead>
 	<tbody>
+		@if($enquiries->count())
 		<!-- Loop through enquiries -->
 		@foreach($enquiries as $enquiry)
 		<tr>
@@ -24,6 +25,14 @@
 		</tr>
 		@endforeach
 		<!-- End Loop through enquiries -->
+		@else
+		<tr>
+			<td colspan="5" class="alert alert-info"> No Records. </td>
+		</tr>
+		@endif
 	</tbody>
 </table>
+<!-- Pagination links	 -->
+{!! $enquiries->links() !!}
+<!-- End Pagination links	 -->
 @endsection

@@ -14,7 +14,7 @@ class SiteuserController extends Controller
 	/* Get users where type =user */
     public function getAllUsers(){
 
-    	$siteusers = \App\User::siteuser()->get();
+    	$siteusers = \App\User::siteuser()->paginate(1);
 
     	return view('admin.siteuser.index',compact('siteusers'));
     	 

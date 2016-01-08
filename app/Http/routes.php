@@ -52,6 +52,8 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	/* Vendors */
 	Route::get('vendors','VendorController@index')->name('all-vendors');
 
+	Route::put('vendors/change-status','VendorController@chnageStatus')->name('vendors-change-status');
+
 	/* Users */
 
 	Route::get('siteusers','SiteuserController@getAllUsers')->name('all-site-users');

@@ -1,0 +1,1 @@
+{"version":3,"sources":["vendors_list.js"],"names":[],"mappings":"AAAA","file":"dashboard.js","sourcesContent":["console.log('Vendors list');"],"sourceRoot":"/source/"}

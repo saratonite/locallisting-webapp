@@ -1,0 +1,22 @@
+{
+  "name": "locallising",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Sarath <sarath.hacks@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}

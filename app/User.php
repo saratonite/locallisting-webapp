@@ -31,6 +31,8 @@ class User extends Authenticatable
 
     }
 
+    /* Scope functions */
+
     public function scopeSiteuser($query){
 
         $query->where('type','user');
