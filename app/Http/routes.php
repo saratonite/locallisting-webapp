@@ -51,12 +51,15 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 
 	/* Vendors */
 	Route::get('vendors','VendorController@index')->name('all-vendors');
+	
+	Route::get('vendors/show/{vendorId}','VendorController@show')->name('vendor-profile');
 
-	Route::put('vendors/change-status','VendorController@chnageStatus')->name('vendors-change-status');
+	Route::put('vendors/change-status/{vendorID}','VendorController@chnageStatus')->name('vendors-change-status');
 
 	/* Users */
 
 	Route::get('siteusers','SiteuserController@getAllUsers')->name('all-site-users');
+	Route::get('siteusers/{userId}/view','SiteuserController@view')->name('view-site-user');
 
 	Route::get('enquiries','EnquiryController@index')->name('all-enquiries');
 	

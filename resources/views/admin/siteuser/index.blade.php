@@ -8,7 +8,10 @@
 		<tr>
 			<th>Sl.No</th>
 			<th>Name</th>
-			<th></th>
+			<th>City</th>
+			<th>Status</th>
+			<th>Join Date</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,8 +20,19 @@
 		@foreach($siteusers as $user)
 		<tr>
 			<td>{{$user->id}}</td>
-			<td>{{ $user->first_name }}</td>
-			<td>{{ $user->status }}</td>
+			<td><a href="{{ route('admin::view-site-user',$user->id)}}">{{ $user->first_name }}</a></td>
+			<td></td>
+			<td>
+				
+					  <span type="button" data-record-id="{{$user->id}}"  class="label label-{{ BS_Status_Class($user->status) }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					   {{ucfirst($user->status)}} 
+					  </span>
+					
+			</td>
+			<td>
+				{{$user->created_at->toFormattedDateString()}}
+			</td>
+			<td></td>
 		</tr>
 		@endforeach
 		<!-- End Loop through site users -->
