@@ -24,7 +24,7 @@
 	    <h4>Overall Status</h4>
 	  </span>
 	  <a href="#" class="list-group-item">REVENUE </a>
-	  <a href="#" class="list-group-item">VENDORS <span class="badge">14</span></a>
+	  <a href="#" class="list-group-item">VENDORS <span class="badge">{{$count["vendors"]}}</span></a>
 	  <a href="#" class="list-group-item">USERS <span class="badge">14</span></a>
 	  <a href="#" class="list-group-item">INQUIRIES <span class="badge">14</span></a>
 	</div>

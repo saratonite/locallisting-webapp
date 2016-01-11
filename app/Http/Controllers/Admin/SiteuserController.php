@@ -32,4 +32,16 @@ class SiteuserController extends Controller
     	return view('admin.siteuser.view',compact('user'));
 
     }
+    /**
+     *
+     * Edit a user
+     */
+    
+    public function edit(Request $request,$userId = null){
+
+        $user = \App\User::find($userId);
+        
+        return view('admin.siteuser.edit',compact('user'));
+
+    }
 }

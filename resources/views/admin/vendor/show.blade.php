@@ -120,20 +120,30 @@
 				</tr>
 				<tr>
 					<th>Sl.No</th>
-					<th>User</th>
 					<th>Subject</th>
+					<th>User</th>
 					<th>Date/Time</th>
 					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
+			<!-- Loop through enquiries  -->
+			@if($vendor->enquiry->count())
+			@foreach($vendor->enquiry as $enquiry)
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{{$enquiry->id}}</td>
+					<td><a href="{{route('admin::view-enquiry',$enquiry->id)}}" data-toggle="tooltip" data-placement="top"  title="{{$enquiry->subject}}">{{str_limit($enquiry->subject,26)}}</a></td>
+					<td><a title="{{$enquiry->from->first_name}} {{$enquiry->from->last_name}}" data-toggle="tooltip" data-placement="top">{{$enquiry->from->first_name}}</a></td>
+					<td ><a title="{{$enquiry->from->created_at->diffForHumans()}}" data-toggle="tooltip" data-placement="top">{{$enquiry->from->created_at->toFormattedDateString()}}</a></td>
+					<td>---</td>
 				</tr>
+			@endforeach
+			@else
+			<tr>
+				<td colspan="5" class="info"> No enquiries yet.</td>
+			</tr>
+			@endif
+			<!-- End Enquiry loop -->
 			</tbody>
 		</table>
 		<!-- End Recent Enquiries -->
@@ -217,6 +227,7 @@
 @section('scripts')
 <script>
 	$(function(){
+		
 	var changeStatusURL = "{{ route('admin::all-vendors') }}/change-status/";
 	// Chnage status
 	$('.change-status').on('click','li a.status-action',function(e){

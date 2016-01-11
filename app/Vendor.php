@@ -42,6 +42,10 @@ class Vendor extends Model
 
     }
 
+    public function enquiry(){
+        return $this->hasMany("\App\Enquiry","to_vendor");
+    }
+
     /* Scope functions */
 
     public function scopeCategoryname(){
@@ -50,6 +54,10 @@ class Vendor extends Model
     		return $this->category->name;
     	}
     	return "(Uncategorised)";
+    }
+
+    public function scopeActive($query){
+        return $this->user()->active();
     }
 
     public function cityname(){

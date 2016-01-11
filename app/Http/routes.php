@@ -60,8 +60,16 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 
 	Route::get('siteusers','SiteuserController@getAllUsers')->name('all-site-users');
 	Route::get('siteusers/{userId}/view','SiteuserController@view')->name('view-site-user');
+	Route::get('siteusers/{userId}/edit','SiteuserController@edit')->name('edit-site-user');
+
+	/**
+	 *
+	 * Enquiry 
+	 */
 
 	Route::get('enquiries','EnquiryController@index')->name('all-enquiries');
+
+	Route::get('enquiries/{enquiryId}/view','EnquiryController@view')->name('view-enquiry');
 	
 
 });

@@ -19,7 +19,7 @@
 					<td>{{$user->first_name}}  {{$user->last_name}}</td>
 				</tr>
 				<tr>
-					<td>Name</td>
+					<td>Email</td>
 					<td>{{$user->email}}</td>
 				</tr>
 								<tr>
@@ -32,6 +32,41 @@
 				</tr>
 			</tbody>
 		</table>
+		<!-- Recent Enquiries -->
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th colspan="5">Recent Enquiries</th>
+				</tr>
+				<tr>
+					<th>Sl.No</th>
+					<th>Subject</th>
+					<th>To</th>
+					<th>Date/Time</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Loop through enquiries  -->
+			@if($user->enquiry->count())
+			@foreach($user->enquiry as $enquiry)
+				<tr>
+					<td>{{$enquiry->id}}</td>
+					<td><a href="{{route('admin::view-enquiry',$enquiry->id)}}" data-toggle="tooltip" data-placement="top"  title="{{$enquiry->subject}}">{{str_limit($enquiry->subject,26)}}</a></td>
+					<td><a title="{{$enquiry->vendor->user->first_name}} {{$enquiry->vendor->user->last_name}}" data-toggle="tooltip" data-placement="top">{{$enquiry->vendor->user->first_name}}</a></td>
+					<td ><a title="{{$enquiry->from->created_at->diffForHumans()}}" data-toggle="tooltip" data-placement="top">{{$enquiry->from->created_at->toFormattedDateString()}}</a></td>
+					<td>---</td>
+				</tr>
+			@endforeach
+			@else
+			<tr>
+				<td colspan="5" class="info"> No enquiries yet.</td>
+			</tr>
+			@endif
+			<!-- End Enquiry loop -->
+			</tbody>
+		</table>
+		<!-- End Recent Enquiries -->
 	</div>
 	<!--  End Row 1 Col left  -->
 	<!-- Row 1 Col right  -->
@@ -46,7 +81,7 @@
 					</tr>
 					<tr>
 						<td>Enquiries </td>
-						<td>-- </td>
+						<td> <span class="badge">{{$user->enquiry->count()}}</span></td>
 					</tr>
 					<tr>
 						<td>Pending Enquiries </td>
@@ -95,6 +130,54 @@
 			</div>
 	</div>
 	<!-- End Row 1 Col left  -->
+</div>
+<!-- End Row 1 -->
 
 
+
+
+
+
+
+@endsection
+
+@section('scripts')
+<script>
+	$(function(){
+		
+	var changeStatusURL = "{{ route('admin::all-vendors') }}/change-status/";
+	// Chnage status
+	$('.change-status').on('click','li a.status-action',function(e){
+
+		var statusAvailable = {'active':{'class':'alert-info','title':'Activate'},'block':{'class':'alert-danger','title':'Block'},'pending':{'class':'alert-info','title':'Pending'}};
+
+		console.log(this);
+		var action = $(this).data('status-action');
+
+		var parentNode = $(this).parents('.btn-group').find('button');
+
+		if(!parentNode){
+			console.log('nop');
+		}
+
+		var recordId = parentNode.data('record-id');
+
+		var contextBody = '<p class="alert alert-info">Are you sure?</p>';
+		$("#modalContext").html(contextBody);
+
+		$("#chnage-status-modal form").attr('action',changeStatusURL+recordId);
+
+
+
+		$("#modal-recordId").val(recordId);
+		$("#modal-actionName").val(action);
+
+		console.log(recordId);
+
+		// Showing modal
+		$('#chnage-status-modal').modal('show');
+
+	});
+});
+</script>
 @endsection

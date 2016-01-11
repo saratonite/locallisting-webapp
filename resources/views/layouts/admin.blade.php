@@ -86,6 +86,13 @@
     <!-- JavaScripts -->
     <script src="{{ asset('js/vendor.js')}}"></script>
     <script src="{{ asset('js/dashboard.js')}}"></script>
+    <script type="text/javascript">
+    //  GLOBAL SCRPTSS //
+    $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+    });
+    //  ///////////////
+    </script>
     @yield('scripts')
 </body>
 </html>

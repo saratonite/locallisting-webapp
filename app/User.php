@@ -31,11 +31,24 @@ class User extends Authenticatable
 
     }
 
+    /* Relations */
+
+    public function enquiry(){
+
+        // User sended enquiries
+
+        return $this->hasMany("\App\Enquiry","from_user");
+    }
+
     /* Scope functions */
 
     public function scopeSiteuser($query){
 
         $query->where('type','user');
 
+    }
+
+    public function scopeActive($query){
+        $query->where('status','active');
     }
 }

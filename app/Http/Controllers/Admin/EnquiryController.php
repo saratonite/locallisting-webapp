@@ -17,4 +17,18 @@ class EnquiryController extends Controller
 
     	return view('admin.enquiry.index',compact('enquiries'));
     }
+
+    /*'
+    *
+    * View a single enquiry details
+    **/
+
+    public function view(Request $request,$enquiryId){
+
+    	$enquiry = \App\Enquiry::find($enquiryId);
+
+
+    	return view('admin.enquiry.view',compact('enquiry'));
+
+    }
 }
