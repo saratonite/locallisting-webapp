@@ -67,6 +67,8 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	Route::get('siteusers/{userId}/edit','SiteuserController@edit')->name('edit-site-user');
 	Route::put('siteusers/{userId}/update','SiteuserController@update')->name('update-site-user');
 
+	Route::put('siteusers/change-status/{userId}','SiteuserController@changeStatus')->name('update-user-status');
+
 	/**
 	 *
 	 * Enquiry 

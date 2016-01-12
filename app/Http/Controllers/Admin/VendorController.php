@@ -68,10 +68,20 @@ class VendorController extends Controller
             'city_id' => 'required',
             'contact_number' => 'required',
             'mobile' => 'required'
+        ],[
+            'category_id' => 'Select category',
+            'city_id' => 'Select city'
         ]);
 
         if($v->fails()){
-            dd($v->errors());
+            return redirect()->back()->withErrors($v)->withInput();
+        }
+
+        $vendor->fill($request->all());
+
+        if($vendor->update()){
+
+            return redirect()->back()->with('success','Vendor profile updated');
         }
 
         return $vendor;

@@ -20,7 +20,7 @@ class CreateEnquiriesTable extends Migration
 
             $table->string('subject');
             $table->text('message');
-            
+            $table->enum('status',['pending','accepted','rejected','spam'])->default('pending');
             $table->timestamps();
         });
     }

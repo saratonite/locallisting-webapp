@@ -24,10 +24,11 @@
 			</div>
 			<div class="form-group @if($errors->has('category_id')) has-error @endif">
 				<label for="" class="control-label">Category</label>
-				<select name="" id="" class="form-control" name="category_id">
+				<select  id="" class="form-control" name="category_id">
+					<option disabled selected>Select Category</option>
 					@if(count($categories))
 						@foreach($categories as $key => $name)
-							<option value="{{$key}}">{{ $name }}</option>
+							<option @if(old('category_id',$vendor->category_id) == $key ) selected @endif value="{{$key}}">{{ $name }}</option>
 						@endforeach
 					@endif
 				</select>
@@ -37,10 +38,11 @@
 			</div>
 			<div class="form-group @if($errors->has('city_id')) has-error @endif">
 				<label for="" class="control-label">City</label>
-				<select name="" id="" class="form-control" name="citi_id">
+				<select  id="" class="form-control" name="city_id">
+					<option disabled selected>Select City</option>
 					@if(count($cities))
 						@foreach($cities as $key => $name)
-							<option value="{{$key}}">{{ $name }}</option>
+							<option @if(old('category_id',$vendor->city_id) == $key ) selected @endif value="{{$key}}">{{ $name }}</option>
 						@endforeach
 					@endif
 				</select>

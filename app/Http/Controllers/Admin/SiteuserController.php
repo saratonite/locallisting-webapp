@@ -42,6 +42,7 @@ class SiteuserController extends Controller
 
         $user = \App\User::find($userId);
 
+
         return view('admin.siteuser.edit',compact('user'));
 
     }
@@ -74,6 +75,15 @@ class SiteuserController extends Controller
             return redirect()->back()->with('success','User details updated');
         }
 
+
+    }
+
+    /**
+     *  Change Status
+     */
+    public function changeStatus(Request $request, $userId = null){
+
+        dd('sdsad');
 
     }
 }

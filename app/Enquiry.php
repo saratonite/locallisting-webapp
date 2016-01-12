@@ -8,6 +8,15 @@ class Enquiry extends Model
 {
     protected $table = "enquiries";
 
+    /**
+     *
+     *  Additional data
+     */
+    
+    public $statusArray = ['pending','accepted','rejected','spam'];
+
+
+
     /* Relations */
 
     public function from(){
@@ -17,5 +26,14 @@ class Enquiry extends Model
 
     public function vendor(){
     	return $this->belongsTo("\App\Vendor","to_vendor");
+    }
+
+    /**
+     *
+     * Helpers
+     */
+    
+    public function getStatuArray(){
+    	return $this->statusArray;
     }
 }

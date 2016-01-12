@@ -134,6 +134,36 @@
 <!-- End Row 1 -->
 
 
+<!-- Change status modal -->
+<div class="modal fade" tabindex="-1" id="chnage-status-modal" role="dialog">
+<form  method="post">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Change Vendor Status</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modalContext">Are you sure ?&hellip;</p>
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="id" id="modal-recordId">
+        <input type="hidden" name="status" id="modal-actionName">
+        {{csrf_field()}}
+        	<div class="checkbox">
+        		<label><input type="checkbox" class="checkbox" name="notify">Send a notification email?.</label>
+        	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form>
+</div><!-- /.modal -->
+<!-- End change status modal  -->
+
+
 
 
 
@@ -145,7 +175,7 @@
 <script>
 	$(function(){
 		
-	var changeStatusURL = "{{ route('admin::all-vendors') }}/change-status/";
+	var changeStatusURL = "{{ route('admin::all-site-users') }}/change-status/";
 	// Chnage status
 	$('.change-status').on('click','li a.status-action',function(e){
 

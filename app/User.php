@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password',
+        'first_name','last_name', 'email', 'password','status'
     ];
 
     /**
@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     }
 
-    public  $statusArray = ['active','pending','blocked'];
+    public  $statusArray = ['pending','active','blocked'];
 
     /* Relations */
 
@@ -58,5 +58,11 @@ class User extends Authenticatable
 
     public function isStatusExists($status=null){
         return in_array($status,$this->statusArray);
+    }
+
+    public function scopeStatusarray(){
+
+        return $this->statusArray;
+
     }
 }

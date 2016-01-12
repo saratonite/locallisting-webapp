@@ -32,7 +32,13 @@
 			</div>
 			<div class="form-group @if($errors->has('status')) has-error @endif">
 				<label for="" class="control-label">Status</label>
-				<input type="text" class="form-control" name="status" value="{{old('status',$user->status)}}">
+				<select name="status" class="form-control">
+					@if($user->StatusArray())
+						@foreach($user->StatusArray() as $status)
+						<option @if(old('status',$user->status) == $status) selected @endif value="{{$status}}">{{ucfirst($status)}}</option>
+						@endforeach
+					@endif
+				</select>
 				@if($errors->has('status'))
 					<span class="help-block">{{$errors->first('status')}}</span>
 				@endif
