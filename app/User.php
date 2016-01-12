@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name', 'email', 'password',
     ];
 
     /**
@@ -30,6 +30,8 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
 
     }
+
+    public  $statusArray = ['active','pending','blocked'];
 
     /* Relations */
 
@@ -50,5 +52,11 @@ class User extends Authenticatable
 
     public function scopeActive($query){
         $query->where('status','active');
+    }
+
+    /*Helper functions */
+
+    public function isStatusExists($status=null){
+        return in_array($status,$this->statusArray);
     }
 }

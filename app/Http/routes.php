@@ -56,11 +56,16 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 
 	Route::put('vendors/change-status/{vendorID}','VendorController@chnageStatus')->name('vendors-change-status');
 
+	Route::get('vendors/{vendorId}/edit','VendorController@edit')->name('edit-vendor');
+	Route::put('vendors/{vendorId}/update','VendorController@update')->name('update-vendor');
+
 	/* Users */
 
 	Route::get('siteusers','SiteuserController@getAllUsers')->name('all-site-users');
 	Route::get('siteusers/{userId}/view','SiteuserController@view')->name('view-site-user');
+
 	Route::get('siteusers/{userId}/edit','SiteuserController@edit')->name('edit-site-user');
+	Route::put('siteusers/{userId}/update','SiteuserController@update')->name('update-site-user');
 
 	/**
 	 *
@@ -70,6 +75,22 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	Route::get('enquiries','EnquiryController@index')->name('all-enquiries');
 
 	Route::get('enquiries/{enquiryId}/view','EnquiryController@view')->name('view-enquiry');
+
+	/**
+	 * Categorires
+	 */
+	
+	Route::get('category/all','CategoryController@index')->name('list-category');
+
+	Route::get('category/new','CategoryController@index')->name('new-category');
+
+	/**
+	 *
+	 * Cities
+	 */
+
+	Route::get('city/all','CityController@index')->name('list-cities');
+
 	
 
 });

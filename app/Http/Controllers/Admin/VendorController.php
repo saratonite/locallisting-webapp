@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Validator;
+
 class VendorController extends Controller
 {
     private $userStatuses = ['active','pending','blocked'];
@@ -31,6 +33,48 @@ class VendorController extends Controller
     	$vendor = \App\Vendor::find($vendorId);
 
     	return view('admin.vendor.show',compact('vendor'));
+
+    }
+
+    /**
+     *  Edit single Vendor
+     */
+    public function edit($vendorId){
+
+        $vendor = \App\Vendor::find($vendorId);
+
+        $categories = \App\Category::lists('name','id');
+        $cities = \App\City::lists('name','id');
+
+       // return $categories;
+
+        return view('admin.vendor.edit',compact('vendor','categories','cities'));
+
+
+    }
+
+    /**
+     * Update vendor
+     */
+    
+    public function update(Request $request,$vendorId = null){
+
+        $vendor = \App\Vendor::find($vendorId);
+
+        $v =  Validator::make($request->all(),[
+            'vendor_name' => 'required ',
+            'description' => 'required',
+            'category_id' => 'required',
+            'city_id' => 'required',
+            'contact_number' => 'required',
+            'mobile' => 'required'
+        ]);
+
+        if($v->fails()){
+            dd($v->errors());
+        }
+
+        return $vendor;
 
     }
 

@@ -8,7 +8,7 @@
 			<thead>
 				<tr>
 					<th colspan="2">
-						<h4>Vendor Profile <span class="label label-info"><a href="#">Edit</a></span></h4> 
+						<h4>Vendor Profile <span class="label label-info"><a href="{{route('admin::edit-vendor',$vendor->id)}}">Edit</a></span></h4> 
 					</th>
 				</tr>
 			</thead>
@@ -59,7 +59,7 @@
 			<thead>
 				<tr>
 					<th colspan="2">
-						<h4>User Details</h4>
+						<h4>User Details <a href="{{route('admin::edit-site-user',$vendor->user->id)}}">Edit</a></h4>
 					</th>
 				</tr>
 			</thead>

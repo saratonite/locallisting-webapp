@@ -9,7 +9,7 @@
 			<thead>
 				<tr>
 					<th colspan="2">
-						<h4>User Profile <span class="label label-info"><a href="#">Edit</a></span></h4> 
+						<h4>User Profile <span class="label label-info"><a href="{{route('admin::edit-site-user',$user->id)}}">Edit</a></span></h4> 
 					</th>
 				</tr>
 			</thead>
