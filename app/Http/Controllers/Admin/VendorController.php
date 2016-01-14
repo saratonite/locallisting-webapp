@@ -25,6 +25,14 @@ class VendorController extends Controller
     	return view('admin.vendor.index',compact('vendors'));
     }
 
+    public function pending(){
+
+    }
+
+    public function accepted(){
+        
+    }
+
     /**
      *
      * View A Single User details

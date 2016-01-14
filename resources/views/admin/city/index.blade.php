@@ -16,7 +16,7 @@
 			@foreach($cities as $city)
 				<tr>
 					<td>{{$city->id}}</td>
-					<td>{{$city->name}}</td>
+					<td><a href="{{ route('admin::city-edit',$city->id)}}">{{$city->name}}</a></td>
 				</tr>
 			@endforeach
 			@endif
