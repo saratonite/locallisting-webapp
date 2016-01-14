@@ -35,6 +35,24 @@
 	</table>
 	<!-- End Enquiry Details -->
 	
+
+	<div>
+
+		@if(count($enquiry->getStatuArray()))
+			<div class="btn-group ">
+							  <button type="button" data-record-id="{{$enquiry->id}}"  class="btn dropdown-toggle btn-{{ BS_Status_Class($enquiry->status) }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							   {{ucfirst($enquiry->status)}} <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu change-status">
+							  @foreach($enquiry->getStatuArray() as $status)
+							  <li><a class="status-action" href="javascript:void(0);" data-status-action="pending">{{ucfirst($status)}}</a></li>
+							  @endforeach
+							  </ul>
+							</div>
+		@endif
+		<input type="button" class="btn btn-danger" value="DELETE">
+	</div>
+	
 		
 	</div>
 	<!-- End Row 1 left col -->

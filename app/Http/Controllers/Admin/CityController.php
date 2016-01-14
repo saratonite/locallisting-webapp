@@ -23,6 +23,11 @@ class CityController extends Controller
     	return view('admin.city.index',compact('cities'));
     }
 
+    public function addcity(){
+
+        return view('admin.city.add');
+    }
+
     /**
      * Show single City
      */

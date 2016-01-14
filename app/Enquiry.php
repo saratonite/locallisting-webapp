@@ -28,6 +28,13 @@ class Enquiry extends Model
     	return $this->belongsTo("\App\Vendor","to_vendor");
     }
 
+
+    /**
+     * Scopes
+     */
+    
+    
+
     /**
      *
      * Helpers

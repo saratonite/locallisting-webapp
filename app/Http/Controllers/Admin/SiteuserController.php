@@ -15,7 +15,7 @@ class SiteuserController extends Controller
 	/* Get users where type =user */
     public function getAllUsers(){
 
-    	$siteusers = \App\User::siteuser()->paginate(15);
+    	$siteusers = \App\User::siteuser()->bydate()->bystatus('active')->paginate(15);
 
     	return view('admin.siteuser.index',compact('siteusers'));
     	 
@@ -83,7 +83,26 @@ class SiteuserController extends Controller
      */
     public function changeStatus(Request $request, $userId = null){
 
-        dd('sdsad');
+    
+
+        $this->validate($request,[
+            'id' => 'required',
+            'status' => 'required'
+        ]);
+
+
+
+        $user = \App\User::find($request->input('id'));
+
+        if($user->isStatusExists($request->input('status'))){
+
+            $user->status = $request->input('status');
+            $user->update();
+        }
+
+        return redirect()->back();
+
+
 
     }
 }

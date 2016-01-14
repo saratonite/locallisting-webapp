@@ -62,6 +62,17 @@ class Vendor extends Model
         return $this->user()->active();
     }
 
+    public function scopeBydate($query){
+        $query->orderBy('created_at','DESC');
+
+    }
+
+    public function scopeByStatus($query,$status="pending"){
+
+        $this->user()->ByStatus($status);
+
+    }
+
     public function cityname(){
     	if($this->city){
     		return $this->city->name;

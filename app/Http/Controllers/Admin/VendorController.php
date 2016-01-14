@@ -18,7 +18,9 @@ class VendorController extends Controller
     public function index(){
 
 
-    	$vendors = \App\Vendor::paginate(15);
+    	$vendors = \App\Vendor::bydate()->bystatus()->paginate(15); 
+       
+        
 
     	return view('admin.vendor.index',compact('vendors'));
     }
@@ -125,4 +127,5 @@ class VendorController extends Controller
     	return false;
 
     }
+
 }

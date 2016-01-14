@@ -92,6 +92,8 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	 */
 
 	Route::get('city/all','CityController@index')->name('list-cities');
+	Route::get('city/add','CityController@addcity')->name('city-add');
+	Route::post('city/create','CityController@create');
 
 	
 

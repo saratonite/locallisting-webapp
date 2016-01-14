@@ -54,6 +54,20 @@ class User extends Authenticatable
         $query->where('status','active');
     }
 
+    public function scopeByDate($query){
+
+        $query->orderBy('created_at','desc');
+
+    }
+
+    public function scopeByStatus($query,$status){
+
+        if($this->isStatusExists($status)){
+            $query->where('status',$status);
+        }
+
+    }
+
     /*Helper functions */
 
     public function isStatusExists($status=null){
