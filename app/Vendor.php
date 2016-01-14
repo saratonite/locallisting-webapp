@@ -69,7 +69,9 @@ class Vendor extends Model
 
     public function scopeByStatus($query,$status="pending"){
 
-        $this->user()->ByStatus($status);
+        $query->whereHas('user',function($q) use($status){
+            $q->where('status',$status);
+        });
 
     }
 

@@ -18,7 +18,7 @@ class VendorController extends Controller
     public function index(){
 
 
-    	$vendors = \App\Vendor::bydate()->bystatus()->paginate(15); 
+    	$vendors = \App\Vendor::bydate()->paginate(15); 
        
         
 
@@ -27,10 +27,19 @@ class VendorController extends Controller
 
     public function pending(){
 
+        $vendors = \App\Vendor::bydate()->bystatus('pending')->paginate(15);
+        return view('admin.vendor.index',compact('vendors'));
+
     }
 
     public function accepted(){
-        
+        $vendors = \App\Vendor::bydate()->bystatus('active')->paginate(15);
+        return view('admin.vendor.index',compact('vendors'));
+    }
+
+    public function blocked(){
+        $vendors = \App\Vendor::bydate()->bystatus('blocked')->paginate(15);
+        return view('admin.vendor.index',compact('vendors'));
     }
 
     /**

@@ -58,6 +58,7 @@
                                 <li> <a href="{{ route('admin::all-vendors') }}">All</a></li>
                                 <li> <a href="{{ route('admin::pending-vendors') }}">Pending</a></li>
                                 <li> <a href="{{ route('admin::accepted-vendors') }}">Accepted</a></li>
+                                <li> <a href="{{ route('admin::blocked-vendors') }}">Blocked</a></li>
                             </ul>
                     </li>
                     <li><a href="{{ route('admin::all-site-users') }}">Users</a></li>
