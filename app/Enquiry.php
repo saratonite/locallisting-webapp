@@ -33,6 +33,20 @@ class Enquiry extends Model
      * Scopes
      */
     
+    public function scopeByDate($query){
+
+        $query->orderBy('created_at',"DESC");
+
+    }
+    
+    public function scopeByStatus($query,$status = null){
+
+        if(!is_null($status) && $this->isValidStatus($status)){
+            $query->where('status',$status);
+        }
+
+    }
+    
     
 
     /**
@@ -42,5 +56,9 @@ class Enquiry extends Model
     
     public function getStatuArray(){
     	return $this->statusArray;
+    }
+
+    public function isValidStatus($status=null){
+        return in_array($status, $this->statusArray);
     }
 }

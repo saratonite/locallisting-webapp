@@ -12,10 +12,49 @@ class EnquiryController extends Controller
     
     public function index(){
 
-    	$enquiries = \App\Enquiry::with('vendor')->paginate(1);
+    	$enquiries = \App\Enquiry::with('vendor')->bydate()->paginate(1);
     	//return $enquiries;
 
     	return view('admin.enquiry.index',compact('enquiries'));
+    }
+
+
+
+
+    /**
+     *
+     * Get accepted enquiries
+     */
+    
+    public function accepted(){
+        $enquiries = \App\Enquiry::with('vendor')->bydate()->bystatus('accepted')->paginate(1);
+        //return $enquiries;
+
+        return view('admin.enquiry.index',compact('enquiries'));
+    }
+
+    /**
+     * get rejected
+     */
+    
+    public function rejected(){
+        $enquiries = \App\Enquiry::with('vendor')->bydate()->bystatus('rejected')->paginate(1);
+        //return $enquiries;
+
+        return view('admin.enquiry.index',compact('enquiries'));
+    }
+
+    /**
+     * get pending 
+     */
+    
+    public function pending(){
+
+        $enquiries = \App\Enquiry::with('vendor')->bydate()->bystatus('pending')->paginate(1);
+        //return $enquiries;
+
+        return view('admin.enquiry.index',compact('enquiries'));
+
     }
 
     /*'

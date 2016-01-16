@@ -12,7 +12,9 @@ class DashboardController extends Controller
 	// Dashboard page
     public function getIndex(){
 
-    	$count['vendors'] = \App\Vendor::bystatus('active')->count();
+    	$count['vendors'] = \App\Vendor::count();
+    	$count['users'] = \App\User::siteuser()->count();
+    	$count['enquiries'] = \App\Enquiry::count();
 
 
     	return view('admin.dashboard',compact('count'));

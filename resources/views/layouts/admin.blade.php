@@ -61,8 +61,23 @@
                                 <li> <a href="{{ route('admin::blocked-vendors') }}">Blocked</a></li>
                             </ul>
                     </li>
-                    <li><a href="{{ route('admin::all-site-users') }}">Users</a></li>
-                    <li><a href="{{ route('admin::all-enquiries') }}">Enquiries</a></li>
+                    <li><a class="dropdown-toggle" data-toggle="dropdown" role='button' >Users <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('admin::all-site-users')}}">All</a></li>
+                                <li><a href="{{ route('admin::active-site-users')}}">Active</a></li>
+                                <li><a href="{{ route('admin::pending-site-users')}}">Pending</a></li>
+                                <li><a href="{{ route('admin::blocked-site-users')}}">Blocked</a></li>
+                            </ul>
+                    </li>
+                    <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" >Enquiries <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('admin::all-enquiries') }}">All</a></li>
+                            <li><a href="{{ route('admin::pending-enquiries') }}">Pending</a></li>
+                            <li><a href="{{ route('admin::accepted-enquiries') }}">Accepted</a></li>
+                            <li><a href="{{ route('admin::rejected-enquiries') }}">Rejected</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

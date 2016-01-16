@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+Route::get('/home', function () {
+    return view('site.home');
+});
+Route::get('search',function(){
+	return view('site.search');
+
+})->name('search');
+
+Route::get('service_provider/red-earth-gardening',function(){
+	return view('site.service_provider.profile');
+})->name('profile');
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -65,6 +78,9 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	/* Users */
 
 	Route::get('siteusers','SiteuserController@getAllUsers')->name('all-site-users');
+	Route::get('siteusers/pending','SiteuserController@pending')->name('pending-site-users');
+	Route::get('siteusers/active','SiteuserController@accepted')->name('active-site-users');
+	Route::get('siteusers/blocked','SiteuserController@blocked')->name('blocked-site-users');
 	Route::get('siteusers/{userId}/view','SiteuserController@view')->name('view-site-user');
 
 	Route::get('siteusers/{userId}/edit','SiteuserController@edit')->name('edit-site-user');
@@ -78,6 +94,9 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	 */
 
 	Route::get('enquiries','EnquiryController@index')->name('all-enquiries');
+	Route::get('enquiries/accepted','EnquiryController@accepted')->name('accepted-enquiries');
+	Route::get('enquiries/pending','EnquiryController@pending')->name('pending-enquiries');
+	Route::get('enquiries/rejected','EnquiryController@rejected')->name('rejected-enquiries');
 
 	Route::get('enquiries/{enquiryId}/view','EnquiryController@view')->name('view-enquiry');
 

@@ -15,10 +15,38 @@ class SiteuserController extends Controller
 	/* Get users where type =user */
     public function getAllUsers(){
 
-    	$siteusers = \App\User::siteuser()->bydate()->bystatus('active')->paginate(15);
+    	$siteusers = \App\User::siteuser()->bydate()->paginate(15);
 
     	return view('admin.siteuser.index',compact('siteusers'));
     	 
+    }
+
+    /**
+     *  get accespted users
+     * 
+     */
+    
+    public function accepted(){
+        $siteusers = \App\User::siteuser()->bydate()->bystatus('active')->paginate(15);
+        return view('admin.siteuser.index',compact('siteusers'));
+    }
+
+    /**
+     *
+     *  get pending users
+     */
+    
+    public function pending(){
+        $siteusers = \App\User::siteuser()->bydate()->bystatus('pending')->paginate(15);
+        return view('admin.siteuser.index',compact('siteusers'));
+    }
+
+    /**
+     *  get blocked users
+     */
+    public function blocked(){
+         $siteusers = \App\User::siteuser()->bydate()->bystatus('blocked')->paginate(15);
+         return view('admin.siteuser.index',compact('siteusers'));
     }
 
     /**

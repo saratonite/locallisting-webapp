@@ -1,0 +1,279 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ margin:0; background:#f4f4f4;}
+.top{ width:100%; float:left; background:#ebebeb; padding-top:15px; padding-bottom:15px;}
+.top .call .fa{ color:#909090; font-size:15px; padding-right: 10px;}
+.top .call ul{ padding:0;}
+.top .call ul li{ float:left; list-style:none; padding-right: 10px; font-family:'SegoeUI-Regular'; font-size:14px;}
+.top .social .fa{ color:#909090; font-size:16px;}
+.top .social ul{ padding:0; float:right; margin:0;}
+.top .social ul li{ float:left; list-style:none; padding-left: 15px;}
+.top .social ul li a{ text-decoration:none; color:inherit;}
+
+
+
+
+/*nav starts here*/
+header .navbar-default{  border:none; padding:0;  }
+header .navbar-default .navbar-nav>li>a{   font-family: 'robotoregular'; font-size:14.3px; color:#767575;
+padding:49px 0 0; margin-right:17px;   }
+header .no-margin { margin-right:0px !important}
+
+header .navbar-collapse, .collapse{  margin-right:-10px;
+  float:right  }
+header .navbar{ margin-bottom:0; height:auto; z-index:999}
+header .navbar-default{ background:none; }
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{background:#91be4b;  color:#fff;    font-family: 'robotoregular'; padding:49px 18px; text-transform:uppercase;
+
+/*-moz-border-radius:24px ;
+-webkit-border-radius:24px ;*/
+/*border-radius:20px ;*/
+
+
+}
+header .navbar-default .navbar-nav > li > a:hover{ color:#91be4b; transition:ease-out 0.3s}
+header .navbar-default .navbar-brand{color:#fff; }
+header .navbar-collapse{border:none;}
+header .navbar-header{border: 1px solid #628d1e;
+    border-radius: 0;
+    margin: 10px -15px 0; background:#91be4b;}
+header .navbar-default .navbar-nav{ }
+
+/*nav end here*/
+
+
+.banner{ width:100%; float:left;}
+.inner_banner{ width:100%; float:left;}
+.banner .shadow{ width:100%; float:left;}
+
+.packages{ width:100%; float:left;}
+.packages .packge_box{ margin-top: 20px;  margin-bottom: 20px;}
+.packages .packge_box .blue_band{ background:#087dc2; position: absolute; font-size: 20px; color: #fff; font-family: 'robotoregular'; left:0px;
+ padding-left: 10px; padding-right: 10px; padding-top: 3px;  padding-bottom: 3px; margin-top: 10px;}
+.packages .packge_box .packg_img{ border-radius: 10px;}
+.packages .packge_box .blue_band:after { border-left: 15px solid transparent;  border-right: 0px solid transparent; content: "";
+    border-top: 13px solid #087dc2; position: absolute; bottom: -13px;  width: 0px;  left: 13%; margin-left: -10px;}
+.packages .packge_box .name_head{ background: rgba(0,0,0,.5);  font-family: 'robotoregular'; color: #fff;  font-size: 18px;  position: absolute;
+    bottom: 20%;  float: left;  width: 92%;  padding-top: 10px;  padding-bottom: 10px; padding-left: 20px;}
+.packages .packge_box .green_round{ background-color: #91be4b; border: 3px solid #fff;  border-radius: 50%; padding: 20px;  position: absolute;
+    bottom: 13%;  right: 7%;  padding-top: 27px; padding-bottom: 27px;  z-index: 9; font-family: 'robotoregular'; color: #fff;  font-size: 18px;}
+
+
+.main_box{ width:100%; float:left; padding-top: 20px;}
+.main_box .expericnce_box{ border-top:11px solid #d70317; background: #fff; padding-left: 15px; padding-right: 15px; padding-bottom: 50px;
+ margin-top:25px;}
+.main_box .expericnce_box p{ font-family:'Uni-Sans-Book'; color:#474747; font-size:15px; text-align:justify; line-height:23px;}
+.main_box .expericnce_box h2{ font-family: 'pf_beausans_proregular'; color:#4a4a4a; font-size:35px; text-align:center; text-transform:uppercase;
+ margin-bottom: 30px; margin-top: 20px;}
+.main_box .expericnce_box .quote_top{ padding-right: 15px;}
+.main_box .expericnce_box .quote_bottom{ }
+
+.main_box .value_box{ background:#fff; border-top:11px solid #f0f200; padding-left: 15px; padding-right: 15px; padding-bottom: 30px;
+ margin-top:25px;}
+.main_box .value_box h2{ font-family: 'pf_beausans_proregular'; color:#4a4a4a; font-size:35px; text-align:center; text-transform:uppercase;
+ margin-bottom: 30px; margin-top: 20px;}
+.main_box .value_box p{ font-family:'Uni-Sans-Book'; color:#474747; font-size:15px; text-align:justify; line-height:23px;}
+
+.gal_head{ width:100%; float:left; padding-top: 20px;}
+
+.gallery_box{ width:100%; float:left; background:url(../images/gal_bg.jpg); padding-top: 40px; padding-bottom: 40px;}
+
+footer{ width:100%; float:left; background:#404141; font-family:Arial, Helvetica, sans-serif; font-size:15px; color:#fff; padding-top:50px;
+ padding-bottom:50px;}
+footer .copyright{ text-align:left;}
+footer .powerd{ text-align:right;}
+footer .powerd a{ text-decoration:none; color:inherit;}
+
+
+.main_box .contact_form .form-group input{ width:100%; margin-bottom:15px; background:none;border:solid 1px #91be4b;}
+.main_box .contact_form .form-group select{ width:100%; margin-bottom:15px; background:none;border:solid 1px #91be4b;}
+.main_box .contact_form .form-group textarea{ width:100%;margin-bottom:15px; background:none; border:solid 1px #91be4b;}
+.main_box .contact_form form{ margin-top:25px;}
+.main_box .contact_form .form-group button{margin-bottom:15px; background:#91be4b; }
+.main_box .contact_address{ margin-top: 15px;}
+
+
+.main_box .booking_form{}
+.main_box .booking_form label{ text-align: left; font-weight: normal; font-family:'Uni-Sans-Book'; font-size: 15px;}
+.main_box .booking_form input{ border-radius: 0;}
+.main_box .booking_form .btn{ background:#91be4b; font-family:'Uni-Sans-Book'; margin-right: 10px;}
+
+.main_box .small_box{ margin-bottom: 20px;}
+.main_box .small_box p{ text-align:center; margin-bottom: 5px;}
+.main_box .small_box .package_box{ border: 1px solid #ccc; border-radius: 5px; min-height: 305px;}
+.main_box .small_box .package_box img{ margin:0 auto;}
+.main_box .small_box .package_box h3{ font-family:'Uni-Sans-Book'; text-align: center; font-size: 22px;}
+.main_box .small_box .more_btn a{text-decoration: none; color: #fff;  background-color: #505050; padding: 10px;  padding-top: 5px; 
+padding-bottom: 5px;  float: right;}
+
+
+.main_box .back_btn{ background:#91be4b; border: 0;  border-radius: 0; margin-bottom: 15px;}
+.main_box .back_btn a{ text-decoration:none; color:inherit;}
+.main_box .packge_details{}
+.main_box .packge_details .booking_button{ background-color: #e93445;  color: #fff; padding: 10px;  float: right;  margin-left: 15px;
+    padding-top: 5px;  padding-bottom: 5px;}
+.main_box .packge_details .booking_button a{ text-decoration:none; color:inherit;}
+.main_box .packge_details .btn{ background:#91be4b; border: 0;  border-radius: 0;}
+.main_box .packge_details .btn a{ text-decoration:none; color:inherit;}
+.main_box .packge_details h2{ font-family: 'pf_beausans_proregular';     font-size: 26px;}
+
+
+
+h1{ font-family: 'pf_beausans_prosemibold'; font-size:35px; text-transform:uppercase; color:#505050; text-align:center;}
+h1 span{ color:#91be4b;}
+.underline{ margin-bottom: 15px;}
+.underline img{ margin:0 auto;}
+h2{ font-family: 'pf_beausans_proregular'; color:#4a4a4a; font-size:35px;}
+p{ font-family:'Uni-Sans-Book'; color:#474747; font-size:15px; text-align:justify; line-height:23px;}
+
+.title_table{ font-weight: bold;
+	
+}
+.package_dis{}
+.package_dis p {
+    font-family: 'Uni-Sans-Book';
+    color: #474747;
+    font-size: 15px;
+    text-align: justify;
+    line-height: 23px;
+}
+
+
+
+@media(min-width:768px) and (max-width:991px)  {
+header .logo img{ margin:0 auto;}
+.navbar-collapse.collapse{ padding:0;}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+	padding: 30px 17px; }
+header .navbar-default .navbar-nav > li > a{ padding: 30px 0px;}
+.main_box .small_box .package_box{ min-height: 220px;}	
+	}
+
+
+@media(max-width:570px)  {
+.top .call ul li{ width:100%; text-align:center;}
+.top .social ul{ text-align: center; float: none;}
+.top .social ul li{ display: inline; float: none; padding-right:15px;}
+.top .social{ padding-top:15px; padding-bottom:10px;}
+.top .social .fa{ font-size:20px;}
+    }
+
+
+@media(max-width:767px)  {
+header .logo img{ margin:0 auto;}
+header .navbar-collapse, .collapse{ float:none;}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+	padding: 20px 18px;}
+header .navbar-default .navbar-nav > li > a{ padding: 20px 18px;}	
+.packages .packge_box .name_head{ width:auto;  padding-right: 10px;}
+footer .copyright{ text-align:center;}
+footer{ font-size:12px;}
+footer .powerd{ text-align:center;}
+.main_box .small_box .package_box{ min-height: 250px;}
+    }
+
+
+@media(min-width:992px) and (max-width:1199px)  {
+header .navbar-default .navbar-nav > li > a{ margin-right: 11px;}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+	padding: 49px 10px;	}
+.packages .packge_box .name_head{ width: 90%;}	
+	}
+
+
+@media(min-width:420px) and (max-width:571px)  {
+.packages .packge_box .green_round{ right:35%;}
+	}
+
+@media(min-width:572px) and (max-width:767px)  {
+.packages .packge_box .green_round{ right:50%;}
+	}
+
+@media(max-width:360px)  {
+.packages .packge_box .name_head{ font-size:14px;}
+    }
+
+
+@font-face {
+	font-family:'SegoeUI-Regular';
+	src: url('../fonts/SegoeUI_gdi.eot');
+	src: url('../fonts/SegoeUI_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/SegoeUI_gdi.woff') format('woff'),
+		url('../fonts/SegoeUI_gdi.ttf') format('truetype'),
+		url('../fonts/SegoeUI_gdi.svg#SegoeUI-Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-2666;
+}
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../fonts/roboto-regular-webfont.eot');
+    src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff'),
+         url('../fonts/roboto-regular-webfont.ttf') format('truetype'),
+         url('../fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+	font-family:'Pristina-Regular';
+	src: url('../fonts/Pristina-Regular_gdi.eot');
+	src: url('../fonts/Pristina-Regular_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Pristina-Regular_gdi.woff') format('woff'),
+		url('../fonts/Pristina-Regular_gdi.ttf') format('truetype'),
+		url('../fonts/Pristina-Regular_gdi.svg#Pristina-Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-25CA;
+}
+
+
+@font-face {
+    font-family: 'pf_beausans_prosemibold';
+    src: url('../fonts/pfbeausanspro-semibold-webfont.eot');
+    src: url('../fonts/pfbeausanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/pfbeausanspro-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/pfbeausanspro-semibold-webfont.woff') format('woff'),
+         url('../fonts/pfbeausanspro-semibold-webfont.ttf') format('truetype'),
+         url('../fonts/pfbeausanspro-semibold-webfont.svg#pf_beausans_prosemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'pf_beausans_proregular';
+    src: url('../fonts/pfbeausanspro-regular-webfont.eot');
+    src: url('../fonts/pfbeausanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/pfbeausanspro-regular-webfont.woff2') format('woff2'),
+         url('../fonts/pfbeausanspro-regular-webfont.woff') format('woff'),
+         url('../fonts/pfbeausanspro-regular-webfont.ttf') format('truetype'),
+         url('../fonts/pfbeausanspro-regular-webfont.svg#pf_beausans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+	font-family:'Uni-Sans-Book';
+	src: url('../fonts/Uni-Sans-Book_gdi.eot');
+	src: url('../fonts/Uni-Sans-Book_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Uni-Sans-Book_gdi.woff') format('woff'),
+		url('../fonts/Uni-Sans-Book_gdi.ttf') format('truetype'),
+		url('../fonts/Uni-Sans-Book_gdi.svg#Uni-Sans-Book') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+000D-2122;
+}

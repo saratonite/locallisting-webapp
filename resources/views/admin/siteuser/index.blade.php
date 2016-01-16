@@ -38,7 +38,7 @@
 		<!-- End Loop through site users -->
 		@else
 		<tr>
-			<td colspan="3" class="alert alert-info"> No Records. </td>
+			<td colspan="6" class="alert alert-info"> No Records. </td>
 		</tr>
 		@endif
 	</tbody>
