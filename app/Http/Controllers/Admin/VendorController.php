@@ -15,31 +15,33 @@ class VendorController extends Controller
 
 
 
-    public function index(){
+    public function index(Request $request){
 
 
-    	$vendors = \App\Vendor::bydate()->paginate(15); 
-       
-        
-
-    	return view('admin.vendor.index',compact('vendors'));
+    	$vendors = \App\Vendor::bydate()->paginate(config('settings.pagination.per_page')); 
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+        return view('admin.vendor.index',compact('vendors','row_count'));
     }
 
-    public function pending(){
+    public function pending(Request $request){
 
-        $vendors = \App\Vendor::bydate()->bystatus('pending')->paginate(15);
-        return view('admin.vendor.index',compact('vendors'));
+        $vendors = \App\Vendor::bydate()->bystatus('pending')->paginate(config('settings.pagination.per_page'));
+
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+        return view('admin.vendor.index',compact('vendors','row_count'));
 
     }
 
-    public function accepted(){
-        $vendors = \App\Vendor::bydate()->bystatus('active')->paginate(15);
-        return view('admin.vendor.index',compact('vendors'));
+    public function accepted(Request $request){
+        $vendors = \App\Vendor::bydate()->bystatus('active')->paginate(config('settings.pagination.per_page'));
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+        return view('admin.vendor.index',compact('vendors','row_count'));
     }
 
-    public function blocked(){
-        $vendors = \App\Vendor::bydate()->bystatus('blocked')->paginate(15);
-        return view('admin.vendor.index',compact('vendors'));
+    public function blocked(Request $request){
+        $vendors = \App\Vendor::bydate()->bystatus('blocked')->paginate(config('settings.pagination.per_page'));
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+        return view('admin.vendor.index',compact('vendors','row_count'));
     }
 
     /**

@@ -45,7 +45,7 @@
 							  </button>
 							  <ul class="dropdown-menu change-status">
 							  @foreach($enquiry->getStatuArray() as $status)
-							  <li><a class="status-action" href="javascript:void(0);" data-status-action="pending">{{ucfirst($status)}}</a></li>
+							  <li><a class="status-action" href="javascript:void(0);" data-status-action="{{$status}}">{{ucfirst($status)}}</a></li>
 							  @endforeach
 							  </ul>
 							</div>
@@ -124,4 +124,75 @@
 	</div>
 	<!-- End Row 1 right col -->
 </div>
+
+<!-- End Page Main Contents -->
+<!-- Change status modal -->
+<div class="modal fade" tabindex="-1" id="chnage-status-modal" role="dialog">
+<form  method="post">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Change Enquiry Status</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modalContext">Are you sure ?&hellip;</p>
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="id" id="modal-recordId">
+        <input type="hidden" name="status" id="modal-actionName">
+        {{csrf_field()}}
+        	<div class="checkbox">
+        		<label><input type="checkbox" class="checkbox" name="notify">Send a notification email?.</label>
+        	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form>
+</div><!-- /.modal -->
+<!-- End change status modal  -->
+@endsection
+
+@section('scripts')
+<script>
+	$(function(){
+		
+	var changeStatusURL = "{{ route('admin::all-enquiries') }}/change-status/";
+	// Chnage status
+	$('.change-status').on('click','li a.status-action',function(e){
+
+		var statusAvailable = {'active':{'class':'alert-info','title':'Activate'},'block':{'class':'alert-danger','title':'Block'},'pending':{'class':'alert-info','title':'Pending'}};
+
+		console.log(this);
+		var action = $(this).data('status-action');
+
+		var parentNode = $(this).parents('.btn-group').find('button');
+
+		if(!parentNode){
+			console.log('nop');
+		}
+
+		var recordId = parentNode.data('record-id');
+
+		var contextBody = '<p class="alert alert-info">Are you sure?</p>';
+		$("#modalContext").html(contextBody);
+
+		$("#chnage-status-modal form").attr('action',changeStatusURL+recordId);
+
+
+
+		$("#modal-recordId").val(recordId);
+		$("#modal-actionName").val(action);
+
+		console.log(recordId);
+
+		// Showing modal
+		$('#chnage-status-modal').modal('show');
+
+	});
+});
+</script>
 @endsection

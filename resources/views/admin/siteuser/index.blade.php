@@ -19,7 +19,7 @@
 		<!-- Loop through site users -->
 		@foreach($siteusers as $user)
 		<tr>
-			<td>{{$user->id}}</td>
+			<td>{{$row_count}}</td>
 			<td><a href="{{ route('admin::view-site-user',$user->id)}}">{{ $user->first_name }}</a></td>
 			<td></td>
 			<td>
@@ -33,6 +33,7 @@
 				{{$user->created_at->toFormattedDateString()}}
 			</td>
 			<td></td>
+			<?php $row_count++;?>
 		</tr>
 		@endforeach
 		<!-- End Loop through site users -->

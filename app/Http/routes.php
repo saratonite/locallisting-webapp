@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home.index');
+    return view('site.home');
 });
 
 Route::get('/home', function () {
@@ -99,6 +99,8 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	Route::get('enquiries/rejected','EnquiryController@rejected')->name('rejected-enquiries');
 
 	Route::get('enquiries/{enquiryId}/view','EnquiryController@view')->name('view-enquiry');
+	
+	Route::put('enquiries/change-status/{enquiryId}','EnquiryController@changeStatus')->name('update-enquiry-enquiry');
 
 	/**
 	 * Categorires

@@ -13,11 +13,11 @@ class SiteuserController extends Controller
     
 
 	/* Get users where type =user */
-    public function getAllUsers(){
+    public function getAllUsers(Request $request){
 
-    	$siteusers = \App\User::siteuser()->bydate()->paginate(15);
-
-    	return view('admin.siteuser.index',compact('siteusers'));
+    	$siteusers = \App\User::siteuser()->bydate()->paginate(config('settings.pagination.per_page'));
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+    	return view('admin.siteuser.index',compact('siteusers','row_count'));
     	 
     }
 
@@ -26,9 +26,10 @@ class SiteuserController extends Controller
      * 
      */
     
-    public function accepted(){
-        $siteusers = \App\User::siteuser()->bydate()->bystatus('active')->paginate(15);
-        return view('admin.siteuser.index',compact('siteusers'));
+    public function accepted(Request $request){
+        $siteusers = \App\User::siteuser()->bydate()->bystatus('active')->paginate(config('settings.pagination.per_page'));
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+        return view('admin.siteuser.index',compact('siteusers','row_count'));
     }
 
     /**
@@ -36,17 +37,19 @@ class SiteuserController extends Controller
      *  get pending users
      */
     
-    public function pending(){
-        $siteusers = \App\User::siteuser()->bydate()->bystatus('pending')->paginate(15);
-        return view('admin.siteuser.index',compact('siteusers'));
+    public function pending(Request $request){
+        $siteusers = \App\User::siteuser()->bydate()->bystatus('pending')->paginate(config('settings.pagination.per_page'));
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+        return view('admin.siteuser.index',compact('siteusers','row_count'));
     }
 
     /**
      *  get blocked users
      */
-    public function blocked(){
-         $siteusers = \App\User::siteuser()->bydate()->bystatus('blocked')->paginate(15);
-         return view('admin.siteuser.index',compact('siteusers'));
+    public function blocked(Request $request){
+         $siteusers = \App\User::siteuser()->bydate()->bystatus('blocked')->paginate(config('settings.pagination.per_page'));
+         $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+        return view('admin.siteuser.index',compact('siteusers','row_count'));
     }
 
     /**

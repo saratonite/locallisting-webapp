@@ -16,7 +16,7 @@ class CityController extends Controller
     
     public function index(){
 
-    	$cities = \App\City::paginate(15);
+    	$cities = \App\City::paginate(config('settings.pagination.per_page'));
 
     
 

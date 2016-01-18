@@ -22,7 +22,7 @@
 		<!-- Loop through vendors -->
 		@foreach($vendors as $vendor)
 			<tr>
-				<td>{{$vendor->id}}</td>
+				<td>{{$row_count}}</td>
 				<td><a href="{{route('admin::vendor-profile',$vendor->id)}}">{{$vendor->vendor_name}}</a></td>
 				<td>{{$vendor->categoryname()}}</td>
 				<td>{{$vendor->cityname()}}</td>
@@ -32,8 +32,12 @@
 					   
 				</td>
 				<td>{{ $vendor->user->created_at->format('d-M-Y')}}</td>
-				<td></td>
+				<td>
+					<i class="glyphicon glyphicon-eye-open"></i>
+					<a href="{{route('admin::vendor-profile',$vendor->id)}}"><i class="glyphicon glyphicon-eye-open"></i></a>
+				</td>
 			</tr>
+			<?php $row_count++;?>
 		@endforeach
 		<!-- End Loop through vendors -->
 		@else

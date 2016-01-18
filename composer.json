@@ -24,6 +24,7 @@
         },
         "files":[
 
+        "app/Helpers/Common.php",
         "app/Helpers/UI_Helpers.php"
 
         ]

@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => env('BASE_URL','http://www.uaehomeadvisor.com/demo/public'),
+    'url' => env('BASE_URL','http://sewesys.com/homeadvisor/public'),
 
     /*
     |--------------------------------------------------------------------------
