@@ -22,7 +22,7 @@
 		</tr>
 		<tr>
 			<td>Vendor</td>
-			<td>To Vendor name</td>
+			<td>{{$enquiry->vendor->vendor_name}}</td>
 		</tr>
 		<tr>
 			<td>Date Time</td>
@@ -30,7 +30,7 @@
 		</tr>
 		<tr>
 			<td>Enquiry Status</td>
-			<td>{{$enquiry->status}}</td>
+			<td> <span class="label label-{{BS_Enquiry_Status_Class($enquiry->status)}}">{{ucfirst($enquiry->status)}}</span></td>
 		</tr>
 	</table>
 	<!-- End Enquiry Details -->

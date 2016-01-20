@@ -20,6 +20,7 @@ class VendorController extends Controller
 
     	$vendors = \App\Vendor::bydate()->paginate(config('settings.pagination.per_page')); 
         $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+    
         return view('admin.vendor.index',compact('vendors','row_count'));
     }
 
@@ -51,7 +52,9 @@ class VendorController extends Controller
     
     public function show(Request $request,$vendorId){
 
-    	$vendor = \App\Vendor::find($vendorId);
+    	$vendor = \App\Vendor::with(['enquiry'=>function($enquiry){
+            $enquiry->recent();
+        }])->find(2);
 
     	return view('admin.vendor.show',compact('vendor'));
 
@@ -106,6 +109,28 @@ class VendorController extends Controller
         }
 
         return $vendor;
+
+    }
+
+    /**
+     *
+     * Vendor enquiries
+     */
+    
+    public function enquiries($vendorId,$enquiryStatus=null){
+
+        $vendor = \App\Vendor::findOrFail($vendorId);
+
+        $enquiries = $vendor->enquiry()->bydate()->bystatus($enquiryStatus)->paginate(config('settings.pagination.per_page'));
+
+        $count['all'] = $vendor->enquiry()->count();
+        $count['accepted'] = $vendor->enquiry()->bystatus('accepted')->count();
+        $count['pending'] = $vendor->enquiry()->bystatus('pending')->count();
+        $count['rejected'] = $vendor->enquiry()->bystatus('rejected')->count();
+        $count['spam'] = $vendor->enquiry()->bystatus('spam')->count();
+
+        return view('admin.vendor.enquiries',compact('vendor','enquiries','count'));
+
 
     }
 

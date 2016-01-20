@@ -3,6 +3,15 @@
 @section('content')
 
 <div class="row">
+	<div class="col-md-2">
+		<div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+			<ul class="nav nav-list">
+				<li><a href="">Profile</a></li>
+				<li><a href="{{route('admin::edit-vendor',$vendor->id)}}">Edit Profile</a></li>
+				<li class="active"><a href="{{route('admin::vendor-enquiries',$vendor->id)}}">Enquiries</a></li>
+			</ul>
+		</div>
+	</div>
 	<div class="col-md-6">
 		<table class="table table-bordered ">
 			<thead>
@@ -51,9 +60,48 @@
 				</tr>
 			</tbody>
 		</table>
+		<!-- Recent Enquiries -->
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th colspan="5">Recent Enquiries</th>
+				</tr>
+				<tr>
+					<th>Sl.No</th>
+					<th>Subject</th>
+					<th>User</th>
+					<th>Date/Time</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- Loop through enquiries  -->
+			@if($vendor->enquiry->count())
+			<?php $enquiry_count=1; ?>
+			@foreach($vendor->enquiry as $enquiry)
+				<tr>
+					<td>{{ $enquiry_count++ }}</td>
+					<td><a href="{{route('admin::view-enquiry',$enquiry->id)}}" data-toggle="tooltip" data-placement="top"  title="{{$enquiry->subject}}">{{str_limit($enquiry->subject,26)}}</a></td>
+					<td><a title="{{$enquiry->from->first_name}} {{$enquiry->from->last_name}}" data-toggle="tooltip" data-placement="top">{{$enquiry->from->first_name}}</a></td>
+					<td ><a title="{{$enquiry->created_at->diffForHumans()}}" data-toggle="tooltip" data-placement="top">{{$enquiry->created_at->toFormattedDateString()}}</a></td>
+					<td><span class="label label-{{BS_Enquiry_Status_Class($enquiry->status)}}">{{ ucfirst($enquiry->status) }}</span></td>
+				</tr>
+			@endforeach
+			<tr class="alert alert-info">
+				<td colspan="5"><a href="{{route('admin::vendor-enquiries',$vendor->id)}}">View all</a></td>
+			</tr>
+			@else
+			<tr>
+				<td colspan="5" class="info"> No enquiries yet.</td>
+			</tr>
+			@endif
+			<!-- End Enquiry loop -->
+			</tbody>
+		</table>
+		<!-- End Recent Enquiries -->
 	</div>
 	<!-- Right column  -->
-	<div class="col-md-5">
+	<div class="col-md-4">
 	<!-- User Details -->
 		<table class="table table-bordered">
 			<thead>
@@ -92,12 +140,12 @@
 					</th>
 				</tr>
 				<tr>
-					<td>Enquiries </td>
-					<td>-- </td>
+					<td><a href="{{route('admin::vendor-enquiries',$vendor->id)}}">Enquiries</a></td>
+					<td> {{$vendor->enquiry->count()}} </td>
 				</tr>
 				<tr>
-					<td>Pending Enquiries </td>
-					<td>-- </td>
+					<td><a href="{{route('admin::vendor-enquiries',$vendor->id)}}/pending">Pending Enquiries</a> </td>
+					<td>{{$vendor->enquiry()->bystatus('pending')->count()}} </td>
 				</tr>
 				<tr>
 					<td>Total Reviews </td>
@@ -106,52 +154,7 @@
 			</thead>
 	</table>
 	<!-- End Vendor Profile Status -->
-	</div>
-	<!-- End Right column -->
-</div>
-<div class="row">
-	<!-- Row 2 Left col -->
-	<div class="col-md-6">
-		<!-- Recent Enquiries -->
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th colspan="5">Recent Enquiries</th>
-				</tr>
-				<tr>
-					<th>Sl.No</th>
-					<th>Subject</th>
-					<th>User</th>
-					<th>Date/Time</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
-			<!-- Loop through enquiries  -->
-			@if($vendor->enquiry->count())
-			@foreach($vendor->enquiry as $enquiry)
-				<tr>
-					<td>{{$enquiry->id}}</td>
-					<td><a href="{{route('admin::view-enquiry',$enquiry->id)}}" data-toggle="tooltip" data-placement="top"  title="{{$enquiry->subject}}">{{str_limit($enquiry->subject,26)}}</a></td>
-					<td><a title="{{$enquiry->from->first_name}} {{$enquiry->from->last_name}}" data-toggle="tooltip" data-placement="top">{{$enquiry->from->first_name}}</a></td>
-					<td ><a title="{{$enquiry->from->created_at->diffForHumans()}}" data-toggle="tooltip" data-placement="top">{{$enquiry->from->created_at->toFormattedDateString()}}</a></td>
-					<td>---</td>
-				</tr>
-			@endforeach
-			@else
-			<tr>
-				<td colspan="5" class="info"> No enquiries yet.</td>
-			</tr>
-			@endif
-			<!-- End Enquiry loop -->
-			</tbody>
-		</table>
-		<!-- End Recent Enquiries -->
-	</div>
-	<!-- End Row 2 Left col -->
-	<!-- Row 2 Right col -->
-	<div class="col-md-5">
-	<div class="panel panel-info">
+		<div class="panel panel-info">
 		<div class="panel-heading">
 			<h3 class="panel-title">Change Status</h3>
 		</div>
@@ -186,9 +189,9 @@
 		</div>
 	</div>
 	</div>
-	<!-- Row 2 Right col -->
-
+	<!-- End Right column -->
 </div>
+
 
 <!-- End Page Main Contents -->
 <!-- Change status modal -->
@@ -207,7 +210,9 @@
         <input type="hidden" name="status" id="modal-actionName">
         {{csrf_field()}}
         	<div class="checkbox">
-        		<label><input type="checkbox" class="checkbox" name="notify">Send a notification email?.</label>
+        		<label><input type="checkbox" class="checkbox" checked="" name="notify">Send a notification email?.</label>
+   
+        		<textarea class="form-control" placeholder="Note"></textarea>
         	</div>
       </div>
       <div class="modal-footer">

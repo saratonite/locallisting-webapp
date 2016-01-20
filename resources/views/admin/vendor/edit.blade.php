@@ -2,9 +2,19 @@
 
 @section('content')
 <div class="row">
+	<div class="col-md-2">
+		<div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+			<ul class="nav nav-list">
+				<li><a href="">Profile</a></li>
+				<li><a href="{{route('admin::edit-vendor',$vendor->id)}}">Edit Profile</a></li>
+				<li class="active"><a href="{{route('admin::vendor-enquiries',$vendor->id)}}">Enquiries</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="col-md-6">
 	<h3>Edit Vendor </h3>
 	@include('admin.partials.alert')
-	<div class="col-md-6">
 		<form action="{{route('admin::update-vendor',$vendor->id)}}" method="post">
 			{{csrf_field()}}
 			<input type="hidden" name="_method" value="put">

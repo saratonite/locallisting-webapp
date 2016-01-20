@@ -50,6 +50,10 @@ class Vendor extends Model
 
     /* Scope functions */
 
+    public function  latest(){
+        return $this->enquiry()->orderBy('id','desc')->limit('5');
+    }
+
     public function scopeCategoryname(){
 
     	if($this->category){
@@ -80,6 +84,11 @@ class Vendor extends Model
     		return $this->city->name;
     	}
     	return "(No City Specified)";
+    }
+
+    public function recentEnquiries(){
+
+        
     }
 
 }

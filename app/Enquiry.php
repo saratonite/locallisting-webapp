@@ -46,6 +46,12 @@ class Enquiry extends Model
         }
 
     }
+
+    public function scopeRecent($query,$rows=2){
+
+        $query->orderBy('id','desc')->limit($rows);
+
+    }
     
     
 

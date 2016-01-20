@@ -75,6 +75,8 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	Route::get('vendors/{vendorId}/edit','VendorController@edit')->name('edit-vendor');
 	Route::put('vendors/{vendorId}/update','VendorController@update')->name('update-vendor');
 
+	Route::get('vendors/{vendorId}/enquiries/{status?}','VendorController@enquiries')->name('vendor-enquiries');
+
 	/* Users */
 
 	Route::get('siteusers','SiteuserController@getAllUsers')->name('all-site-users');
