@@ -26,11 +26,11 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Sl.No</th>
-					<th>Subject</th>
-					<th>From</th>
-					<th>Date</th>
-					<th>Status</th>
+					<th class="col-md-1">Sl.No</th>
+					<th class="col-md-4">Subject</th>
+					<th class="col-md-3">From</th>
+					<th class="col-md-2">Date</th>
+					<th class="col-md-1">Status</th>
 				</tr>
 				<!-- Loop -->
 				@if(count($enquiries))

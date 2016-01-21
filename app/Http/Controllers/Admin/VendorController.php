@@ -54,7 +54,7 @@ class VendorController extends Controller
 
     	$vendor = \App\Vendor::with(['enquiry'=>function($enquiry){
             $enquiry->recent();
-        }])->find(2);
+        }])->find($vendorId);
 
     	return view('admin.vendor.show',compact('vendor'));
 

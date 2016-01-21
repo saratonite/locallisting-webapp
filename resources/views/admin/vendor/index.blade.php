@@ -8,12 +8,12 @@
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
-			<th>Sl.No</th>
-			<th>Vendor Name</th>
-			<th>Category</th>
-			<th>City</th>
-			<th>Status</th>
-			<th>Join Date</th>
+			<th class="col-md-1">Sl.No</th>
+			<th class="col-md-3">Vendor Name</th>
+			<th class="col-md-2">Category</th>
+			<th class="col-md-2">City</th>
+			<th class="col-md-1">Status</th>
+			<th class="col-md-2">Join Date</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -33,8 +33,9 @@
 				</td>
 				<td>{{ $vendor->user->created_at->format('d-M-Y')}}</td>
 				<td>
-					<i class="glyphicon glyphicon-eye-open"></i>
-					<a href="{{route('admin::vendor-profile',$vendor->id)}}"><i class="glyphicon glyphicon-eye-open"></i></a>
+					<a title="Vendor profile" href="{{route('admin::vendor-profile',$vendor->id)}}"><i class="glyphicon glyphicon-eye-open"></i></a>
+					<a title="Edit Vendor profile" href="{{ route('admin::edit-vendor',$vendor->id)}}"><i class=" glyphicon glyphicon-pencil"></i></a>
+					<a title="User details" href="{{ route('admin::view-site-user',$vendor->user->id)}}"><i class=" glyphicon glyphicon-user"></i></a>
 				</td>
 			</tr>
 			<?php $row_count++;?>

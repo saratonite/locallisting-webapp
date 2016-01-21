@@ -110,7 +110,12 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	
 	Route::get('category/all','CategoryController@index')->name('list-category');
 
-	Route::get('category/new','CategoryController@index')->name('new-category');
+	Route::get('category/new','CategoryController@add')->name('new-category');
+	
+	Route::post('category/new','CategoryController@create')->name('category-create');
+	
+	Route::get('category/{catId}/edit','CategoryController@edit')->name('category-edit');
+	Route::put('category/{catId}/update','CategoryController@update')->name('category-update');
 
 	/**
 	 *

@@ -6,12 +6,12 @@
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
-			<th>Sl.No</th>
-			<th>Name</th>
-			<th>City</th>
-			<th>Status</th>
-			<th>Join Date</th>
-			<th>Action</th>
+			<th class="col-md-1">Sl.No</th>
+			<th class="col-md-3">Name</th>
+			<th class="col-md-3">Email</th>
+			<th class="col-md-1">Status</th>
+			<th class="col-md-1">Join Date</th>
+			<th class="col-md-1">Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,8 +20,8 @@
 		@foreach($siteusers as $user)
 		<tr>
 			<td>{{$row_count}}</td>
-			<td><a href="{{ route('admin::view-site-user',$user->id)}}">{{ $user->first_name }}</a></td>
-			<td></td>
+			<td><a href="{{ route('admin::view-site-user',$user->id)}}">{{ $user->first_name }} {{ $user->last_name }}</a></td>
+			<td>{{ $user->email }}</td>
 			<td>
 				
 					  <span type="button" data-record-id="{{$user->id}}"  class="label label-{{ BS_Status_Class($user->status) }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

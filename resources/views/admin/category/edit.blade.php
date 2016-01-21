@@ -2,35 +2,35 @@
 
 @section('content')
 <div class="row">
-	@include('admin.partials.alert')
-		<div class="col-md-2">
+	<div class="col-md-2">
 		<ul class="nav nav-list">
-			<li><a href="{{ route('admin::city-add')}}">Add City</a></li>
-			<li><a href="{{ route('admin::list-cities')}}">All Cities</a></li>
+			<li><a href="{{ route('admin::city-add')}}">Add Category</a></li>
+			<li><a href="{{ route('admin::list-category')}}">All Categoty</a></li>
 		</ul>
 	</div>
 	<div class="col-md-6">
-		<h3>Edit City</h3>
-		<form action="{{route("admin::city-update",$city->id)}}" method="post">
+		<h3>Edit Category</h3>
+		@include('admin.partials.alert')
+		<form action="{{route("admin::category-update",$category->id)}}" method="post">
 			{{csrf_field()}}
 			<input type="hidden" name="_method" value="put">
 			<div class="form-group @if($errors->has('name')) has-error @endif">
 				<label class="control-label">Name</label>
-				<input type="text" class="form-control" name="name" value="{{$city->name}}">
+				<input type="text" class="form-control" name="name" value="{{$category->name}}">
 				@if($errors->has('name'))
 					<span class="help-block">{{ $errors->first('name') }}</span>
 				@endif
 			</div>
 			<div class="form-group @if($errors->has('description')) has-error @endif">
 				<label class="control-label">Description</label>
-				<input type="text" class="form-control" name="description" value="{{$city->description}}">
+				<input type="text" class="form-control" name="description" value="{{$category->description}}">
 				@if($errors->has('description'))
 					<span class="help-block">{{ $errors->first('description') }}</span>
 				@endif
 			</div>
 			<div class="form-group @if($errors->has('slug')) has-error @endif">
 				<label class="control-label">slug</label>
-				<input type="text" class="form-control" name="slug" value="{{$city->slug}}">
+				<input type="text" class="form-control" name="slug" value="{{$category->slug}}">
 				@if($errors->has('slug'))
 					<span class="help-block">{{ $errors->first('slug') }}</span>
 				@endif

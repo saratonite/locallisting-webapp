@@ -5,11 +5,11 @@
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
-			<th>Sl.No</th>
-			<th>Subject</th>
-			<th>User</th>
-			<th>Vendor</th>
-			<th>Date</th>
+			<th class="col-md-1">Sl.No</th>
+			<th class="col-md-5">Subject</th>
+			<th class="col-md-2">User</th>
+			<th class="col-md-2">Vendor</th>
+			<th class="col-md-2">Date</th>
 		</tr>
 	</thead>
 	<tbody>

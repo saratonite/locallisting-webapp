@@ -14,13 +14,13 @@ class CityController extends Controller
 	 * List all cities
 	 */
     
-    public function index(){
+    public function index(Request $request){
 
     	$cities = \App\City::paginate(config('settings.pagination.per_page'));
 
-    
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
 
-    	return view('admin.city.index',compact('cities'));
+    	return view('admin.city.index',compact('cities','row_count'));
     }
 
     /**
