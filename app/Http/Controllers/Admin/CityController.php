@@ -93,4 +93,24 @@ class CityController extends Controller
 
 
     }
+
+    /**
+     *
+     * Delete city
+     */
+    
+    public function delete(Request $request,$cityId){
+
+        $city = \App\City::find($cityId);
+
+        if($city){
+            $city->delete();
+
+            $request->session()->flash('success','City deleted');
+
+        }
+
+        return redirect()->back();
+
+    }
 }

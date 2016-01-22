@@ -16,6 +16,13 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\CategoryEdited' =>[
+            'App\Listeners\CategoryListerner'
+        ],
+        ///////////////Real //////
+        'App\Events\VendorStatusChanged' => [
+            'App\Listeners\VendorListener'
+        ]
     ];
 
     /**

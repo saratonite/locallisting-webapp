@@ -71,5 +71,3 @@
 	window.Confirmbox = Confirmbox;
 
 })(window,jQuery);
-
-//# sourceMappingURL=dashboard.js.map

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Events\CategoryEdited;
+use Event;
+use Mail;
 
 class CategoryController extends Controller
 {
@@ -73,7 +76,14 @@ class CategoryController extends Controller
     
     public function edit($catId){
 
+
+
+
         $category = \App\Category::find($catId);
+
+        //Event::fire(new CategoryEdited($category));
+        
+
 
         return view('admin.category.edit',compact('category'));
 
@@ -102,5 +112,16 @@ class CategoryController extends Controller
         return redirect()->route('admin::list-category');
 
 
+    }
+
+    public function delete(Request $request,$catId){
+
+        $category = \App\Category::find($catId);
+
+        if($category){
+            $category->delete();
+            $request->session()->flash('success','Category deleted');
+        }
+        return redirect()->back();
     }
 }

@@ -5,7 +5,7 @@
 	<div class="col-md-2">
 		<div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
 			<ul class="nav nav-list">
-				<li><a href="">Profile</a></li>
+				<li><a href="{{ route('admin::vendor-profile',$vendor->id)}}">Profile</a></li>
 				<li><a href="{{route('admin::edit-vendor',$vendor->id)}}">Edit Profile</a></li>
 				<li class="active"><a href="{{route('admin::vendor-enquiries',$vendor->id)}}">Enquiries</a></li>
 			</ul>

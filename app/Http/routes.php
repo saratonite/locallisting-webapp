@@ -115,7 +115,10 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	Route::post('category/new','CategoryController@create')->name('category-create');
 	
 	Route::get('category/{catId}/edit','CategoryController@edit')->name('category-edit');
+	
 	Route::put('category/{catId}/update','CategoryController@update')->name('category-update');
+
+	Route::delete('category/delete/{catId}','CategoryController@delete')->name('category-delete');
 
 	/**
 	 *
@@ -128,6 +131,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 
 	Route::get('city/{cityId}/edit','CityController@edit')->name('city-edit');
 	Route::put('city/{cityId}/update','CityController@update')->name('city-update');
+	Route::delete('city/delete/{cityId}','CityController@delete')->name('city-delete');
 
 	
 

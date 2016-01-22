@@ -18,6 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->enum('type',['admin','user','vendor']);
             $table->string('email')->unique();
+            $table->string('addr_line1')->nullable();
+            $table->string('addr_line2')->nullable();
+            $table->string('addr_line3')->nullable();
             $table->enum('status',['active','pending','blocked']);
             $table->string('password', 60);
             $table->rememberToken();

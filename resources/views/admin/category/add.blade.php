@@ -5,10 +5,7 @@
 	
 	@include('admin.partials.alert')
 	<div class="col-md-2">
-		<ul class="nav nav-list">
-			<li><a href="{{ route('admin::city-add')}}">Add Category</a></li>
-			<li><a href="{{ route('admin::list-category')}}">All Categoty</a></li>
-		</ul>
+		@include('admin.category.partials.sidenav')
 	</div>
 	<div class="col-md-6">
 		<h3>Add Category</h3>

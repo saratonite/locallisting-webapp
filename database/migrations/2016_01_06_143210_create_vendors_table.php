@@ -17,7 +17,10 @@ class CreateVendorsTable extends Migration
             $table->string('vendor_name');
             $table->text('description');
             $table->integer('category_id')->nullable();
-            $table->integer('city_id')->nullable();            
+            $table->integer('city_id')->nullable(); 
+            $table->string('addr_line1')->nullable();
+            $table->string('addr_line2')->nullable();
+            $table->string('addr_line3')->nullable();           
             $table->string('contact_number',15);
             $table->string('mobile',15);
             $table->timestamps();

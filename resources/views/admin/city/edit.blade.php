@@ -4,10 +4,8 @@
 <div class="row">
 	@include('admin.partials.alert')
 		<div class="col-md-2">
-		<ul class="nav nav-list">
-			<li><a href="{{ route('admin::city-add')}}">Add City</a></li>
-			<li><a href="{{ route('admin::list-cities')}}">All Cities</a></li>
-		</ul>
+		@include('admin.city.partials.sidenav')
+		
 	</div>
 	<div class="col-md-6">
 		<h3>Edit City</h3>
