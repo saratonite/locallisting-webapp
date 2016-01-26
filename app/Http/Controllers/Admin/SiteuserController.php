@@ -93,6 +93,14 @@ class SiteuserController extends Controller
             'status'=>'required'
         ]);
 
+        $niceNames = [
+                        'addr_line1' => 'Address line 1',
+                        'addr_line2' => 'Address line 2',
+                        'addr_line3' => 'Address line 3'
+                     ];
+
+        $v->setAttributeNames($niceNames);
+
         // if($user->isStatusExists(strtolowercase('active')))
         if($v->fails()){
 

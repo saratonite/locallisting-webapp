@@ -48,7 +48,12 @@
 				</tr>
 				<tr>
 					<td>Address</td>
-					<td>--</td>
+					<td> 
+						{{$vendor->addr_line1}}
+						<p>{{$vendor->addr_line2}}</p>
+						<p>{{$vendor->addr_line3}}</p>
+
+					</td>
 				</tr>
 				<tr>
 					<td>Google Map**</td>
@@ -212,7 +217,7 @@
         	<div class="checkbox">
         		<label><input type="checkbox" class="checkbox" checked="" name="notify">Send a notification email?.</label>
    
-        		<textarea class="form-control" placeholder="Note"></textarea>
+        		<textarea class="form-control" placeholder="Note" name="note"></textarea>
         	</div>
       </div>
       <div class="modal-footer">

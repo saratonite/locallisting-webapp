@@ -22,6 +22,14 @@
 					<td>Email</td>
 					<td>{{$user->email}}</td>
 				</tr>
+				<tr>
+					<td>Address</td>
+					<td>
+						<p>{{$user->addr_line1}}</p>
+						<p>{{$user->addr_line2}}</p>
+						<p>{{$user->addr_line3}}</p>
+					</td>
+				</tr>
 								<tr>
 					<td>Status </td>
 					<td><span class=" label label-{{ BS_Status_Class($user->status) }}">{{ucfirst($user->status)}}</span> </td>

@@ -7,7 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+ * Aditional services
+ */
+
 use Validator;
+
+/**
+ *
+ * Events
+ */
+use Event;
+use App\Events\VendorStatusChanged;
 
 class VendorController extends Controller
 {
@@ -90,11 +101,17 @@ class VendorController extends Controller
             'description' => 'required',
             'category_id' => 'required',
             'city_id' => 'required',
+            'addr_line1' => 'max:255',
+            'addr_line2' => 'max:255',
+            'addr_line3' => 'max:255',
             'contact_number' => 'required',
             'mobile' => 'required'
         ],[
             'category_id' => 'Select category',
-            'city_id' => 'Select city'
+            'city_id' => 'Select city',
+            'addr_line1' => 'Address (Building / Room)',
+            'addr_line2' => 'Address (Street / Landmark)',
+            'addr_line3' => 'Address (Place)'
         ]);
 
         if($v->fails()){
@@ -153,7 +170,12 @@ class VendorController extends Controller
     		$vendor->user->status = $request->input('status');
     		if($vendor->user->save()){
 
-    			// Event Vendor Status Changed
+    			// Event Vendor Status Changed 
+                if($request->input('note')){
+                    $vendor->note = $request->input('note');
+                }  
+                Event::fire(new VendorStatusChanged($vendor));
+
     			return redirect()->back()->with('success','Vendor status chnaged');
     		}
     	}

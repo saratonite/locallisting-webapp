@@ -38,3 +38,29 @@ elixir(function(mix){
 	mix.scripts(['app.js'],'public/js/app.js');
 
 });
+
+
+// For userapp
+
+var vendorAppLibs = [
+    './vendor/bower_components/jquery/dist/jquery.js',
+    './vendor/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+    './vendor/bower_components/spin.js/spin.js',
+    './vendor/bower_components/angular/angular.js',
+    './vendor/bower_components/angular-route/angular-route.js',
+    './vendor/bower_components/angular-spinner/angular-spinner.js',
+    './vendor/bower_components/angular-toastr/dist/angular-toastr.tpls.js'
+];
+
+var vendorAppStyles = [
+    './vendor/bower_components/angular-toastr/dist/angular-toastr.css'
+];
+
+elixir(function(mix){
+    mix.scripts(['userapp/**/*.js'],'public/js/userapp.js');
+    mix.scripts(vendorAppLibs,'public/js/vendor.userapp.js');
+});
+
+elixir(function(mix) {
+    mix.styles(vendorAppStyles,'public/css/vendor.userapp.css');
+});

@@ -60,6 +60,27 @@
 					<span class="help-block">{{$errors->first('city_id')}}</span>
 				@endif
 			</div>
+			<div class="form-group @if($errors->has('addr_line1')) has-error @endif">
+				<label for="" class="control-label">Address (Building / Room)</label>
+				<input type="text" class="form-control" name="addr_line1" value="{{old('addr_line1',$vendor->addr_line1)}}">
+				@if($errors->has('addr_line1'))
+					<span class="help-block">{{$errors->first('addr_line1')}}</span>
+				@endif
+			</div>
+			<div class="form-group @if($errors->has('addr_line2')) has-error @endif">
+				<label for="" class="control-label">Address (Street / Landmark )</label>
+				<input type="text" class="form-control" name="addr_line2" value="{{old('addr_line2',$vendor->addr_line2)}}">
+				@if($errors->has('addr_line2'))
+					<span class="help-block">{{$errors->first('addr_line2')}}</span>
+				@endif
+			</div>
+			<div class="form-group @if($errors->has('addr_line3')) has-error @endif">
+				<label for="" class="control-label">Address (Place )</label>
+				<input type="text" class="form-control" name="addr_line3" value="{{old('addr_line3',$vendor->addr_line3)}}">
+				@if($errors->has('addr_line3'))
+					<span class="help-block">{{$errors->first('addr_line3')}}</span>
+				@endif
+			</div>
 			<div class="form-group @if($errors->has('contact_number')) has-error @endif">
 				<label for="" class="control-label">Contact Number</label>
 				<input type="text" class="form-control" name="contact_number" value="{{old('contact_number',$vendor->contact_number)}}">

@@ -51,7 +51,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 // Admin Dasbord routes
-Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin','as'=>'admin::'],function(){
+Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','namespace'=>'Admin','as'=>'admin::'],function(){
 
 	Route::get('/',['uses'=>'DashboardController@getIndex','as'=>'dashboard']);
 
@@ -134,5 +134,29 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'admin','namespace'=>'Admin
 	Route::delete('city/delete/{cityId}','CityController@delete')->name('city-delete');
 
 	
+
+});
+
+
+Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"User","as"=>"account::"],function(){
+	
+	Route::get('/',"ProfileController@index");
+
+	// Profile
+	Route::get('profile','ProfileController@show')->name('profile');
+
+	// Test App
+	Route::get('app','ProfileController@test')->name('test');
+
+	// AppView Getter
+	
+	Route::get('app/partials/{partial?}','AppController@getPartials');
+
+
+	// API Routes
+	
+	Route::get('api/me','ProfileController@myprofile');
+
+
 
 });

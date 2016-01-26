@@ -3,11 +3,7 @@
 
 	var Confirmbox = (function(){
 
-		var cb = function(){
-					// record id
-			// submit url
-			// method
-		
+		var cb = function(){		
 			this.record = null;
 			this.submit_url = null;
 			this.modal =null;
@@ -26,17 +22,12 @@
 			this.recordId =  $(this.bindEl).data('record-id');
 
 			this.submit_url = options.action_url+"/"+this.recordId || '/'+this.recordId;
-			
-
 			var self = this;
 
 			$(this.bindEl).on('click',function(){
 				self.fillModalForm();
 				self.showModal();
 			});
-
-
-
 		};
 
 		cb.prototype.fillModalForm = function(){
@@ -54,8 +45,6 @@
 				actionFeild.val(this.action);
 			}
 
-
-
 		};
 
 		cb.prototype.showModal = function(){
@@ -63,9 +52,6 @@
 		};
 
 		return cb;
-
-
-
 	})();
 
 	window.Confirmbox = Confirmbox;

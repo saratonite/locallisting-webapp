@@ -30,6 +30,27 @@
 					<span class="help-block">{{$errors->first('email')}}</span>
 				@endif
 			</div>
+			<div class="form-group @if($errors->has('addr_line1')) has-error @endif">
+				<label for="" class="control-label">Address line 1</label>
+				<input type="text" class="form-control" name="addr_line1" value="{{old('addr_line1',$user->addr_line1)}}">
+				@if($errors->has('addr_line1'))
+					<span class="help-block">{{$errors->first('addr_line1')}}</span>
+				@endif
+			</div>
+			<div class="form-group @if($errors->has('addr_line2')) has-error @endif">
+				<label for="" class="control-label">Address line 2</label>
+				<input type="text" class="form-control" name="addr_line2" value="{{old('addr_line2',$user->addr_line2)}}">
+				@if($errors->has('addr_line2'))
+					<span class="help-block">{{$errors->first('addr_line2')}}</span>
+				@endif
+			</div>
+			<div class="form-group @if($errors->has('addr_line3')) has-error @endif">
+				<label for="" class="control-label">Address line 3</label>
+				<input type="text" class="form-control" name="addr_line3" value="{{old('addr_line3',$user->addr_line3)}}">
+				@if($errors->has('addr_line3'))
+					<span class="help-block">{{$errors->first('addr_line3')}}</span>
+				@endif
+			</div>
 			<div class="form-group @if($errors->has('status')) has-error @endif">
 				<label for="" class="control-label">Status</label>
 				<select name="status" class="form-control">

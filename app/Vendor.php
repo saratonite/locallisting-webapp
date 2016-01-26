@@ -9,7 +9,7 @@ class Vendor extends Model
     
     protected $table = "vendors";
 
-    protected $fillable = ['vendor_name','description','category_id','city_id','contact_number','mobile'];
+    protected $fillable = ['vendor_name','description','category_id','city_id','contact_number','mobile','addr_line1','addr_line2','addr_line3'];
 
 
 

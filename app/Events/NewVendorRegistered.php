@@ -6,20 +6,18 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class CategoryEdited extends Event
+class NewVendorRegistered extends Event
 {
     use SerializesModels;
-
-    public $category;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Category $category)
+    public function __construct()
     {
-        $this->category = $category;
+        //
     }
 
     /**

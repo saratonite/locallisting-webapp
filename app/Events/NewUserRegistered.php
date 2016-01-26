@@ -6,20 +6,18 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class VendorStatusChanged extends Event
+class NewUserRegistered extends Event
 {
     use SerializesModels;
-
-    public $vendor;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Vendor $vendor)
+    public function __construct()
     {
-        $this->vendor = $vendor;
+        //
     }
 
     /**

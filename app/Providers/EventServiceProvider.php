@@ -20,8 +20,14 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\CategoryListerner'
         ],
         ///////////////Real //////
+        'App\Events\NewUserRegistered' => [
+            'App\Listeners\Email@newUser'
+        ],
+        'App\Events\NewVendorRegistered' => [
+            'App\Listeners\Email@newVendor'
+        ],
         'App\Events\VendorStatusChanged' => [
-            'App\Listeners\VendorListener'
+            'App\Listeners\Email@vendorStatusChanged'
         ]
     ];
 
