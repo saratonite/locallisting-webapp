@@ -48,6 +48,7 @@ var vendorAppLibs = [
     './vendor/bower_components/spin.js/spin.js',
     './vendor/bower_components/angular/angular.js',
     './vendor/bower_components/angular-route/angular-route.js',
+    './vendor/bower_components/angular-animate/angular-animate.js',
     './vendor/bower_components/angular-spinner/angular-spinner.js',
     './vendor/bower_components/angular-toastr/dist/angular-toastr.tpls.js'
 ];

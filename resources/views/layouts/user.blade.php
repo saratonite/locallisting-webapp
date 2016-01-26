@@ -13,7 +13,8 @@
 
     <!-- Styles -->
     
-    <link href="{{ asset('css/user.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('css/theme.userapp.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('css/vendor.userapp.css') }}" rel="stylesheet"> 
 
     @yield('stylesheets')
 

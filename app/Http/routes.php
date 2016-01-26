@@ -156,6 +156,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	// API Routes
 	
 	Route::get('api/me','ProfileController@myprofile');
+	Route::put('api/me','ProfileController@updateMyprofile');
 
 
 

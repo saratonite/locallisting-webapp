@@ -8,7 +8,7 @@ angular.module("userApp")
 		},
 		updateProfile:function(data){
 
-			return api.request('put','http//localhost:/8000/account/api/me');
+			return api.request('put','api/me',data);
 
 		}
 	}

@@ -1,6 +1,6 @@
 <h2>Edit Profile</h2>
 <div class="col-md-10">
-<span ng-show="!profile" us-spinner></span>
+<span ng-show="!requestCompleted" us-spinner></span>
 		
 
 		<div class="col-md-12">
@@ -17,7 +17,7 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="">Email</label>
 				<div class="col-md-7">
-					<input class="form-control " type="text" ng-model="profile.email">
+					<input class="form-control " type="email" ng-model="profile.email">
 				</div>
 			</div>
 			<div class="form-group">
@@ -40,7 +40,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-7 col-md-offset-3">
-					<button class="btn btn-success">Update</button>
+					<button class="btn btn-success" ng-click="updateProfile()" ng-disabled="!requestCompleted">Update</button>
 					<button class="btn btn-warning">Cancel</button>
 				</div>
 			</div>

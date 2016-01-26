@@ -1,6 +1,6 @@
 "use strict";
 
-	angular.module("userApp",["ngRoute","angularSpinner"])
+	angular.module("userApp",["ngRoute","ngAnimate","angularSpinner","toastr"])
 
 	.config(function($routeProvider){
 		$routeProvider.when('/',{
