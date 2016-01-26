@@ -32,8 +32,18 @@ angular.module("userApp")
 				toastr.success('Profile updated!', 'Nice job!');
 				
 
-			},function(){
-				toastr.error('Something went wrong!', 'Ooop!');
+			},function(response,status){
+				console.log(response);
+
+				if(response.status == 422){
+					toastr.error('Validation error!', 'Ooop!');
+				}
+				else{
+					toastr.error('Something went wrong!', 'Ooop!');
+				}
+				
+
+				$scope.requestCompleted = true;
 
 			});
 		}

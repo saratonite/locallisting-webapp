@@ -1,5 +1,5 @@
 
-<h2>Welcome </h2>
+<h2>Welcome {{ ucfirst(Auth::user()->first_name) }}</h2>
 <p> Here you can update your details</p>
 	
 	<div class="col-md-10">

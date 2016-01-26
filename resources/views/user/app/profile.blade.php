@@ -5,7 +5,13 @@
 		
 
 		<div class="col-md-12">
-			<div class="row">
+			
+			<!--  -->
+			<div class="panel panel-default">
+			  <div class="panel-heading">Personal Details</div>
+			  <div class="panel-body">
+			    
+			    <div class="row">
 				<div class="col-md-3">
 					Name
 				</div>
@@ -48,6 +54,19 @@
 					
 				</div>
 			</div>
+			  </div>
+			</div>
+			<!--  -->
+
+
+			<!-- Vendor profile -->
+			<div class="panel panel-default">
+			  <div class="panel-heading">Vendor Profile</div>
+			  <div class="panel-body">
+			    Panel content
+			  </div>
+			</div>
+			<!-- Vendor profile -->
 
 		</div>
 		

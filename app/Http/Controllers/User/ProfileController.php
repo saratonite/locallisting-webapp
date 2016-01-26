@@ -75,10 +75,12 @@ class ProfileController extends Controller
 
    	if($v->fails()){
 
-   		return Response::json([
-   			"errors" => [$v->errors()],
-   			"code" => 422
-   		]);
+   		// return Response::json([
+   		// 	"errors" => [$v->errors()],
+   		// 	"code" => 422
+   		// ]);
+   		
+   		return response()->json(['errors'=>$v->errors()])->setStatusCode(422, 'Validation error!');
 
    	}
 
