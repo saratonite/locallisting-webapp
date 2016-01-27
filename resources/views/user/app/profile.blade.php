@@ -8,7 +8,7 @@
 			
 			<!--  -->
 			<div class="panel panel-default">
-			  <div class="panel-heading">Personal Details</div>
+			  <div class="panel-heading">Personal Details <a class="pull-right label label-success" href="#profile/edit">Edit</a></div>
 			  <div class="panel-body">
 			    
 			    <div class="row">

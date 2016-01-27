@@ -137,6 +137,7 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 
 });
 
+// User Account section
 
 Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"User","as"=>"account::"],function(){
 	
@@ -157,6 +158,10 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	
 	Route::get('api/me','ProfileController@myprofile');
 	Route::put('api/me','ProfileController@updateMyprofile');
+
+	// API Settings
+	Route::put('api/me/changepassword','SettingsController@updatePassword');
+	Route::put('api/me/changeemail','SettingsController@updateEmail');
 
 
 

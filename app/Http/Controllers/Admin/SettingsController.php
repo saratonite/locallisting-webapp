@@ -20,7 +20,7 @@ class SettingsController extends Controller
     public function changeemail(Request $request){
 
     	$v = Validator::make($request->all(),[
-    		"email"=>"required | email",
+    		"email"=>"required | email | unique:users,email,".$request->user()->id,
     		"password"=>"required"
     	]);
 

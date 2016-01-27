@@ -94,9 +94,9 @@
     My Dashboard
   </a>
   <a href="#/profile" class="list-group-item">My Profile</a>
-  <a href="#" class="list-group-item">Account Settings</a>
-  <a href="#" class="list-group-item">Notifications</a>
+    <a href="#" class="list-group-item">Notifications</a>
   <a href="#" class="list-group-item">Stats</a>
+  <a href="#settings" class="list-group-item">Account Settings</a>
 </ul>
                 <!--  -->
             </div>

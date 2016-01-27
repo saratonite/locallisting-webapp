@@ -11,7 +11,7 @@
 			
 		</div>
 		<div class="col-md-3">
-			<a href="" class="btn btn-block btn-danger">Account Settings</a>
+			<a href="#settings" class="btn btn-block btn-danger">Account Settings</a>
 			
 		</div>
 	</div>

@@ -15,6 +15,10 @@
 			controller:'ProfileController',
 			templateUrl:'app/partials/profile_edit'
 		})
+		.when('/settings',{
+			controller:"SettingsController",
+			templateUrl:"app/partials/settings"
+		})
 		.otherwise({
 			templateUrl:'app/partials/404'
 		});
@@ -85,6 +89,95 @@ angular.module("userApp")
 }]);
 "use strict";
 angular.module("userApp")
+	.controller('SettingsController',['$scope','meService','toastr',function($scope,meService,toastr){
+		//
+		$scope.title = "settings";
+
+		$scope.user = {};
+		$scope.init = function(){
+			meService.profile().then(function(data,status,headers){
+
+				$scope.user = {"email":data.data.email};
+				$scope.requestCompleted = true;
+
+			},function(){
+
+			});
+		}
+
+		// Update Password
+		$scope.updatePassword = function(){
+
+			meService.updatePassword($scope.user).then(
+
+				function(response){
+					// Success callback
+
+				},
+
+				function(response){
+					// Error callback
+					if(response.status == 422){
+					toastr.error('Validation error!', 'Ooop!');
+					}
+					else{
+						toastr.error('Something went wrong!', 'Ooop!');
+					}
+
+				}
+
+			);
+		}
+
+		// Update Email
+		$scope.updateEmail = function(){
+			$scope.requestCompleted = false;
+			meService.updateEmail($scope.user).then(
+				function(response){
+
+					// Success callback
+					if(response.status == 200){
+						toastr.success('Email updated!', 'Cool!');
+						$scope.user.email_password = null;
+						$scope.user = {"email":response.data.data.email};
+
+					}
+					$scope.requestCompleted =true;
+
+				},
+				function(response){
+					console.log(response);
+					// Error callback
+					if(response.status == 422){
+					var message = response.data.errors.email || response.data.errors.email_password || response.data.errors.email_password;
+					console.log(message);
+					message = message[0] || "Incorrect data provided";
+					toastr.error(message, 'Ooops!');
+					}
+					else{
+						toastr.error('Something went wrong!', 'Ooop!');
+					}
+						$scope.user.email_password = null;
+						$scope.requestCompleted = true;
+
+
+				}
+
+			);
+		}
+
+		$scope.init();
+
+
+	}]);
+"use strict";
+angular.module("userApp")
+	.controller('DemoController',['$scope',function($scope){
+		//
+		
+	}]);
+"use strict";
+angular.module("userApp")
 .factory("api",["$http",function($http){
 	return {
 
@@ -98,12 +191,35 @@ angular.module("userApp")
 .factory("meService",["api",function(api){
 	return {
 
+		profileData:false,
+
+		setProfileData:function(data){
+			this.profileData = data;
+			return this.profileData;
+		},
+		getProfileData:function(){
+			return this.profileData;
+		},
+
 		profile:function(){
 			return api.request('get','http://localhost:8000/account/api/me');
 		},
 		updateProfile:function(data){
 
 			return api.request('put','api/me',data);
+
+		},
+
+		// Settings
+		updatePassword:function(data){
+
+			return api.request('put','api/me/changepassword',data);
+
+		},
+		updateEmail:function(data){
+
+			return api.request('put','api/me/changeemail',data);
+
 
 		}
 	}
