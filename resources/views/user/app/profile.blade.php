@@ -7,7 +7,7 @@
 		<div class="col-md-12">
 			
 			<!--  -->
-			<div class="panel panel-default">
+			<div class="panel panel-default"  ng-show="profile">
 			  <div class="panel-heading">Personal Details <a class="pull-right label label-success" href="#profile/edit">Edit</a></div>
 			  <div class="panel-body">
 			    
@@ -60,10 +60,31 @@
 
 
 			<!-- Vendor profile -->
-			<div class="panel panel-default">
+			<div class="panel panel-default" ng-show="profile.vendor">
 			  <div class="panel-heading">Vendor Profile</div>
 			  <div class="panel-body">
-			    Panel content
+			   <table class="table">
+			   	<tr>
+			   		<td class="col-md-3">Vendor Name</td>
+			   		<td>@{{profile.vendor.vendor_name}}</td>
+			   	</tr>
+			   	<tr>
+			   		<td class="col-md-3">Description</td>
+			   		<td>@{{profile.vendor.description}}</td>
+			   	</tr>
+			   	<tr>
+			   		<td class="col-md-3">Address</td>
+			   		<td>@{{profile.vendor.addr_line1}} , @{{profile.vendor.addr_line2}} , @{{profile.vendor.addr_line3}}</td>
+			   	</tr>
+			   	<tr>
+			   		<td class="col-md-3">Contact Number</td>
+			   		<td>@{{profile.vendor.contact_number}} </td>
+			   	</tr>
+			   	<tr>
+			   		<td class="col-md-3">Mobile Number</td>
+			   		<td>@{{profile.vendor.mobile}} </td>
+			   	</tr>
+			   </table>
 			  </div>
 			</div>
 			<!-- Vendor profile -->

@@ -1,4 +1,4 @@
-<h2>Account Settings</h2>
+<h3>Account Settings</h3>
 <span ng-show="!requestCompleted" us-spinner></span>
 <div class="col-md-10">
 	<!-- Chnage email -->

@@ -46,9 +46,7 @@ class ProfileController extends Controller
    
    public function myprofile(){
 
-   	sleep(1);
-
-   	$me = \App\User::find(Auth::user()->id);
+   	$me = \App\User::where('id',Auth::user()->id)->with('vendor')->first();
    	return $me;
    }
 
@@ -56,9 +54,6 @@ class ProfileController extends Controller
     * Update personal profile
     */
    public function updateMyprofile(Request $request){
-
-   	//return $request->all();
-   sleep(2);
 
    	$me = \App\User::find(Auth::user()->id);
    	$data = $request->except('status','email');

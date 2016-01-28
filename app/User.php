@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany("\App\Enquiry","from_user");
     }
 
+    public function vendor(){
+
+        return $this->hasOne("\App\Vendor","user_id");
+    }
+
     /* Scope functions */
 
     public function scopeSiteuser($query){

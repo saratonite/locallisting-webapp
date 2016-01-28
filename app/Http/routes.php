@@ -159,9 +159,14 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::get('api/me','ProfileController@myprofile');
 	Route::put('api/me','ProfileController@updateMyprofile');
 
+	Route::get('api/me/vendor','VendorController@profile');
+
+
 	// API Settings
 	Route::put('api/me/changepassword','SettingsController@updatePassword');
 	Route::put('api/me/changeemail','SettingsController@updateEmail');
+
+
 
 
 

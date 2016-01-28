@@ -15,6 +15,10 @@
 			controller:'ProfileController',
 			templateUrl:'app/partials/profile_edit'
 		})
+		.when('/vendor/profile',{
+			controller:'VendorController',
+			templateUrl:"app/partials/vendor_profile_edit"
+		})
 		.when('/settings',{
 			controller:"SettingsController",
 			templateUrl:"app/partials/settings"
@@ -184,6 +188,39 @@ angular.module("userApp")
 	}]);
 "use strict";
 angular.module("userApp")
+	.controller('VendorController',['$scope','vendorService',function($scope,vendorService){
+
+
+		//
+		$scope.vendor = false;
+		$scope.cities = false;
+		$scope.categories = false;
+
+		$scope.vendorProfile = function(){
+
+			vendorService.get().then(
+				// Success
+				function(response){
+
+					$scope.vendor = response.data.vendor;
+					$scope.cities = response.data.cities;
+					$scope.categories = response.data.categories;
+
+
+				},
+				// Error
+				function(){
+
+				}
+			);
+		}
+
+		// Init
+		$scope.vendorProfile();
+		
+	}]);
+"use strict";
+angular.module("userApp")
 	.controller('DemoController',['$scope',function($scope){
 		//
 		
@@ -197,6 +234,11 @@ angular.module("userApp")
 			return $http({"method":httpMethod,"url":url,"data":data});
 		}
 	}
+}]);
+"use strict";
+angular.module("userApp")
+.factory("categoryService",['api',function(){
+
 }]);
 "use strict";
 angular.module("userApp")
@@ -232,6 +274,20 @@ angular.module("userApp")
 
 			return api.request('put','api/me/changeemail',data);
 
+
+		}
+	}
+}]);
+"use strict";
+angular.module("userApp")
+.factory("vendorService",["api",function(api){
+	return {
+		get:function(){
+			return api.request('get','api/me/vendor');
+		},
+		update:function(data){
+
+			return api.request('put','api/me/vendor',data);
 
 		}
 	}

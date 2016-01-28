@@ -15,6 +15,10 @@
 			controller:'ProfileController',
 			templateUrl:'app/partials/profile_edit'
 		})
+		.when('/vendor/profile',{
+			controller:'VendorController',
+			templateUrl:"app/partials/vendor_profile_edit"
+		})
 		.when('/settings',{
 			controller:"SettingsController",
 			templateUrl:"app/partials/settings"
