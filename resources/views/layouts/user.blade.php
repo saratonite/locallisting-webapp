@@ -90,12 +90,15 @@
             <div class="col-md-2">
                 <!--  -->
                 <ul class="list-group">
-  <a href="#/" class="list-group-item active">
+  <a href="#/" class="list-group-item ">
     My Dashboard
   </a>
   <a href="#/profile" class="list-group-item">My Profile</a>
-    <a href="#" class="list-group-item">Notifications</a>
-  <a href="#" class="list-group-item">Stats</a>
+  @if(Auth::user()->type =="vendor")
+  <a href="#vendor/profile" class="list-group-item">Vendor Profile</a>
+  @endif
+    <a href="#notifications" class="list-group-item">Notifications</a>
+  <a href="#stats" class="list-group-item">Stats</a>
   <a href="#settings" class="list-group-item">Account Settings</a>
 </ul>
                 <!--  -->

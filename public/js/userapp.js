@@ -107,22 +107,34 @@ angular.module("userApp")
 
 		// Update Password
 		$scope.updatePassword = function(){
-
+			$scope.requestCompleted = false;
 			meService.updatePassword($scope.user).then(
 
 				function(response){
 					// Success callback
+					toastr.success("Password updated !!","Nice");
+					$scope.requestCompleted =true;
+
+					$scope.user.password = null;
+					$scope.user.password_confirmation = null;
+					$scope.user.old_password = null;
 
 				},
 
 				function(response){
 					// Error callback
 					if(response.status == 422){
-					toastr.error('Validation error!', 'Ooop!');
+						var message = response.data.errors.password || response.data.errors.old_password ;
+						 console.log(message);
+						 message = message[0] || response.data.errors.old_password || "Incorrect data provided";
+						 console.log(message);
+						 toastr.error(message, 'Ooops!');
+						 //toastr.error('Validation error!', 'Ooop!');
 					}
 					else{
 						toastr.error('Something went wrong!', 'Ooop!');
 					}
+					$scope.requestCompleted =true;
 
 				}
 
@@ -202,7 +214,7 @@ angular.module("userApp")
 		},
 
 		profile:function(){
-			return api.request('get','http://localhost:8000/account/api/me');
+			return api.request('get','api/me');
 		},
 		updateProfile:function(data){
 

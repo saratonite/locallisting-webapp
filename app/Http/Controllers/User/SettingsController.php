@@ -39,7 +39,7 @@ class SettingsController extends Controller
     	
     	if(!$this->checkCurrentPassword($data['old_password'])){
 
-    		return response()->json(['errors'=>['old_password'=>"Incorrect old password"]]);
+    		return response()->json(['errors'=>['old_password'=>["Incorrect old password"] ]])->setStatusCode(422);
 
     	}
 

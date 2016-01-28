@@ -14,7 +14,7 @@ angular.module("userApp")
 		},
 
 		profile:function(){
-			return api.request('get','http://localhost:8000/account/api/me');
+			return api.request('get','api/me');
 		},
 		updateProfile:function(data){
 

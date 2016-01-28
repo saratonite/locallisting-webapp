@@ -20,7 +20,7 @@
 		    	</div>
 		    	<div class="form-group">
 		    		
-		    		<button type="button" class="btn btn-primary" ng-click="updatePassword()" >Update Password	</button>
+		    		<button ng-disabled="!user.password_confirmation || !user.password || !user.old_password" type="button" class="btn btn-primary" ng-click="updatePassword()" >Update Password	</button>
 		    	</div>
 		    </form>
 		  </div>

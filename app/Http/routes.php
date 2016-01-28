@@ -43,7 +43,7 @@ Route::group(['middleware' => ['web']], function () {
     //
 });
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => ['web','redirectByType']], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
@@ -147,7 +147,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::get('profile','ProfileController@show')->name('profile');
 
 	// Test App
-	Route::get('app','ProfileController@test')->name('test');
+	Route::get('app','ProfileController@test')->name('appHome');
 
 	// AppView Getter
 	
