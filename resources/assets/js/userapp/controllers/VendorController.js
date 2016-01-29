@@ -1,6 +1,6 @@
 "use strict";
 angular.module("userApp")
-	.controller('VendorController',['$scope','vendorService','toastr',function($scope,vendorService,toastr){
+	.controller('VendorController',['$scope','vendorService','toastr','Upload',function($scope,vendorService,toastr,Upload){
 
 
 		//
@@ -61,6 +61,23 @@ angular.module("userApp")
 
 				}
 			);
+		}
+
+		// Update profile picture
+		$scope.updatePic = function(){
+			vendorService.updatePicture($scope.file).then(
+				function(response){
+
+					if(response.status==200){
+						toastr.success('Profile Picture Updated!');
+					}
+
+				},
+				function(xhr){
+
+				}
+			);
+
 		}
 
 		// Init

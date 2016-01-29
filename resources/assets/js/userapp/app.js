@@ -1,6 +1,6 @@
 "use strict";
 
-	angular.module("userApp",["ngRoute","ngAnimate","ngMessages","angularSpinner","toastr"])
+	angular.module("userApp",["ngRoute","ngAnimate","ngMessages","angularSpinner","toastr","ngFileUpload"])
 
 	.config(function($routeProvider){
 		$routeProvider.when('/',{

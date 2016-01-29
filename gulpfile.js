@@ -51,7 +51,8 @@ var vendorAppLibs = [
     './vendor/bower_components/angular-animate/angular-animate.js',
     './vendor/bower_components/angular-messages/angular-messages.js',
     './vendor/bower_components/angular-spinner/angular-spinner.js',
-    './vendor/bower_components/angular-toastr/dist/angular-toastr.tpls.js'
+    './vendor/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
+    './vendor/bower_components/ng-file-upload/ng-file-upload.js'
 ];
 
 var vendorAppStyles = [

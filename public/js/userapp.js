@@ -1,6 +1,6 @@
 "use strict";
 
-	angular.module("userApp",["ngRoute","ngAnimate","ngMessages","angularSpinner","toastr"])
+	angular.module("userApp",["ngRoute","ngAnimate","ngMessages","angularSpinner","toastr","ngFileUpload"])
 
 	.config(function($routeProvider){
 		$routeProvider.when('/',{
@@ -188,7 +188,7 @@ angular.module("userApp")
 	}]);
 "use strict";
 angular.module("userApp")
-	.controller('VendorController',['$scope','vendorService','toastr',function($scope,vendorService,toastr){
+	.controller('VendorController',['$scope','vendorService','toastr','Upload',function($scope,vendorService,toastr,Upload){
 
 
 		//
@@ -249,6 +249,23 @@ angular.module("userApp")
 
 				}
 			);
+		}
+
+		// Update profile picture
+		$scope.updatePic = function(){
+			vendorService.updatePicture($scope.file).then(
+				function(response){
+
+					if(response.status==200){
+						toastr.success('Profile Picture Updated!');
+					}
+
+				},
+				function(xhr){
+
+				}
+			);
+
 		}
 
 		// Init
@@ -316,7 +333,7 @@ angular.module("userApp")
 }]);
 "use strict";
 angular.module("userApp")
-.factory("vendorService",["api",function(api){
+.factory("vendorService",["api","Upload",function(api,Upload){
 	return {
 		get:function(){
 			return api.request('get','api/me/vendor');
@@ -324,6 +341,15 @@ angular.module("userApp")
 		update:function(data){
 
 			return api.request('put','api/me/vendor',data);
+
+		},
+		updatePicture:function(file){
+
+
+			return Upload.upload({
+				url:"api/me/vendor/picture",
+				data:{file:file}
+			});
 
 		}
 	}

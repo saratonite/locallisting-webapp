@@ -74,4 +74,14 @@ class VendorController extends Controller
 
 
     }
+
+    public function updatePicture(Request $request){
+
+        $file = $request->file('file');
+
+         $imageName = md5(time()).'_test.'.$file->getClientOriginalExtension();
+
+        $file->move(base_path() . '/public/images/vendors/profile/', $imageName);
+        //var_dump($file);
+    }
 }
