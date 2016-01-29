@@ -56,8 +56,8 @@
                                 Profile<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li> <a href="{{ route('account::profile') }}">View</a></li>
-                                <li> <a href="{{ route('admin::pending-vendors') }}">Edit</a></li>
+                               <!--  <li> <a href="{{ route('account::profile') }}">View</a></li>
+                                <li> <a href="{{ route('admin::pending-vendors') }}">Edit</a></li> -->
                             </ul>
                     </li>
                     
@@ -75,7 +75,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{route('admin::settings')}}">Settings</a></li>
+                                <!-- <li><a href="{{route('admin::settings')}}">Settings</a></li> -->
                                 <li><a href="#"></a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>

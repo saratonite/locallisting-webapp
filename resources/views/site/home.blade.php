@@ -28,7 +28,14 @@
         <img src="images/logo.png">
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8 post">
-        <a href="#" class="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+
+      @if(Auth::check())
+        <a href="{{ route("account::appHome")}}" class="log">MY DASHBOARD</a> 
+
+      @else
+        <a href="http://sewesys.com/homeadvisor/public/login" lass="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+
+      @endif
       </div>
     </div>
   </div>
@@ -47,13 +54,10 @@
 <div class="col-lg-8 col-md-8 col-sm-8  sebox">
 <div class="row">
 <div class="col-lg-10 col-md-10 col-sm-10">
-<select class="ctg col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<select class="ctg col-lg-6 col-md-6 col-sm-6 col-xs-12">
 <option>All Category</option>
 </select>
-<select class="seg col-lg-4  col-md-4  col-sm-4 col-xs-12">
-<option>Service</option>
-</select>
-<input type="text" placeholder="City" class="ctyg col-lg-4  col-md-4  col-sm-4 col-xs-12">
+<input type="text" placeholder="City" class="ctyg col-lg-6  col-md-6  col-sm-6 col-xs-12">
 </div>
 <div class="col-lg-2 col-md-2 col-sm-2 btpad" >
 <form action="{{ route('search')}}">

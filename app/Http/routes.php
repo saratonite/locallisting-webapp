@@ -12,20 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('site.home');
+    
 });
 
-Route::get('/home', function () {
-    return view('site.home');
+Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
+
+	Route::get('/','HomeController@home');
+	Route::get('search','HomeController@search')->name('search');
+	Route::get('service_provider/red-earth-gardening','HomeController@service_provider')->name('profile');
+
+
 });
-Route::get('search',function(){
-	return view('site.search');
-
-})->name('search');
-
-Route::get('service_provider/red-earth-gardening',function(){
-	return view('site.service_provider.profile');
-})->name('profile');
 
 
 /*
@@ -160,6 +157,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::put('api/me','ProfileController@updateMyprofile');
 
 	Route::get('api/me/vendor','VendorController@profile');
+	Route::put('api/me/vendor','VendorController@update');
 
 
 	// API Settings

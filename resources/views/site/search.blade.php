@@ -27,7 +27,13 @@
         <img src="images/logo.png">
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8 post">
-        <a href="#" class="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+        @if(Auth::check())
+        <a href="{{ route("account::appHome")}}" class="log">MY DASHBOARD</a> 
+
+      @else
+        <a href="http://sewesys.com/homeadvisor/public/login" class="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+
+      @endif
       </div>
     </div>
   </div>
@@ -119,7 +125,7 @@
     <p class="pull-right">(845) 677-8256</p>
     <div class="clearfix"></div>
     <p><strong>Millbook,NY,123565</strong></p>
-    <p class="read">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an un...<a href="#">Read More</a> </p>
+    <p class="read">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an un...<a href="{{ route('profile')}}">Read More</a> </p>
     </div>
     <div class="clearfix"></div>
     <div class="col-lg-12 col-md-12 col-sm-12"><hr></div>
@@ -137,7 +143,7 @@
     <p class="pull-right">(845) 677-8256</p>
     <div class="clearfix"></div>
     <p><strong>Millbook,NY,123565</strong></p>
-    <p class="read">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an un...<a href="#">Read More</a> </p>
+    <p class="read">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an un...<a href="{{ route('profile')}}">Read More</a> </p>
     </div>
     <div class="clearfix"></div>
     <div class="col-lg-12 col-md-12 col-sm-12"><hr></div>

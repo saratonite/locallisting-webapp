@@ -26,7 +26,13 @@
         <img src="images/logo.png">
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8 post">
-        <a href="#" class="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+        @if(Auth::check())
+        <a href="{{ route("account::appHome")}}" class="log">MY DASHBOARD</a> 
+
+      @else
+        <a href="http://sewesys.com/homeadvisor/public/login" class="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+
+      @endif
       </div>
     </div>
   </div>
