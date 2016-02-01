@@ -90,7 +90,9 @@ class SiteuserController extends Controller
             'first_name' => 'required|min:3',
             'last_name' => 'required',
             'email' =>'required|email|unique:users,email,'.$user->id,
-            'status'=>'required'
+            'status'=>'required',
+            'mobile' =>'required | min:10,max:15',
+            'addr_line1' =>'required'
         ]);
 
         $niceNames = [

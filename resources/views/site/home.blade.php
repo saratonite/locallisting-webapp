@@ -1,52 +1,21 @@
 
-<!doctype html>
-<html lang="en-US">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>UAE HomeAdvisor</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="">
-<link rel="icon" type="image/png" href="images/icon.png">
-<link rel="stylesheet" href="{{asset('css/stayle.css')}}" type="text/css">
-<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
-<link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}" type="text/css">
-<link rel="stylesheet" href="{{asset('css/font-awesome/css/font-awesome.min.css')}}" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]--> 
+@extends('layouts.frontend')
 
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container-fluid head">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-4 logo">
-        <img src="images/logo.png">
-      </div>
-      <div class="col-lg-8 col-md-8 col-sm-8 post">
 
-      @if(Auth::check())
-        <a href="{{ route("account::appHome")}}" class="log">MY DASHBOARD</a> 
+@section('header')
+  @include('site.partials.header')
+@endsection
 
-      @else
-        <a href="http://sewesys.com/homeadvisor/public/login" lass="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
 
-      @endif
-      </div>
-    </div>
-  </div>
-</div>
+
+@section('content')
 
 <div class="container-fluid banner">
   <div class="container">
     <div class="row">
     <div class="col-lg-12 text-right">
 <p>Are you a Qualified Service Professional ?</p></div>
-<div class="col-lg-12 cs"><a href="#"  class="join pull-right">JOIN WITH US</a>
+<div class="col-lg-12 cs"><a href="{{route('vendor-signup')}}"  class="join pull-right">JOIN WITH US</a>
 </div>
 <div class="clearfix"></div>
 <div class="col-lg-12"><h1 class="sehed">Find a trusted service provider</h1></div>
@@ -181,88 +150,8 @@
   </div>
 </div>
 
-<div class="container-fluid footer">
-  <div class="container">
-    <div class="row">
+@endsection
 
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
-        <h5><strong>Services</strong></h5>
-        <p>
-        <a href="#">Moving</a><br>
-        <a href="#">Storage</a><br>
-        <a href="#">Car Shipping</a><br>
-        <a href="#">Cleaning</a><br>
-        <a href="#">Pest Control</a><br>
-        <a href="#">More..</a><br>
-        </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
-        <h5><strong>Support</strong></h5>
-        <p>
-        <a href="#">Help & Support</a><br>
-        <a href="#">Getting Started</a><br>
-        <a href="#">FAQ</a><br>
-        <a href="#">Contact Us</a><br>
-        <a href="#">I Need Support</a><br>
-        <a href="#">Write a Review</a><br>
-        </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 mar">
-        <h5><strong>Contact Us</strong></h5>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          @
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <p>info@homeowner.com
-          </P>
-        </div>
-        
-         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          A
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>1800-1800155-00<br>    
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          T
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>Maria Tower, Jew Street, Al Nama City UAE - 55
-        </div>
-
-
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-3 mar">
-        <h5><strong>Newsletter</strong></h5>
-        <p>Subscribe to our Newsletter -<br>
-and all the cool updates </p>
-
-<p><input type="text" class="form-control nelet" placeholder="Enter Email"></p>
-       
-                <div class="social-links pull-left" style="margin-top:5px;">
-          <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
-          <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
-          <a href="#"><i class="fa fa-skype fa-lg"></i></a>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <hr>
-      <div class="col-lg-7 col-md-7 col-sm-7">
-        <P>  <img src="images/logo.png"> All Rights Reserved to the HomeOwner.com LLC</P>
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
-        <p class="pull-right ftfoot">
-<a href="#">Home</a>
-<a href="#">Terms</a>
-<a href="#">Privacy Policy</a>
-<a href="#">Partners & Affiliates</a>
-<a href="#">SiteMap</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+@section('footer')
+  @include('site.partials.footer')
+@endsection

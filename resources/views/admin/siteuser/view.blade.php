@@ -30,6 +30,12 @@
 						<p>{{$user->addr_line3}}</p>
 					</td>
 				</tr>
+				<tr>
+					<td>Mobile</td>
+					<td>
+						{{$user->mobile}}
+					</td>
+				</tr>
 								<tr>
 					<td>Status </td>
 					<td><span class=" label label-{{ BS_Status_Class($user->status) }}">{{ucfirst($user->status)}}</span> </td>

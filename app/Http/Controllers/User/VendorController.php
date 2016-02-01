@@ -22,6 +22,7 @@ class VendorController extends Controller
     	$vendor = \App\Vendor::where("user_id",Auth::user()->id)->first();
 
     	$data['vendor'] = $vendor;
+        $data['picture'] = $vendor->picture;
     	$data['categories'] = \App\Category::orderBy('name')->get();
     	$data['cities'] = \App\City::orderBy('name')->get();
 
@@ -77,11 +78,38 @@ class VendorController extends Controller
 
     public function updatePicture(Request $request){
 
+        $user = Auth::user();
+
+        $vendor = $user->vendor;
+
+        $picture = $vendor->picture;
+
+        if(!$picture){
+
+            $picture = new \App\Image();
+            $picture->type = "profile";
+            $picture->user_id = $user->id;
+        }
+
+        $picture->file_name = "imageName";
+
+        $picture->save();
+
         $file = $request->file('file');
 
          $imageName = md5(time()).'_test.'.$file->getClientOriginalExtension();
 
         $file->move(base_path() . '/public/images/vendors/profile/', $imageName);
         //var_dump($file);
+        
+
+        // Save Image Details to DB
+        $picture->file_name = $imageName;
+
+        $picture->save();
+
+        // if success 
+        return $this->profile();
+
     }
 }

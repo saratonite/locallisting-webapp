@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password','status','addr_line1','addr_line2','addr_line3'
+        'first_name','last_name', 'email', 'password','status','addr_line1','addr_line2','addr_line3','mobile'
     ];
 
     /**
@@ -42,9 +42,18 @@ class User extends Authenticatable
         return $this->hasMany("\App\Enquiry","from_user");
     }
 
+    public function review(){
+        
+        return $this->hasMany('\App\Review','user_id');
+    }
+
     public function vendor(){
 
         return $this->hasOne("\App\Vendor","user_id");
+    }
+
+    public function image(){
+        return $this->hasMany("\App\Image","user_id");
     }
 
     /* Scope functions */

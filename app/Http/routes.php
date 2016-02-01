@@ -21,6 +21,13 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 	Route::get('search','HomeController@search')->name('search');
 	Route::get('service_provider/red-earth-gardening','HomeController@service_provider')->name('profile');
 
+	// User Registration
+	Route::get('signup',['middleware'=>['guest'],'uses'=>'RegistrationController@userSignup'])->name('user-signup');
+	Route::post('signup',['middleware'=>['guest'],'uses'=>'RegistrationController@userSignupProcess'])->name('user-signup-process');
+
+	Route::get('service-signup',['middleware'=>['guest'],'uses'=>'RegistrationController@vendorSignup'])->name('vendor-signup');
+	Route::post('service-signup',['middleware'=>['guest'],'uses'=>'RegistrationController@vendorSignupProcess'])->name('vendor-signup-process');
+
 
 });
 
@@ -100,6 +107,16 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('enquiries/{enquiryId}/view','EnquiryController@view')->name('view-enquiry');
 	
 	Route::put('enquiries/change-status/{enquiryId}','EnquiryController@changeStatus')->name('update-enquiry-enquiry');
+
+	
+	/**
+	 *
+	 * Reviews
+	 */
+	
+	Route::get('reviews/{status?}','ReviewController@index')->name('list-reviews');
+	Route::get('reviews/{reviewId}/show','ReviewController@show')->name('show-review');
+	Route::put('reviews/change-status/{reviewId}','ReviewController@changeStatus')->name('review-chnage-status');
 
 	/**
 	 * Categorires

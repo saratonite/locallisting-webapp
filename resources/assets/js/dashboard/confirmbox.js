@@ -18,19 +18,21 @@
 
 			this.modal = options.modal || ".modal";
 			this.bindEl = $(options.el);
-			this.action =  $(this.bindEl).data('action') || "default"; 
-			this.recordId =  $(this.bindEl).data('record-id');
+			this.action =  $(this.bindEl).data('action') || "default";
+			this.recordId =  $(this.bindEl).data('record-id') || options.recordId || null;
 
 			this.submit_url = options.action_url+"/"+this.recordId || '/'+this.recordId;
 			var self = this;
 
 			$(this.bindEl).on('click',function(){
-				self.fillModalForm();
+				self.action =  $(this).data('action') || "default";
+				self.fillModalForm(this);
 				self.showModal();
+
 			});
 		};
 
-		cb.prototype.fillModalForm = function(){
+		cb.prototype.fillModalForm = function(element){
 			var form = $(this.modal).find('form');
 
 			var idFeild = form.find('[name=id]');

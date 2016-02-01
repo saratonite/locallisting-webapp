@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('addr_line1')->nullable();
             $table->string('addr_line2')->nullable();
             $table->string('addr_line3')->nullable();
+            $table->string('mobile',15)->nullable();
+            $table->string('email_verification',100);
             $table->enum('status',['active','pending','blocked']);
             $table->string('password', 60);
             $table->rememberToken();

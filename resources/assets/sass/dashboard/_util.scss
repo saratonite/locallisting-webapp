@@ -1,0 +1,10 @@
+.star-rating-span{
+	@extend .badge;
+	background-color:#630F84;
+	.star-gold{
+	color:gold;
+	}
+	.star-gray{
+		color:#cfcfcf;
+	}
+}

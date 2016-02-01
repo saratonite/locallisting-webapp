@@ -78,6 +78,16 @@
                             <li><a href="{{ route('admin::rejected-enquiries') }}">Rejected</a></li>
                         </ul>
                     </li>
+                    <!-- Reviews -->
+                    <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" >Reviews <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('admin::list-reviews') }}">All</a></li>
+                            <li><a href="{{ route('admin::list-reviews') }}/pending">Pending</a></li>
+                            <li><a href="{{ route('admin::list-reviews') }}/accepted">Accepted</a></li>
+                            <li><a href="{{ route('admin::list-reviews') }}/rejected">Rejected</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -110,6 +120,13 @@
                 @yield('content')
             </div>
         </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+
     </div>
 
     <!-- JavaScripts -->

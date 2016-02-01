@@ -10,14 +10,16 @@ class NewUserRegistered extends Event
 {
     use SerializesModels;
 
+    public $user;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\User $user)
     {
-        //
+        $this->user = $user;        //
     }
 
     /**

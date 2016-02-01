@@ -97,6 +97,9 @@
   @if(Auth::user()->type =="vendor")
   <a href="#vendor/profile" class="list-group-item">Vendor Profile</a>
   @endif
+  @if(Auth::user()->type == "user")
+  <a href="#/myreviews" class="list-group-item">My Reviews</a>
+  @endif
     <a href="#notifications" class="list-group-item">Notifications</a>
   <a href="#stats" class="list-group-item">Stats</a>
   <a href="#settings" class="list-group-item">Account Settings</a>

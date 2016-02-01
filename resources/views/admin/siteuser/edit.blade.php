@@ -30,6 +30,13 @@
 					<span class="help-block">{{$errors->first('email')}}</span>
 				@endif
 			</div>
+			<div class="form-group @if($errors->has('mobile')) has-error @endif">
+				<label for="" class="control-label">Mobile</label>
+				<input type="text" class="form-control" name="mobile" value="{{old('mobile',$user->mobile)}}">
+				@if($errors->has('mobile'))
+					<span class="help-block">{{$errors->first('mobile')}}</span>
+				@endif
+			</div>
 			<div class="form-group @if($errors->has('addr_line1')) has-error @endif">
 				<label for="" class="control-label">Address line 1</label>
 				<input type="text" class="form-control" name="addr_line1" value="{{old('addr_line1',$user->addr_line1)}}">
