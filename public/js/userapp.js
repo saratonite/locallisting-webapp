@@ -15,6 +15,14 @@
 			controller:'ProfileController',
 			templateUrl:'app/partials/profile_edit'
 		})
+		.when('/myreviews/:page?',{
+			controller:'MyReviewController',
+			templateUrl:'app/partials/myreviews'
+		})
+		.when('/myreviews/edit/:reviewId',{
+			controller:'EditReviewController',
+			templateUrl:'app/partials/myreviews_edit'
+		})
 		.when('/vendor/profile',{
 			controller:'VendorController',
 			templateUrl:"app/partials/vendor_profile_edit"
@@ -35,6 +43,142 @@ angular.module("userApp")
 		
 		$scope.content = "Hello Universe";
 
+}]);
+"use strict";
+angular.module("userApp")
+.controller("EditReviewController",["$scope","$routeParams","$location","reviewService","toastr",function($scope,$routeParams,$location,reviewService,toastr){
+
+	$scope.review = false;
+
+	$scope.reviewId = $routeParams.reviewId;
+
+	$scope.getMyReview = function(){
+
+		reviewService.findMyReview($scope.reviewId).then(
+
+			function(response){
+
+				if(response.status == 200){
+
+					$scope.review = response.data;
+
+
+				}
+
+
+				$scope.requestCompleted = true;
+
+
+			},
+
+			function(response){
+
+				$scope.requestCompleted = true;
+
+
+			}
+
+
+		);
+	}
+
+	$scope.updateReview = function(){
+		$scope.serverErrors = false;
+		reviewService.updateMyReview($scope.reviewId,$scope.review).then(
+			// Success
+			function(response){
+
+				if(response.status == 200){
+
+					toastr.success("Review updated");
+					$location.path('/myreviews');
+
+				}
+
+			},
+			//Error
+			function(response){
+				if(response.status == 428){
+					toastr.error("Validation Error");
+					$scope.serverErrors = response.data.errors;
+					console.log(response);
+				}
+
+				else{
+					toastr.error("Network error");
+				}
+
+			}
+
+		);
+	}
+
+	$scope.getMyReview();
+
+}]);
+"use strict";
+angular.module("userApp")
+.controller("MyReviewController",['$scope','$routeParams','reviewService',function($scope,$routeParams,reviewService){
+
+	$scope.requestCompleted = false;
+
+	$scope.reviews = {};
+
+	$scope.currentPage = parseInt($routeParams.page) || 1;
+	$scope.lastPage=1;
+
+	$scope.initPagination = function(){
+
+		$scope.lastPage = $scope.reviews.last_page;
+
+		$scope.nextPage = $scope.lastPage == $scope.currentPage ? false : $scope.currentPage + 1;
+		$scope.previousPage = $scope.currentPage==1 ? false:$scope.currentPage - 1;
+
+
+	}
+
+	
+
+
+
+	$scope.getReviews = function(){
+		$scope.requestCompleted =false;
+		reviewService.getMyReviews($scope.currentPage).then(
+
+			// success
+			function(response){
+
+				console.log(response);
+
+				if(response.status == 200){
+					$scope.reviews = response.data;
+
+					$scope.initPagination();
+					$scope.requestCompleted=true;
+
+				}
+
+
+
+
+			},
+			// Error
+			function(response){
+
+				$scope.requestCompleted =true;
+
+			}
+
+		);
+
+	}
+
+	$scope.init = function(){
+
+		$scope.getReviews();
+	}
+
+	$scope.init();
 }]);
 "use strict";
 angular.module("userApp")
@@ -330,6 +474,41 @@ angular.module("userApp")
 
 		}
 	}
+}]);
+"strict user";
+angular.module("userApp")
+.factory("reviewService",["api",function(api){
+
+	return {
+
+		/*
+		Return a list of athures review
+		 */
+		 
+		getMyReviews:function(page){
+			var page = page || 1;
+			return api.request("get","api/me/reviews?page="+page);
+		},
+		findMyReview:function(id){
+
+			var id = id;
+
+			return api.request('get','api/me/reviews/find/'+id);
+
+		},
+		updateMyReview:function(id,data){
+			var id = id;
+			return api.request('put','api/me/reviews/find/'+id,data);
+		},
+
+		/*
+		 Return vendors reviews
+		 */
+		getVendorReviews:function(){
+
+		}
+	};
+
 }]);
 "use strict";
 angular.module("userApp")

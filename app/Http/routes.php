@@ -173,6 +173,13 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::get('api/me','ProfileController@myprofile');
 	Route::put('api/me','ProfileController@updateMyprofile');
 
+	// My Reviews
+	Route::get('api/me/reviews','ReviewController@getReviewsByMe');
+	Route::get('api/me/reviews/find/{reviewId}','ReviewController@getMyReview');
+	Route::put('api/me/reviews/find/{reviewId}','ReviewController@updateMyReview');
+
+
+
 	Route::get('api/me/vendor','VendorController@profile');
 	Route::put('api/me/vendor','VendorController@update');
 	Route::post('api/me/vendor/picture','VendorController@updatePicture');

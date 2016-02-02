@@ -47,6 +47,8 @@ class Email
     
     public function newUser($data){
 
+        
+
         Mail::send('admin.emails.siteuser.register',['user'=>$data->user],function($message) use($data){
 
             $message->to(strtolower($data->user->email))->subject('Welcome to UAE Home Advisor');

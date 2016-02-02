@@ -11,6 +11,8 @@ class Review extends Model
 
     protected $statusArray = ['pending','accepted','rejected'];
 
+    protected $fillable = ['title','body','rate_price','rate_timeliness','rate_quality','rate_professionalism'];
+
 
     // Relations
     
@@ -36,6 +38,22 @@ class Review extends Model
     	if($status && in_array($status,$this->statusArray)){
     		$query->where('status',$status);
     	}
+    }
+
+    public function scopeByUser($query,$user_id=false){
+
+        if($user_id){
+            $query->where('user_id',$user_id);
+        }
+
+    }
+
+    public function scopeByVendor($query,$vendor=false){
+
+        if($vendor){
+            $query->where('vendor_id',$vendor_id);
+        }
+
     }
 
     // Helpers
