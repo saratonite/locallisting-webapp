@@ -4,6 +4,7 @@
 
 
 <?php $__env->startSection('content'); ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-5">
@@ -49,37 +50,45 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="form-group <?php if($errors->has('category_id')): ?> has-error <?php endif; ?>">
+				<div class="form-group <?php if($errors->has('categories')): ?> has-error <?php endif; ?>">
 					<label for="" class="control-label col-md-3">Category</label>
 					<div class="col-md-7">
-						<select name="category_id" class="form-control">
-						<option value="" disabled selected>Select Category</option>
+						<select name="categories[]" class="form-control" multiple>
 						<?php if($categories->count()): ?>
-								<?php foreach($categories as $category): ?>
-								<option <?php if($category->id == old('category_id')): ?> selected <?php endif; ?> value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+								<?php $oldcats = [] ;
+								if(old('categories')){
+									$oldcats = old('categories');
+								}
+								?>
+								<?php foreach($categories as $key => $category): ?>
+								<option <?php if($key == in_array($key,$oldcats)): ?> selected <?php endif; ?> value="<?php echo e($key); ?>"><?php echo e($category); ?></option>
 								<?php endforeach; ?>
 						<?php endif; ?>
 						</select>
 						
-						<?php if($errors->has('category_id')): ?>
-							<span class="help-block"><?php echo e($errors->first('category_id')); ?></span>
+						<?php if($errors->has('categories')): ?>
+							<span class="help-block"><?php echo e($errors->first('categories')); ?></span>
 						<?php endif; ?>
 					</div>
 				</div>
-				<div class="form-group <?php if($errors->has('city_id')): ?> has-error <?php endif; ?>">
+				<div class="form-group <?php if($errors->has('cities')): ?> has-error <?php endif; ?>">
 					<label for="" class="control-label col-md-3">City</label>
 					<div class="col-md-7">
-						<select name="city_id" class="form-control">
-						<option value="" disabled selected>Select City</option>
+						<select name="cities[]" class="form-control" multiple>
 						<?php if($cities->count()): ?>
-								<?php foreach($cities as $city): ?>
-									<option <?php if($city->id == old('city_id')): ?> selected <?php endif; ?> value="<?php echo e($city->id); ?>"><?php echo e($city->name); ?></option>
+								<?php $oldcities = [] ;
+								if(old('cities')){
+									$oldcities = old('cities');
+								}
+								?>
+								<?php foreach($cities as $key=>$city): ?>
+									<option <?php if(in_array($key,$oldcities)): ?> selected <?php endif; ?> value="<?php echo e($key); ?>"><?php echo e($city); ?></option>
 								<?php endforeach; ?>
 						<?php endif; ?>
 						</select>
 						
-						<?php if($errors->has('city_id')): ?>
-							<span class="help-block"><?php echo e($errors->first('city_id')); ?></span>
+						<?php if($errors->has('cities')): ?>
+							<span class="help-block"><?php echo e($errors->first('cities')); ?></span>
 						<?php endif; ?>
 					</div>
 				</div>
@@ -131,12 +140,12 @@
 						<?php endif; ?>
 					</div>
 				</div>
-				<div class="form-group <?php if($errors->has('zip_code')): ?> has-error <?php endif; ?>">
-					<label for="" class="control-label col-md-3" >Zip Code</label>
+				<div class="form-group <?php if($errors->has('post_code')): ?> has-error <?php endif; ?>">
+					<label for="" class="control-label col-md-3" >Post Code</label>
 					<div class="col-md-3">
-						<input type="text" name="zip_code" value="<?php echo e(old('zip_code')); ?>" class="form-control" placeholder="Zip Code">
-						<?php if($errors->has('zip_code')): ?>
-							<span class="help-block"><?php echo e($errors->first('zip_code')); ?></span>
+						<input type="text" name="post_code" value="<?php echo e(old('post_code')); ?>" class="form-control" placeholder="Post Code">
+						<?php if($errors->has('post_code')): ?>
+							<span class="help-block"><?php echo e($errors->first('post_code')); ?></span>
 						<?php endif; ?>
 					</div>
 				</div>

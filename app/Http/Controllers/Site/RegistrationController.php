@@ -63,8 +63,8 @@ class RegistrationController extends Controller
     // Vendor Signup
     public function vendorSignup(){
 
-    	$categories = \App\Category::all();
-    	$cities = \App\City::all();
+    	$categories = \App\Category::lists('name','id');
+    	$cities = \App\City::lists('name','id');
 
     	return view('site.registration.vendor',compact('cities','categories'));
 
@@ -81,12 +81,12 @@ class RegistrationController extends Controller
     		'password'=>'required|confirmed',
     		//Vendor Section
     		'vendor_name' =>'required',
-    		'category_id' => 'required',
-    		'city_id' => 'required',
+    		'categories' => 'required',
+    		'cities' => 'required',
     		'addr_line1' => 'required',
     		'addr_line2' => 'required',
     		'addr_line2' => 'required',
-    		'zip_code' => 'required',
+    		'post_code' => 'required|max:10|min:5',
     		]);
 
     	$niceNames = [
@@ -109,7 +109,7 @@ class RegistrationController extends Controller
     	
     	$user = new \App\User();
 
-    	$user->fill($request->only('first_name','last_name','email','mobile'));
+    	$user->fill($request->only('first_name','last_name','email','mobile','password'));
 
     	$user->type = "vendor";
     	$user->status = "pending";
@@ -123,9 +123,12 @@ class RegistrationController extends Controller
 
     	$vendor->user_id = $user->id;
 
-    	$vendor->fill($request->only('vendor_name','category_id','city_id','addr_line1','addr_line2','addr_line3','zip_code'));
+    	$vendor->fill($request->only('vendor_name','addr_line1','addr_line2','addr_line3','zip_code'));
 
     	if($vendor->save()){
+        $vendor->addCategories($request->input('categories'));
+        $vendor->addCities($request->input('cities'));
+
     		$request->session()->flash('success','Thank you for Signup with UAE Home Advisor . please <a href="'.url('login').'">login</a> and update your profile');
 
     		// Fire event vendor created

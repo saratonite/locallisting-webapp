@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title')</title>
+    <title><?php echo $__env->yieldContent('title'); ?></title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -13,10 +13,10 @@
 
     <!-- Styles -->
     
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/vendor.dashboard.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('css/dashboard.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/vendor.dashboard.css')); ?>" rel="stylesheet">
 
-    @yield('stylesheets')
+    <?php echo $__env->yieldContent('stylesheets'); ?>
 
     <style>
         body {
@@ -42,7 +42,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
                     Master Control
                 </a>
             </div>
@@ -50,43 +50,43 @@
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('admin::dashboard') }}">Dashboard</a></li>
+                    <li><a href="<?php echo e(route('admin::dashboard')); ?>">Dashboard</a></li>
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Vendors<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li> <a href="{{ route('admin::all-vendors') }}">All</a></li>
-                                <li> <a href="{{ route('admin::pending-vendors') }}">Pending</a></li>
-                                <li> <a href="{{ route('admin::accepted-vendors') }}">Accepted</a></li>
-                                <li> <a href="{{ route('admin::blocked-vendors') }}">Blocked</a></li>
+                                <li> <a href="<?php echo e(route('admin::all-vendors')); ?>">All</a></li>
+                                <li> <a href="<?php echo e(route('admin::pending-vendors')); ?>">Pending</a></li>
+                                <li> <a href="<?php echo e(route('admin::accepted-vendors')); ?>">Accepted</a></li>
+                                <li> <a href="<?php echo e(route('admin::blocked-vendors')); ?>">Blocked</a></li>
                             </ul>
                     </li>
                     <li><a class="dropdown-toggle" data-toggle="dropdown" role='button' >Users <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('admin::all-site-users')}}">All</a></li>
-                                <li><a href="{{ route('admin::active-site-users')}}">Active</a></li>
-                                <li><a href="{{ route('admin::pending-site-users')}}">Pending</a></li>
-                                <li><a href="{{ route('admin::blocked-site-users')}}">Blocked</a></li>
+                                <li><a href="<?php echo e(route('admin::all-site-users')); ?>">All</a></li>
+                                <li><a href="<?php echo e(route('admin::active-site-users')); ?>">Active</a></li>
+                                <li><a href="<?php echo e(route('admin::pending-site-users')); ?>">Pending</a></li>
+                                <li><a href="<?php echo e(route('admin::blocked-site-users')); ?>">Blocked</a></li>
                             </ul>
                     </li>
                     <li>
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" >Enquiries <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('admin::all-enquiries') }}">All</a></li>
-                            <li><a href="{{ route('admin::pending-enquiries') }}">Pending</a></li>
-                            <li><a href="{{ route('admin::accepted-enquiries') }}">Accepted</a></li>
-                            <li><a href="{{ route('admin::rejected-enquiries') }}">Rejected</a></li>
+                            <li><a href="<?php echo e(route('admin::all-enquiries')); ?>">All</a></li>
+                            <li><a href="<?php echo e(route('admin::pending-enquiries')); ?>">Pending</a></li>
+                            <li><a href="<?php echo e(route('admin::accepted-enquiries')); ?>">Accepted</a></li>
+                            <li><a href="<?php echo e(route('admin::rejected-enquiries')); ?>">Rejected</a></li>
                         </ul>
                     </li>
                     <!-- Reviews -->
                     <li>
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" >Reviews <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('admin::list-reviews') }}">All</a></li>
-                            <li><a href="{{ route('admin::list-reviews') }}/pending">Pending</a></li>
-                            <li><a href="{{ route('admin::list-reviews') }}/accepted">Accepted</a></li>
-                            <li><a href="{{ route('admin::list-reviews') }}/rejected">Rejected</a></li>
+                            <li><a href="<?php echo e(route('admin::list-reviews')); ?>">All</a></li>
+                            <li><a href="<?php echo e(route('admin::list-reviews')); ?>/pending">Pending</a></li>
+                            <li><a href="<?php echo e(route('admin::list-reviews')); ?>/accepted">Accepted</a></li>
+                            <li><a href="<?php echo e(route('admin::list-reviews')); ?>/rejected">Rejected</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -95,8 +95,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
 
-                    <li><a href="{{ route('admin::list-category') }}">Categories</a></li>
-                    <li><a href="{{ route('admin::list-cities') }}">Cities</a></li>
+                    <li><a href="<?php echo e(route('admin::list-category')); ?>">Categories</a></li>
+                    <li><a href="<?php echo e(route('admin::list-cities')); ?>">Cities</a></li>
                   
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -104,9 +104,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{route('admin::settings')}}">Settings</a></li>
+                                <li><a href="<?php echo e(route('admin::settings')); ?>">Settings</a></li>
                                 <li><a href="#"></a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
                     
@@ -117,8 +117,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                @yield('breadcrumbs')
-                @yield('content')
+                <?php echo $__env->yieldContent('breadcrumbs'); ?>
+                <?php echo $__env->yieldContent('content'); ?>
             </div>
         </div>
     </div>
@@ -131,8 +131,8 @@
     </div>
 
     <!-- JavaScripts -->
-    <script src="{{ asset('js/vendor.js')}}"></script>
-    <script src="{{ asset('js/dashboard.js')}}"></script>
+    <script src="<?php echo e(asset('js/vendor.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/dashboard.js')); ?>"></script>
     <script type="text/javascript">
     //  GLOBAL SCRPTSS //
     $(function () {
@@ -140,6 +140,6 @@
     });
     //  ///////////////
     </script>
-    @yield('scripts')
+    <?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>

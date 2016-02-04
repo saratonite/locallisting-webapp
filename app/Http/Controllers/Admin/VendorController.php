@@ -76,7 +76,7 @@ class VendorController extends Controller
      */
     public function edit($vendorId){
 
-        $vendor = \App\Vendor::find($vendorId);
+        $vendor = \App\Vendor::with(['categories','cities'])->find($vendorId);
 
         $categories = \App\Category::lists('name','id');
         $cities = \App\City::lists('name','id');
@@ -94,21 +94,23 @@ class VendorController extends Controller
     
     public function update(Request $request,$vendorId = null){
 
-        $vendor = \App\Vendor::find($vendorId);
+        
+
+        $vendor = \App\Vendor::with('categories')->find($vendorId);
 
         $v =  Validator::make($request->all(),[
             'vendor_name' => 'required ',
             'description' => 'required',
-            'category_id' => 'required',
-            'city_id' => 'required',
+            'categories' => 'required',
+            'cities' => 'required',
             'addr_line1' => 'max:255',
             'addr_line2' => 'max:255',
             'addr_line3' => 'max:255',
             'contact_number' => 'required',
             'mobile' => 'required'
         ],[
-            'category_id' => 'Select category',
-            'city_id' => 'Select city',
+            'categories' => 'Select category',
+            'cities' => 'Select city',
             'addr_line1' => 'Address (Building / Room)',
             'addr_line2' => 'Address (Street / Landmark)',
             'addr_line3' => 'Address (Place)'
@@ -117,6 +119,19 @@ class VendorController extends Controller
         if($v->fails()){
             return redirect()->back()->withErrors($v)->withInput();
         }
+
+
+        //** Processing Categories ** //
+
+        // Remove old categories thos not selected now
+        
+        $newCategories = $request->input('categories');
+
+        $vendor->UpdateCategories($newCategories);
+
+        $newCities = $request->input('cities');
+
+        $vendor->UpdateCities($newCities);
 
         $vendor->fill($request->all());
 

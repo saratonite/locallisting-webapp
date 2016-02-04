@@ -13,6 +13,13 @@ class Review extends Model
 
     protected $fillable = ['title','body','rate_price','rate_timeliness','rate_quality','rate_professionalism'];
 
+    public function getCreatedDateAttribute(){
+
+        $td = new \Carbon\Carbon($this->attributes['created_at']);
+        if($td){
+            return $td->format('M d Y');
+        }
+    }
 
     // Relations
     

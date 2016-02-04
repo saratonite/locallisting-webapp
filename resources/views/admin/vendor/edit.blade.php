@@ -34,25 +34,41 @@
 			</div>
 			<div class="form-group @if($errors->has('category_id')) has-error @endif">
 				<label for="" class="control-label">Category</label>
-				<select  id="" class="form-control" name="category_id">
-					<option disabled selected>Select Category</option>
+				<select  id="" class="form-control" name="categories[]" multiple size="5">
+					<option disabled >Select Category</option>
 					@if(count($categories))
 						@foreach($categories as $key => $name)
-							<option @if(old('category_id',$vendor->category_id) == $key ) selected @endif value="{{$key}}">{{ $name }}</option>
+							<option 
+
+							@if(count($vendor->categories))
+								@foreach($vendor->categories as $vcat)
+
+									@if(old("categories[]",$vcat->category_id) == $key ) selected @endif
+								@endforeach
+							@endif
+
+							value="{{$key}}">{{ $name }}</option>
 						@endforeach
 					@endif
 				</select>
 				@if($errors->has('category_id'))
-					<span class="help-block">{{$errors->first('category_id')}}</span>
+					<div class="help-block">{{$errors->first('category_id')}}</div>
 				@endif
 			</div>
 			<div class="form-group @if($errors->has('city_id')) has-error @endif">
 				<label for="" class="control-label">City</label>
-				<select  id="" class="form-control" name="city_id">
-					<option disabled selected>Select City</option>
+				<select  id="" class="form-control" name="cities[]" multiple>
 					@if(count($cities))
 						@foreach($cities as $key => $name)
-							<option @if(old('category_id',$vendor->city_id) == $key ) selected @endif value="{{$key}}">{{ $name }}</option>
+							<option 
+								@if(count($vendor->cities))
+									@foreach($vendor->cities as $vcity)
+
+										@if(old("cities[]",$vcity->city_id) == $key ) selected @endif
+									@endforeach
+								@endif
+
+								value="{{$key}}">{{ $name }}</option>
 						@endforeach
 					@endif
 				</select>
@@ -103,4 +119,13 @@
 		</form>
 	</div>
 </div>
+@endsection
+
+
+@section('scripts')
+<script type="text/javascript">
+	$(function(){
+		 $('select[multiple]').select2();
+	});
+</script>
 @endsection

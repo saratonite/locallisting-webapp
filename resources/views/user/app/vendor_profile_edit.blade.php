@@ -24,26 +24,26 @@
 			</div>
 		</div>
 		<!-- Category -->
-		<div class="form-group" ng-class="{ 'has-error': serverErrors.category_id}">
+		<div class="form-group" ng-class="{ 'has-error': serverErrors.categories}">
 			<label for="" class="col-md-3 control-label">Category</label>
 			<div class="col-md-9">
-				<select class="form-control" ng-model="vendor.category_id">
-					<option value="" ng-repeat="category in categories" ng-selected="vendor.category_id == category.id" ng-value="category.id">@{{category.name}}</option>
+				<select class="form-control" ng-model="vendor.categories" multiple size="4">
+					<option value="" ng-repeat="category in categories" ng-value="category.id">@{{category.name}}</option>
 				</select>
 				<div class="help-block" ng-messages="serverErrors">
-					<span ng-message="category_id" >@{{serverErrors.category_id[0]}}</span>
+					<span ng-message="categories" >@{{serverErrors.categories[0]}}</span>
 				</div>
 			</div>
 		</div>
 		<!-- City -->
-		<div class="form-group" ng-class="{ 'has-error': serverErrors.city_id}">
+		<div class="form-group" ng-class="{ 'has-error': serverErrors.cities}">
 			<label for="" class="col-md-3 control-label">City</label>
 			<div class="col-md-9">
-				<select class="form-control" ng-model="vendor.city_id">
-					<option value="" ng-repeat="city in cities" ng-selected="vendor.city_id == city.id" ng-value="city.id">@{{city.name}}</option>
+				<select class="form-control" ng-model="vendor.cities" multiple>
+					<option  ng-repeat="city in cities"  ng-value="city.id">@{{city.name}}</option>
 				</select>
 				<div class="help-block" ng-messages="serverErrors">
-					<span ng-message="city_id" >@{{serverErrors.city_id[0]}}</span>
+					<span ng-message="cities" >@{{serverErrors.cities[0]}}</span>
 				</div>
 			</div>
 		</div>
@@ -78,6 +78,15 @@
 				<input type="text" class="form-control" ng-model="vendor.addr_line3">
 				<div class="help-block" ng-messages="serverErrors">
 					<span ng-message="addr_line3" >@{{serverErrors.addr_line3[0]}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': serverErrors.post_code}">
+			<label for="" class="col-md-3 control-label">Address (Place)</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" ng-model="vendor.post_code">
+				<div class="help-block" ng-messages="serverErrors">
+					<span ng-message="post_code" >@{{serverErrors.post_code[0]}}</span>
 				</div>
 			</div>
 		</div>

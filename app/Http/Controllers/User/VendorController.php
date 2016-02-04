@@ -19,7 +19,7 @@ class VendorController extends Controller
     public function profile(){
 
     	
-    	$vendor = \App\Vendor::where("user_id",Auth::user()->id)->first();
+    	$vendor = \App\Vendor::where("user_id",Auth::user()->id)->with(['categories','cities'])->first();
 
     	$data['vendor'] = $vendor;
         $data['picture'] = $vendor->picture;
@@ -42,16 +42,17 @@ class VendorController extends Controller
         $v =  Validator::make($request->all(),[
             'vendor_name' => 'required ',
             'description' => 'required',
-            'category_id' => 'required',
-            'city_id' => 'required',
+            'categories' => 'required',
+            'cities' => 'required',
             'addr_line1' => 'required | max:255',
             'addr_line2' => 'max:255',
             'addr_line3' => 'max:255',
+            'post_code' => 'required|max:10|min:5',
             'contact_number' => 'required',
             'mobile' => 'required'
         ],[
-            'category_id' => 'Select category',
-            'city_id' => 'Select city',
+            'categories' => 'Select category',
+            'cities' => 'Select city',
             'addr_line1' => 'Address (Building / Room)',
             'addr_line2' => 'Address (Street / Landmark)',
             'addr_line3' => 'Address (Place)'
@@ -69,9 +70,12 @@ class VendorController extends Controller
 
         $vendor->fill($request->all());
 
+        $vendor->updateCategories($request->input('categories'));
+        $vendor->updateCities($request->input('cities'));
+
         $vendor->update();
 
-        return $vendor;
+        return $this->profile();
 
 
     }
@@ -99,7 +103,7 @@ class VendorController extends Controller
 
          $imageName = md5(time()).'_test.'.$file->getClientOriginalExtension();
 
-        $file->move(base_path() . '/public/images/vendors/profile/', $imageName);
+        $file->move(config('settings.uploads.images'), $imageName);
         //var_dump($file);
         
 

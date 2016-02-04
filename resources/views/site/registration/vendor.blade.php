@@ -6,6 +6,7 @@
 
 
 @section('content')
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-5">
@@ -49,37 +50,45 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="form-group @if($errors->has('category_id')) has-error @endif">
+				<div class="form-group @if($errors->has('categories')) has-error @endif">
 					<label for="" class="control-label col-md-3">Category</label>
 					<div class="col-md-7">
-						<select name="category_id" class="form-control">
-						<option value="" disabled selected>Select Category</option>
+						<select name="categories[]" class="form-control" multiple>
 						@if($categories->count())
-								@foreach($categories as $category)
-								<option @if($category->id == old('category_id')) selected @endif value="{{$category->id}}">{{ $category->name }}</option>
+								<?php $oldcats = [] ;
+								if(old('categories')){
+									$oldcats = old('categories');
+								}
+								?>
+								@foreach($categories as $key => $category)
+								<option @if($key == in_array($key,$oldcats)) selected @endif value="{{$key}}">{{ $category }}</option>
 								@endforeach
 						@endif
 						</select>
 						
-						@if($errors->has('category_id'))
-							<span class="help-block">{{$errors->first('category_id')}}</span>
+						@if($errors->has('categories'))
+							<span class="help-block">{{$errors->first('categories')}}</span>
 						@endif
 					</div>
 				</div>
-				<div class="form-group @if($errors->has('city_id')) has-error @endif">
+				<div class="form-group @if($errors->has('cities')) has-error @endif">
 					<label for="" class="control-label col-md-3">City</label>
 					<div class="col-md-7">
-						<select name="city_id" class="form-control">
-						<option value="" disabled selected>Select City</option>
+						<select name="cities[]" class="form-control" multiple>
 						@if($cities->count())
-								@foreach($cities as $city)
-									<option @if($city->id == old('city_id')) selected @endif value="{{$city->id}}">{{ $city->name }}</option>
+								<?php $oldcities = [] ;
+								if(old('cities')){
+									$oldcities = old('cities');
+								}
+								?>
+								@foreach($cities as $key=>$city)
+									<option @if(in_array($key,$oldcities)) selected @endif value="{{$key}}">{{ $city }}</option>
 								@endforeach
 						@endif
 						</select>
 						
-						@if($errors->has('city_id'))
-							<span class="help-block">{{$errors->first('city_id')}}</span>
+						@if($errors->has('cities'))
+							<span class="help-block">{{$errors->first('cities')}}</span>
 						@endif
 					</div>
 				</div>
@@ -131,12 +140,12 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group @if($errors->has('zip_code')) has-error @endif">
-					<label for="" class="control-label col-md-3" >Zip Code</label>
+				<div class="form-group @if($errors->has('post_code')) has-error @endif">
+					<label for="" class="control-label col-md-3" >Post Code</label>
 					<div class="col-md-3">
-						<input type="text" name="zip_code" value="{{old('zip_code')}}" class="form-control" placeholder="Zip Code">
-						@if($errors->has('zip_code'))
-							<span class="help-block">{{$errors->first('zip_code')}}</span>
+						<input type="text" name="post_code" value="{{old('post_code')}}" class="form-control" placeholder="Post Code">
+						@if($errors->has('post_code'))
+							<span class="help-block">{{$errors->first('post_code')}}</span>
 						@endif
 					</div>
 				</div>

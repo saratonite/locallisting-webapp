@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="stylesheet" href="{{asset('css/stayle.css')}}" type="text/css">
 <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
+<link rel="stylesheet" href="{{asset('css/vendor.style.css')}}" type="text/css">
 <!-- <link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}" type="text/css"> -->
 <link rel="stylesheet" href="{{asset('css/font-awesome/css/font-awesome.min.css')}}" type="text/css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
@@ -18,6 +19,13 @@
 
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/vendor.scripts.js"></script>
+
+    <script type="text/javascript">
+    	$(function(){
+    		$('select[multiple]').select2();
+    	});
+    </script>
 </head>
 <body>
 @yield('header')

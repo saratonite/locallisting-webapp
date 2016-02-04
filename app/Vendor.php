@@ -9,7 +9,7 @@ class Vendor extends Model
     
     protected $table = "vendors";
 
-    protected $fillable = ['vendor_name','description','category_id','city_id','contact_number','mobile','addr_line1','addr_line2','addr_line3','zip_code'];
+    protected $fillable = ['vendor_name','description','category_id','city_id','contact_number','mobile','addr_line1','addr_line2','addr_line3','post_code'];
 
 
 
@@ -25,7 +25,7 @@ class Vendor extends Model
     	return $this->belongsTo("\App\User","user_id");
     }
 
-    /* Category */
+    /* Category [Deprecated]*/
 
     public function category(){
 
@@ -35,13 +35,28 @@ class Vendor extends Model
     	
     }
 
+    /* Categories */
 
-    /* City */
+    public function categories(){
+
+        return $this->hasMany('\App\VendorCategory','vendor_id')->with('category');
+    }
+
+
+
+
+
+    /* City  [Deprected]*/
 
     public function city(){
 
     	return $this->belongsTo("\App\City","city_id");
 
+    }
+
+    public function cities(){
+
+        return $this->hasMany("\App\VendorCity","vendor_id");
     }
 
     public function enquiry(){
@@ -70,12 +85,59 @@ class Vendor extends Model
         return $this->enquiry()->orderBy('id','desc')->limit('5');
     }
 
+    /* Deprecated */
     public function scopeCategoryname(){
 
     	if($this->category){
     		return $this->category->name;
     	}
     	return "(Uncategorised)";
+    }
+
+    public function scopeAddCategories($query, Array $categoryArray){
+
+        if(count($categoryArray)){
+            foreach ($categoryArray as $newCategory) {
+
+                $newVendorCategory = new  \App\VendorCategory();
+                $newVendorCategory->category_id = $newCategory;
+                $this->categories()->save($newVendorCategory);
+                
+            }
+        }
+
+    }
+
+    public function scopeUpdateCategories($query,Array $newCategories){
+
+        // Update Categoires
+        $existingCategories = [];
+        
+        if($this->categories){
+
+            foreach($this->categories as $currentCategory){
+
+                if(in_array($currentCategory->category_id, $newCategories)){
+
+                    $existingCategories[] = $currentCategory->category_id;
+
+                }
+                else{
+                    $currentCategory->delete();
+
+                }
+            }
+            
+        }
+
+        // Filtered only non existing new categories
+        $filterdNewCategories = array_diff($newCategories,$existingCategories);
+         // Crete new categories
+        if(count($filterdNewCategories)){
+
+            $this->addCategories($filterdNewCategories);
+        }
+
     }
 
     public function scopeActive($query){
@@ -100,6 +162,52 @@ class Vendor extends Model
     		return $this->city->name;
     	}
     	return "(No City Specified)";
+    }
+
+    public function scopeAddCities($query, Array $citiesArray){
+
+        if(count($citiesArray)){
+            foreach ($citiesArray as $newCity) {
+
+                $newVendorCity = new  \App\VendorCity();
+                $newVendorCity->city_id = $newCity;
+                $this->cities()->save($newVendorCity);
+                
+            }
+        }
+
+    }
+
+    public function scopeUpdateCities($query,Array $newCities){
+
+        // Update Categoires
+        $existingCities = [];
+        
+        if($this->cities){
+
+            foreach($this->cities as $currentCity){
+
+                if(in_array($currentCity->city_id, $newCities)){
+
+                    $existingCities[] = $currentCity->city_id;
+
+                }
+                else{
+                    $currentCity->delete();
+
+                }
+            }
+            
+        }
+
+        // Filtered only non existing new cities
+        $filterdnewCities = array_diff($newCities,$existingCities);
+         // Crete new cities
+        if(count($filterdnewCities)){
+            
+            $this->addCities($filterdnewCities);
+        }
+
     }
 
     public function recentEnquiries(){
