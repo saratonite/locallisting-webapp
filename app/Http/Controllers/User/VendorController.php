@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use Validator;
+use Image;
 class VendorController extends Controller
 {
     
@@ -95,25 +96,51 @@ class VendorController extends Controller
             $picture->user_id = $user->id;
         }
 
-        $picture->file_name = "imageName";
 
-        $picture->save();
+        // File Validation
+        $v = Validator::make($request->all(),
+            ['file' => 'required | image|max:'.config('settings.uploads.maxsize',5000)]
+            );
+        //
+        if($v->fails()){
+            return response()->json(['errors'=>$v->errors()])->setStatusCode(422);
+        }
+
+        // Delete old pictures
+        $picture->DeleteFromDisk();
+        
 
         $file = $request->file('file');
 
-         $imageName = md5(time()).'_test.'.$file->getClientOriginalExtension();
-
-        $file->move(config('settings.uploads.images'), $imageName);
-        //var_dump($file);
+        //$realPath = $file->getRealPath();
         
-
+        $picture->SaveToDisk($file);
         // Save Image Details to DB
-        $picture->file_name = $imageName;
-
         $picture->save();
+
+    
 
         // if success 
         return $this->profile();
 
+    }
+
+    /**
+     * Remove Vendor picture
+     */
+    
+    public function removePicture(){
+
+         $user = Auth::user();
+
+        $vendor = $user->vendor;
+
+
+        $vendor->picture->DeleteFromDisk();
+
+        $vendor->picture()->delete();
+
+        return $this->profile();
+        
     }
 }

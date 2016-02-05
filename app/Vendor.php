@@ -72,7 +72,7 @@ class Vendor extends Model
     // Vendor profile picture
 
     public function picture(){
-
+        
         return $this->hasOne("\App\Image",'user_id','user_id')->where('type','=','profile');
 
     }

@@ -18,6 +18,9 @@ angular.module("userApp")
 				data:{file:file}
 			});
 
+		},
+		removePicture:function(data){
+			return api.request('delete','api/me/vendor/picture');
 		}
 	}
 }]);

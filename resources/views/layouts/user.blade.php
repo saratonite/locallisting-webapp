@@ -96,6 +96,7 @@
   <a href="#/profile" class="list-group-item">My Profile</a>
   @if(Auth::user()->type =="vendor")
   <a href="#vendor/profile" class="list-group-item">Vendor Profile</a>
+  <a href="#vendor/images" class="list-group-item">Images</a>
   @endif
   @if(Auth::user()->type == "user")
   <a href="#/myreviews" class="list-group-item">My Reviews</a>

@@ -82,7 +82,7 @@
 			</div>
 		</div>
 		<div class="form-group" ng-class="{ 'has-error': serverErrors.post_code}">
-			<label for="" class="col-md-3 control-label">Address (Place)</label>
+			<label for="" class="col-md-3 control-label">Post Code</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" ng-model="vendor.post_code">
 				<div class="help-block" ng-messages="serverErrors">
@@ -126,6 +126,7 @@
 </div>
 <div class="col-md-4">
 <span ng-show="!requestCompleted" us-spinner></span>
+<span ng-show="updatingPic" us-spinner></span>
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
@@ -135,14 +136,26 @@
 			<div class="col-md-12" style="padding:0px">
 				
 			    <a  class="thumbnail" style="padding:0px">
-			      <img ng-show="file" ngf-src="file" >
+			    	<!-- Dummy -->
+			    	<img ng-hide="vendor.picture || file"  ng-src="{{url('/')}}/images/placeholder.png">
+			    	<!-- The Current -->
+			    	<img ng-hide="file || !vendor.picture " ng-src="{{url('/').'/'.config('settings.uploads.images')}}@{{vendor.picture.base_dir}}/V200_@{{vendor.picture.file_name}}">
+			    	<!-- New -->
+			      <img style="width:200px;height:200px" ng-show="file" ngf-src="file" >
 			    </a>
 			  </div>
 			  <div class="file-selection-area">
 			  	<div class="btn btn-sm btn-primary" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
     ngf-accept="'image/*'" ngf-max-size="20MB" >Select</div>
-    			<button class="btn btn-sm btn-success" ng-click="updatePic()">Save	</button>
+    			<button class="btn btn-sm btn-danger" ng-hide="file || !vendor.picture " ng-click="removePic()">Remove</button>
+    			<button class="btn btn-sm btn-success" ng-show="file" ng-click="updatePic()">Save	</button>
+    			<button class="btn btn-sm btn-warning" ng-show="file" ng-click="cancelUpdatePic()">Cancel	</button>
 			  </div>
+
+			  <!-- Error -->
+			  <p ng-messages="serverErrors">
+			  	<span class="text-danger" ng-message="file">@{{serverErrors.file[0]}}</span>
+			  </p>
 		</div>
 		
 	</div>

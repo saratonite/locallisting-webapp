@@ -183,6 +183,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::get('api/me/vendor','VendorController@profile');
 	Route::put('api/me/vendor','VendorController@update');
 	Route::post('api/me/vendor/picture','VendorController@updatePicture');
+	Route::delete('api/me/vendor/picture',['middleware'=>'api','uses'=>'VendorController@removePicture']);
 
 
 	// API Settings

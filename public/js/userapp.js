@@ -3,6 +3,7 @@
 	angular.module("userApp",["ngRoute","ngAnimate","ngMessages","angularSpinner","toastr","ngFileUpload"])
 
 	.config(function($routeProvider){
+		
 		$routeProvider.when('/',{
 			controller:'DashboaredController',
 			templateUrl:'app/partials/home'
@@ -27,6 +28,10 @@
 			controller:'VendorController',
 			templateUrl:"app/partials/vendor_profile_edit"
 		})
+		.when('/vendor/images',{
+			controller:'ImagesController',
+			templateUrl:"app/partials/images"
+		})
 		.when('/settings',{
 			controller:"SettingsController",
 			templateUrl:"app/partials/settings"
@@ -34,6 +39,30 @@
 		.otherwise({
 			templateUrl:'app/partials/404'
 		});
+
+		
+	}).config(function($httpProvider){
+
+		$httpProvider.interceptors.push(function(){
+			return {
+				response:function(response){
+
+					return response;
+				},
+				responseError:function(response){
+
+					if(response.status == 302){
+						alert("Unauthorized");
+						window.location.href = "/login";
+
+					}
+					if(response.status==405){
+						window.location.href = "/login";
+					}
+				}
+			}
+		});
+
 	});
 
 
@@ -115,6 +144,12 @@ angular.module("userApp")
 
 	$scope.getMyReview();
 
+}]);
+angular.module('userApp')
+
+.controller('ImagesController',['$scope',function(){
+
+	
 }]);
 "use strict";
 angular.module("userApp")
@@ -343,6 +378,7 @@ angular.module("userApp")
 		$scope.serverErrors = false;
 
 		$scope.requestCompleted = false;
+		$scope.updatingPic = false;
 
 		$scope.parseVendorCategories = function(categories){
 
@@ -423,12 +459,8 @@ angular.module("userApp")
 					console.log(response);
 					// if ok
 					if(response.status == 200){
-						$scope.vendor = response.data.vendor;
-						$scope.vendor.categories = $scope.parseVendorCategories($scope.vendor.categories);
-						$scope.vendor.cities = $scope.parseVendorCities($scope.vendor.cities);
-						$scope.cities = response.data.cities;
-						$scope.categories = response.data.categories;
-						toastr.success("Profile updated","Great");
+							$scope.$emit('profileUpdated',{"message":"Vendor profile updated","response":response});
+						
 						//$('select').select2();
 
 					}
@@ -451,15 +483,27 @@ angular.module("userApp")
 
 		// Update profile picture
 		$scope.updatePic = function(){
+			$scope.updatingPic = true;
+			$scope.serverErrors = false;
 			vendorService.updatePicture($scope.file).then(
 				function(response){
 
 					if(response.status==200){
-						toastr.success('Profile Picture Updated!');
+							$scope.$emit('profileUpdated',{"message":"Picture updated","response":response});
+
+
+						$scope.file = false;
 					}
+
+					$scope.updatingPic = false;
 
 				},
 				function(xhr){
+					if(xhr.status == 422){
+						toastr.error('File upload error');
+						$scope.serverErrors = xhr.data.errors;
+					}
+					$scope.updatingPic = false;
 
 				}
 			);
@@ -471,6 +515,54 @@ angular.module("userApp")
 			$scope.vendorProfile();
 			//$('select').select2();
 		});
+
+		$scope.cancelUpdatePic = function(){
+			$scope.file = false;
+			$scope.serverErrors = false;
+
+		}
+
+		$scope.removePic = function(){
+			$scope.serverErrors = false;
+			if(confirm("Are you sure?")){
+
+				vendorService.removePicture().then(
+
+					function(response){
+						if(response.status == 200){
+
+							$scope.$emit('profileUpdated',{"message":"Picture removed","response":response});
+						}
+					},
+					function(xhr){
+
+						toastr.error('Network error');
+
+					});
+				
+			}
+		}
+
+		$scope.$on("profileUpdated",function(event,data){
+
+			var message = data.message || "Profile updated";
+
+			//Sync data
+				if(data.response.status == 200){
+					$scope.vendor = data.response.data.vendor;
+					$scope.vendor.categories = $scope.parseVendorCategories($scope.vendor.categories);
+					$scope.vendor.cities = $scope.parseVendorCities($scope.vendor.cities);
+					$scope.cities = data.response.data.cities;
+					$scope.categories = data.response.data.categories;
+					toastr.success(message);
+							
+				}
+
+			//End Sync data
+
+		});
+
+
 		
 		
 	}]);
@@ -588,6 +680,9 @@ angular.module("userApp")
 				data:{file:file}
 			});
 
+		},
+		removePicture:function(data){
+			return api.request('delete','api/me/vendor/picture');
 		}
 	}
 }]);

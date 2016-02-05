@@ -3,6 +3,7 @@
 	angular.module("userApp",["ngRoute","ngAnimate","ngMessages","angularSpinner","toastr","ngFileUpload"])
 
 	.config(function($routeProvider){
+		
 		$routeProvider.when('/',{
 			controller:'DashboaredController',
 			templateUrl:'app/partials/home'
@@ -27,6 +28,10 @@
 			controller:'VendorController',
 			templateUrl:"app/partials/vendor_profile_edit"
 		})
+		.when('/vendor/images',{
+			controller:'ImagesController',
+			templateUrl:"app/partials/images"
+		})
 		.when('/settings',{
 			controller:"SettingsController",
 			templateUrl:"app/partials/settings"
@@ -34,5 +39,29 @@
 		.otherwise({
 			templateUrl:'app/partials/404'
 		});
+
+		
+	}).config(function($httpProvider){
+
+		$httpProvider.interceptors.push(function(){
+			return {
+				response:function(response){
+
+					return response;
+				},
+				responseError:function(response){
+
+					if(response.status == 302){
+						alert("Unauthorized");
+						window.location.href = "/login";
+
+					}
+					if(response.status==405){
+						window.location.href = "/login";
+					}
+				}
+			}
+		});
+
 	});
 
