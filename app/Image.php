@@ -32,9 +32,13 @@ class Image extends Model
         // Creating Thnumb nails
         
         $savePath = config('settings.uploads.images')."/".$DatePath.'/';
+
+        if(config('settings.images.thumb') == true){
+            ImageManager::make($file->getRealPath())->fit(200,200)->save($savePath.'V200_'.$imageName);
+            ImageManager::make($file->getRealPath())->fit(325,175)->save($savePath.'V325_'.$imageName);
+        }
         
-        ImageManager::make($file->getRealPath())->fit(200,200)->save($savePath.'V200_'.$imageName);
-        ImageManager::make($file->getRealPath())->fit(325,175)->save($savePath.'V325_'.$imageName);
+        
 
 			// Setting Model Property
         	$this->base_dir = $DatePath;

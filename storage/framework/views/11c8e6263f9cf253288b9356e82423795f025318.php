@@ -21,7 +21,7 @@
 <form action="<?php echo e(route('search')); ?>">
 <div class="col-lg-10 col-md-10 col-sm-10">
 <select class="ctg col-lg-6 col-md-6 col-sm-6 col-xs-12" name="category">
-<option value="0" disabled>All Category</option>
+<option value="0" disabled selected>All Category</option>
     <?php if(count($categories)): ?>
       <?php foreach($categories as $key => $category): ?>
         <option value="<?php echo e($key); ?>"><?php echo e($category); ?></option>
@@ -29,8 +29,9 @@
     <?php endif; ?>
 </select>
 
-<select class="ctg col-lg-6 col-md-6 col-sm-6 col-xs-12" name="city">
-<option disabled value="0">City</option>
+<select class="ctg col-lg-6 col-md-6 col-sm-6 col-xs-12" name="city" style="    border-left: 0px;
+    border-radius: 0px 4px 4px 0px;">
+<option disabled value="0" selected>City</option>
     <?php if(count($cities)): ?>
       <?php foreach($cities as $key => $city): ?>
         <option value="<?php echo e($key); ?>"><?php echo e($city); ?></option>

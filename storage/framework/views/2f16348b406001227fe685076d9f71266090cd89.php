@@ -134,7 +134,7 @@
 			</div>
 			<div class="panel-body">
 				<?php if($vendor->picture): ?>
-				<img src="<?php echo e(ImagePath($vendor->picture,'md')); ?>" alt="">
+				<img style="width:325px" src="<?php echo e(ImagePath($vendor->picture,'md')); ?>" alt="">
 				<?php else: ?> 
 					<strong>No Picture</strong>
 				<?php endif; ?>

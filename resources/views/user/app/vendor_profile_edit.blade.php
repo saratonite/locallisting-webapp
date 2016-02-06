@@ -117,7 +117,7 @@
 				<button type="button" ng-click="updateProfile()" class="btn btn-success">Update</button>
 				<a class="btn btn-warning">Cancel</a>
 			</div>
-		</div>
+		</div>	
 
 
 
@@ -139,7 +139,7 @@
 			    	<!-- Dummy -->
 			    	<img ng-hide="vendor.picture || file"  ng-src="{{url('/')}}/images/placeholder.png">
 			    	<!-- The Current -->
-			    	<img ng-hide="file || !vendor.picture " ng-src="{{url('/').'/'.config('settings.uploads.images')}}@{{vendor.picture.base_dir}}/V200_@{{vendor.picture.file_name}}">
+			    	<img ng-hide="file || !vendor.picture " ng-src="{{url('/').'/'.config('settings.uploads.images')}}@{{vendor.picture.base_dir}}/@{{vendor.picture.file_name}}">
 			    	<!-- New -->
 			      <img style="width:200px;height:200px" ng-show="file" ngf-src="file" >
 			    </a>

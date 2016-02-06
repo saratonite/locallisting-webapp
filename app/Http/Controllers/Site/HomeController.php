@@ -25,9 +25,13 @@ class HomeController extends Controller
     	$city =$request->input('city');
 
 
+    	$categories = \App\Category::all();
+    	$cities = \App\City::all();
+
+
     	$vendors = \App\Vendor::byCategory($cat)->byCity($city)->with('picture')->onlyactive()->paginate(10);
 
-    	return view('site.search',compact('vendors'));
+    	return view('site.search',compact('vendors','categories','cities','cat','city'));
 
     }
 

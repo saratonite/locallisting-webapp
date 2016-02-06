@@ -45,23 +45,18 @@
   <div class="container">
     <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3">
-    <strong>Filter By type <i class="fa fa-chevron-down"></i></strong><br><br>
-    <p class="lem"><a href="#">All Professionals</a><br>
-<a href="#" class="actc">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">All Professionals</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">All Professionals</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-</p>
+    <strong>Filter By Category <i class="fa fa-chevron-down"></i></strong><br><br>
+    <p class="lem">
+
+      <?php if($categories->count()): ?>
+
+        <?php foreach($categories as $category): ?>
+        <a href="<?php echo e(route('search')); ?>?categoy=<?php echo e($category->id); ?><?php if($city): ?>&city=<?php echo e($city); ?><?php endif; ?>"><?php echo e($category->name); ?></a><br>
+        <?php endforeach; ?>
+
+      <?php endif; ?>
+
+    </p>
 <hr>
     </div>
     

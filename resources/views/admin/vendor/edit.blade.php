@@ -135,7 +135,7 @@
 			</div>
 			<div class="panel-body">
 				@if($vendor->picture)
-				<img src="{{ImagePath($vendor->picture,'md')}}" alt="">
+				<img style="width:325px" src="{{ImagePath($vendor->picture,'md')}}" alt="">
 				@else 
 					<strong>No Picture</strong>
 				@endif

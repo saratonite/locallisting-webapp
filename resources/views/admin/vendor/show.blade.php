@@ -62,7 +62,7 @@
 					<td>
 
 						@if($vendor->picture)
-							<img class="img" style="325px:height:175px"   src="{{vendorPictureUrl($vendor->picture,'md')}}" alt="">
+							<img class="img" style="width:325px"  src="{{vendorPictureUrl($vendor->picture,'md')}}" alt="">
 						@else
 							<span class="badge">No picture available</span>
 						@endif

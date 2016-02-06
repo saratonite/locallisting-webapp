@@ -189,8 +189,8 @@ class VendorController extends Controller
             'file' => 'required |mimes:jpg,jpeg,png|max:5000'
             ]);
 
-
-        if(!$vendor->picture){
+        $picture = $vendor->picture;
+        if(!$picture){
 
             $picture = new \App\Image();
              $picture->type = "profile";

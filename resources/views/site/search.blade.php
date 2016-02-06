@@ -45,23 +45,18 @@
   <div class="container">
     <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3">
-    <strong>Filter By type <i class="fa fa-chevron-down"></i></strong><br><br>
-    <p class="lem"><a href="#">All Professionals</a><br>
-<a href="#" class="actc">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">All Professionals</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">All Professionals</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-</p>
+    <strong>Filter By Category <i class="fa fa-chevron-down"></i></strong><br><br>
+    <p class="lem">
+
+      @if($categories->count())
+
+        @foreach($categories as $category)
+        <a href="{{route('search')}}?categoy={{$category->id}}@if($city)&city={{$city}}@endif">{{$category->name}}</a><br>
+        @endforeach
+
+      @endif
+
+    </p>
 <hr>
     </div>
     

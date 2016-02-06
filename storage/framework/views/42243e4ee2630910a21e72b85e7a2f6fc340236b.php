@@ -60,7 +60,7 @@
 					<td>
 
 						<?php if($vendor->picture): ?>
-							<img class="img" style="325px:height:175px"   src="<?php echo e(vendorPictureUrl($vendor->picture,'md')); ?>" alt="">
+							<img class="img" style="width:325px"  src="<?php echo e(vendorPictureUrl($vendor->picture,'md')); ?>" alt="">
 						<?php else: ?>
 							<span class="badge">No picture available</span>
 						<?php endif; ?>
