@@ -23,7 +23,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-4 logo">
-        <img src="images/logo.png">
+        <img src="{{url('/')}}/images/logo.png">
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8 post">
         @if(Auth::check())
@@ -75,42 +75,49 @@
     </div>
 <div class="col-lg-9 col-md-9 col-sm-9 inner">
 <a href="#">Home <i class="fa fa-chevron-right"></i></a>
-<a href="#">Garden Workers <i class="fa fa-chevron-right"></i></a>
-<a href="#" style="color:#2C7300;">ReaEarth Gardering</a>
+<a href="#">Service Provider <i class="fa fa-chevron-right"></i></a>
+<a href="#" style="color:#2C7300;">  {{$vendor->vendor_name}} </a>
 
 </div>
   
 <div class="col-lg-3 col-md-3 col-sm-3">
 </div>
 <div class="col-lg-9 col-md-9 col-sm-9 inner">
-<img src="images/category1.jpg" class="img-responsive">
+<img src="{{url('/')}}/images/category1.jpg" class="img-responsive">
 </div>  
   
 <div class="col-lg-6 col-md-6 col-sm-6">
 <h4><strong>Overview</strong></h4>
-<P>We design new homes, additions, and renovations, and provide green solutions in new York,
-Massachusetts, Connecticut, Virginia and beyond
-<br>
-<br>
-Established in 1985 and located in the historic Hudson  valley, the firm’s primary focus has been the creation of buildings that fit their site, historic context  and client needs including energy conscious and green design solutions
+<P>
+    {{$vendor->description}}
 </P>
 
 <P><strong>Services Provided</strong></P>
+  @if($vendor->categories->count())
+    <ul>
+    @foreach($vendor->categories as $category)
+      <li>{{$category->category->name}}</li>
+
+    @endforeach
+    </ul>
+  @endif
+
 <a href="#" style="color:#2C7300">Read More <i class="fa fa-chevron-down"></i></a>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-3">
-<h5><strong>10th Street, Mussafah, Abu Dhabi
+<h5><strong>{{$vendor->addr_line1}}
 <br>
 <br>
 UAE</strong></h5>
 <P style="line-height:25px;">Architects & Building Designers
 <br>
-Contact:  James Crip
+Contact:  {{ $vendor->user->first_name }} {{ $vendor->user->last_name }}
 <br>
 
-Location: 3788 Route 44
+Location: {{$vendor->addr_line1}}
 <br>
-Millbrook, NY 12545
+{{$vendor->addr_line2}}<br/>
+{{$vendor->addr_line3}}
 
 </P>
 </div>   
@@ -127,14 +134,14 @@ Millbrook, NY 12545
 <h4><strong>05 projects</strong></h4>
 <div class="row">
 <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:10px;" >
-<img src="images/inner1.jpg" class="img-responsive">
+<img src="{{url('/')}}/images/inner1.jpg" class="img-responsive">
 <div class="col-lg-12 col-md-12 col-sm-12 back">
 <h5><strong>Low Ceiling Kitchen</strong></h5>
 </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:10px;">
-<img src="images/inner2.jpg" class="img-responsive">
+<img src="{{url('/')}}/images/inner2.jpg" class="img-responsive">
 <div class="col-lg-12 col-md-12 col-sm-12 back">
 <h5><strong>Greek Revival Pool House</strong></h5>
 </div>
@@ -148,11 +155,11 @@ Millbrook, NY 12545
 <div class="col-lg-3 col-md-3 col-sm-3">
 
 <h4><strong>02 Reviews</strong></h4>
-<img src="images/star.png" class="img-responsive">
+<img src="{{url('/')}}/images/star.png" class="img-responsive">
 <P>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been hen an unknown printer took a galley of type and scrambled it to make a type specimen book</P>
 <a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a>
 <P>&nbsp;&nbsp;&nbsp;</P>
-<img src="images/star.png" class="img-responsive">
+<img src="{{url('/')}}/images/star.png" class="img-responsive">
 <P>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been hen an unknown printer took a galley of type and scrambled it to make a type specimen book</P>
 <a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a>
 </div>
@@ -241,7 +248,7 @@ and all the cool updates </p>
       <div class="clearfix"></div>
       <hr>
       <div class="col-lg-7 col-md-7 col-sm-7">
-        <P>  <img src="images/logo.png"> All Rights Reserved to the HomeOwner.com LLC</P>
+        <P>  <img src="{{url('/')}}/images/logo.png"> All Rights Reserved to the HomeOwner.com LLC</P>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5">
         <p class="pull-right ftfoot">

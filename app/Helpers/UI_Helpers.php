@@ -47,3 +47,53 @@ function BS_StarRating($rating = false, $total_rating=5){
 	
 
 }
+
+function ImagePath(App\Image $image,$version=false){
+
+		$v_type = '';
+
+	if($version){
+		$version = strtolower($version);
+		switch ($version) {
+		case 'sm':
+			$v_type = "V200_";
+			break;
+		case 'md':
+			$v_type = "V325_";
+			break;
+		
+		default:
+			$v_type = '';
+			break;
+		}
+	}
+
+
+	return url('/').'/'.config('settings.uploads.images').$image->base_dir.'/'.$v_type.$image->file_name;
+
+}
+
+function vendorPictureUrl(App\Image $picture,$version=false){
+
+	$v_type = '';
+
+	if($version){
+		$version = strtolower($version);
+		switch ($version) {
+		case 'sm':
+			$v_type = "V200_";
+			break;
+		case 'md':
+			$v_type = "V325_";
+			break;
+		
+		default:
+			$v_type = '';
+			break;
+		}
+	}
+
+
+	return url('/').'/'.config('settings.uploads.images').$picture->base_dir.'/'.$v_type.$picture->file_name;
+
+}

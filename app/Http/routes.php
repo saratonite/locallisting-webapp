@@ -19,7 +19,8 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 	Route::get('/','HomeController@home');
 	Route::get('search','HomeController@search')->name('search');
-	Route::get('service_provider/red-earth-gardening','HomeController@service_provider')->name('profile');
+	Route::get('service_provider/red-earth-gardening','HomeController@service_provider')->name('profile1');
+	Route::get('service_provider/{vendorId}/{vendorName?}','HomeController@service_provider')->name('profile');
 
 	// User Registration
 	Route::get('signup',['middleware'=>['guest'],'uses'=>'RegistrationController@userSignup'])->name('user-signup');
@@ -78,6 +79,9 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 
 	Route::get('vendors/{vendorId}/edit','VendorController@edit')->name('edit-vendor');
 	Route::put('vendors/{vendorId}/update','VendorController@update')->name('update-vendor');
+
+	Route::post('vendors/{vendorId}/upload-picture','VendorController@uploadPicture')->name('update-vendor-picture');
+	Route::delete('vendors/{vendorId}/remove-picture/','VendorController@deletePicture')->name('delete-vendor-picture');
 
 	Route::get('vendors/{vendorId}/enquiries/{status?}','VendorController@enquiries')->name('vendor-enquiries');
 

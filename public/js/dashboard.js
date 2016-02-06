@@ -12,6 +12,8 @@
 			this.action = null;
 			this.recordId = null;
 			this.method = null;
+
+			this.url = false;
 		};
 
 		cb.prototype.create = function(options){
@@ -39,8 +41,12 @@
 			var actionFeild = form.find('[name=action]');
 
 			console.log(idFeild);
-
-			form.attr('action',this.submit_url);
+			if(!this.url){
+				form.attr('action',this.submit_url);
+			}
+			else{
+				form.attr('action',this.url);
+			}
 			var methodOption = form.find('[name=_method]');
 			idFeild.val(this.recordId);
 			if(actionFeild.length){
@@ -48,6 +54,12 @@
 			}
 
 		};
+
+		cb.prototype.setActionUrl = function(url){
+
+			this.url = url;
+
+		}
 
 		cb.prototype.showModal = function(){
 			$(this.modal).modal('show');

@@ -96,6 +96,13 @@
 					<span class="help-block"><?php echo e($errors->first('addr_line3')); ?></span>
 				<?php endif; ?>
 			</div>
+			<div class="form-group <?php if($errors->has('post_code')): ?> has-error <?php endif; ?>">
+				<label for="" class="control-label">Post Code</label>
+				<input type="text" class="form-control" name="post_code" value="<?php echo e(old('post_code',$vendor->post_code)); ?>">
+				<?php if($errors->has('post_code')): ?>
+					<span class="help-block"><?php echo e($errors->first('post_code')); ?></span>
+				<?php endif; ?>
+			</div>
 			<div class="form-group <?php if($errors->has('contact_number')): ?> has-error <?php endif; ?>">
 				<label for="" class="control-label">Contact Number</label>
 				<input type="text" class="form-control" name="contact_number" value="<?php echo e(old('contact_number',$vendor->contact_number)); ?>">
@@ -117,7 +124,70 @@
 			</div>
 		</form>
 	</div>
+
+	<!-- Picture update section -->
+	<div class="col-md-4">
+	<form action="<?php echo e(route('admin::update-vendor-picture',$vendor->id)); ?>" method="post" enctype="multipart/form-data">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Picture
+			</div>
+			<div class="panel-body">
+				<?php if($vendor->picture): ?>
+				<img src="<?php echo e(ImagePath($vendor->picture,'md')); ?>" alt="">
+				<?php else: ?> 
+					<strong>No Picture</strong>
+				<?php endif; ?>
+				<input type="file" name="file">
+				<?php echo e(csrf_field()); ?>
+
+
+				<?php if($errors->has('file')): ?>
+					<span class="text-danger"> <?php echo e($errors->first('file')); ?></span>
+				<?php endif; ?>
+			</div>
+			<div class="panel-footer">
+
+					<button type="submit" class="btn">Upload</button>
+					<button type="button" class="btn btn-danger	" id="remove-pic" data-record-id="<?php echo e($vendor->id); ?>">Remove</button>
+				</div>
+		</div>
+	</form>
+	</div>
+	<!-- End Picture update section -->
 </div>
+
+<!-- Modals -->
+	<!-- Modal 1 -->
+	<div class="modal fade" id="removePicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="<?php echo e(route('admin::all-vendors')); ?>" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete Vendor Picture</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Delete picture . Are you sure ?;
+        	</p>
+        	<?php echo e(csrf_field()); ?>
+
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+	<!-- End Modal 1 -->
+<!-- End Modals -->
 <?php $__env->stopSection(); ?>
 
 
@@ -125,6 +195,12 @@
 <script type="text/javascript">
 	$(function(){
 		 $('select[multiple]').select2();
+
+
+		 // Remove pic modal
+		 var removePic = new Confirmbox();
+		 removePic.setActionUrl('remove-picture');
+		 removePic.create({'el':'#remove-pic','modal':'#removePicModal','action_url':'remove-picture'});
 	});
 </script>
 <?php $__env->stopSection(); ?>

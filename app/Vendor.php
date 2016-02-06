@@ -140,8 +140,30 @@ class Vendor extends Model
 
     }
 
+    /**
+     * By Category // Using Home page search
+     */
+
+    public function scopeByCategory($query,$category){
+
+        $query->whereHas('categories',function($q) use($category){
+
+            $q->where('category_id',$category);
+
+        });
+
+    }
+
     public function scopeActive($query){
         return $this->user()->active();
+    }
+
+    public function scopeOnlyActive($query){
+
+        $query->whereHas('user',function($q){
+            $q->where('status','active');
+        });
+
     }
 
     public function scopeBydate($query){
@@ -207,6 +229,14 @@ class Vendor extends Model
             
             $this->addCities($filterdnewCities);
         }
+
+    }
+
+    public function scopeByCity($query,$city){
+
+        $query->whereHas('cities',function($q) use($city){
+            $q->where('city_id',$city);
+        });
 
     }
 

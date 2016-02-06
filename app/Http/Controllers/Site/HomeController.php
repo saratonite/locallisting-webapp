@@ -25,21 +25,17 @@ class HomeController extends Controller
     	$city =$request->input('city');
 
 
-    	$vendors = \App\Vendor::whereHas('categories',function($q) use($cat){
+    	$vendors = \App\Vendor::byCategory($cat)->byCity($city)->with('picture')->onlyactive()->paginate(10);
 
-    		$q->where('category_id',$cat);
-
-    	})->get();
-
-    	dd($vendors);
-
-    	return view('site.search');
+    	return view('site.search',compact('vendors'));
 
     }
 
-    public function service_provider(){
+    public function service_provider(Request $request,$vendorId=null,$vendorName=""){
 
-    	return view('site.service_provider.profile');
+    	$vendor = \App\Vendor::onlyactive()->find($vendorId); 
+
+    	return view('site.service_provider.profile',compact('vendor'));
 
     }
 }

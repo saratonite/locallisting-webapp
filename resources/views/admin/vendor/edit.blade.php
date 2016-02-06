@@ -97,6 +97,13 @@
 					<span class="help-block">{{$errors->first('addr_line3')}}</span>
 				@endif
 			</div>
+			<div class="form-group @if($errors->has('post_code')) has-error @endif">
+				<label for="" class="control-label">Post Code</label>
+				<input type="text" class="form-control" name="post_code" value="{{old('post_code',$vendor->post_code)}}">
+				@if($errors->has('post_code'))
+					<span class="help-block">{{$errors->first('post_code')}}</span>
+				@endif
+			</div>
 			<div class="form-group @if($errors->has('contact_number')) has-error @endif">
 				<label for="" class="control-label">Contact Number</label>
 				<input type="text" class="form-control" name="contact_number" value="{{old('contact_number',$vendor->contact_number)}}">
@@ -118,7 +125,68 @@
 			</div>
 		</form>
 	</div>
+
+	<!-- Picture update section -->
+	<div class="col-md-4">
+	<form action="{{ route('admin::update-vendor-picture',$vendor->id)}}" method="post" enctype="multipart/form-data">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Picture
+			</div>
+			<div class="panel-body">
+				@if($vendor->picture)
+				<img src="{{ImagePath($vendor->picture,'md')}}" alt="">
+				@else 
+					<strong>No Picture</strong>
+				@endif
+				<input type="file" name="file">
+				{{csrf_field()}}
+
+				@if($errors->has('file'))
+					<span class="text-danger"> {{$errors->first('file')}}</span>
+				@endif
+			</div>
+			<div class="panel-footer">
+
+					<button type="submit" class="btn">Upload</button>
+					<button type="button" class="btn btn-danger	" id="remove-pic" data-record-id="{{$vendor->id}}">Remove</button>
+				</div>
+		</div>
+	</form>
+	</div>
+	<!-- End Picture update section -->
 </div>
+
+<!-- Modals -->
+	<!-- Modal 1 -->
+	<div class="modal fade" id="removePicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="{{route('admin::all-vendors')}}" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete Vendor Picture</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Delete picture . Are you sure ?;
+        	</p>
+        	{{ csrf_field() }}
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+	<!-- End Modal 1 -->
+<!-- End Modals -->
 @endsection
 
 
@@ -126,6 +194,12 @@
 <script type="text/javascript">
 	$(function(){
 		 $('select[multiple]').select2();
+
+
+		 // Remove pic modal
+		 var removePic = new Confirmbox();
+		 removePic.setActionUrl('remove-picture');
+		 removePic.create({'el':'#remove-pic','modal':'#removePicModal','action_url':'remove-picture'});
 	});
 </script>
 @endsection

@@ -76,7 +76,7 @@ class VendorController extends Controller
      */
     public function edit($vendorId){
 
-        $vendor = \App\Vendor::with(['categories','cities'])->find($vendorId);
+        $vendor = \App\Vendor::with(['categories','cities','picture'])->find($vendorId);
 
         $categories = \App\Category::lists('name','id');
         $cities = \App\City::lists('name','id');
@@ -106,6 +106,7 @@ class VendorController extends Controller
             'addr_line1' => 'max:255',
             'addr_line2' => 'max:255',
             'addr_line3' => 'max:255',
+            'post_code' => 'required|min:5|max:10',
             'contact_number' => 'required',
             'mobile' => 'required'
         ],[
@@ -164,6 +165,69 @@ class VendorController extends Controller
         return view('admin.vendor.enquiries',compact('vendor','enquiries','count'));
 
 
+    }
+
+    public function reviews($vendorId,$vendorStatus=false){
+
+        $vendor = \App\Vendor::with('reviews')->findOrFail($vendorId);
+
+        return view('admin.vendor.reviews',compact('vendor'));
+
+    }
+
+    /**
+     *
+     * Add Change Vendorpicture
+     * 
+     */
+    
+    public function uploadPicture(Request $request,$vendorId){
+
+        $vendor = \App\Vendor::with('picture','user')->findOrFail($vendorId);
+
+        $this->validate($request,[
+            'file' => 'required |mimes:jpg,jpeg,png|max:5000'
+            ]);
+
+
+        if(!$vendor->picture){
+
+            $picture = new \App\Image();
+             $picture->type = "profile";
+             $picture->user_id = $vendor->user->id;
+        }
+
+        // Delete old pictures
+        $picture->DeleteFromDisk();
+        
+
+        $file = $request->file('file');
+
+        //$realPath = $file->getRealPath();
+        
+        $picture->SaveToDisk($file);
+        // Save Image Details to DB
+        if($picture->save()){
+            $request->session()->flash('success','Picture updated');
+
+        }
+        return redirect()->back();
+
+
+    }
+
+    public function deletePicture(Request $request,$vendorId){
+
+        $vendor = \App\Vendor::with('picture')->findOrFail($vendorId);
+
+        if($vendor->picture){
+            $vendor->picture()->DeleteFromDisk();
+            $vendor->picture()->delete();
+            $request->session()->flash('success','Picture removed');
+
+        }
+
+        return redirect()->back();
     }
 
 

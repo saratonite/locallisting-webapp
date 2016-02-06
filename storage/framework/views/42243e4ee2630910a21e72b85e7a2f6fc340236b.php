@@ -54,6 +54,20 @@
 					 </td>
 				</tr>
 				<tr>
+					<td>
+						Picture 
+					</td>
+					<td>
+
+						<?php if($vendor->picture): ?>
+							<img class="img" style="325px:height:175px"   src="<?php echo e(vendorPictureUrl($vendor->picture,'md')); ?>" alt="">
+						<?php else: ?>
+							<span class="badge">No picture available</span>
+						<?php endif; ?>
+						<img src="" alt="">
+					</td>
+				</tr>
+				<tr>
 					<td>Contact Number </td>
 					<td><?php echo e($vendor->contact_number); ?> </td>
 				</tr>
@@ -68,6 +82,14 @@
 
 						<p><?php echo e($vendor->addr_line2); ?></p>
 						<p><?php echo e($vendor->addr_line3); ?></p>
+
+					</td>
+				</tr>
+					<tr>
+					<td>Post Code</td>
+					<td> 
+						<?php echo e($vendor->post_code); ?>
+
 
 					</td>
 				</tr>

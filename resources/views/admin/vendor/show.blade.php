@@ -56,6 +56,20 @@
 					 </td>
 				</tr>
 				<tr>
+					<td>
+						Picture 
+					</td>
+					<td>
+
+						@if($vendor->picture)
+							<img class="img" style="325px:height:175px"   src="{{vendorPictureUrl($vendor->picture,'md')}}" alt="">
+						@else
+							<span class="badge">No picture available</span>
+						@endif
+						<img src="" alt="">
+					</td>
+				</tr>
+				<tr>
 					<td>Contact Number </td>
 					<td>{{$vendor->contact_number}} </td>
 				</tr>
@@ -69,6 +83,13 @@
 						{{$vendor->addr_line1}}
 						<p>{{$vendor->addr_line2}}</p>
 						<p>{{$vendor->addr_line3}}</p>
+
+					</td>
+				</tr>
+					<tr>
+					<td>Post Code</td>
+					<td> 
+						{{$vendor->post_code}}
 
 					</td>
 				</tr>

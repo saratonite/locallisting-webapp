@@ -113,44 +113,45 @@
     </div>
     <hr>
     </div>
-    
-    <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="row">
-    <div class="col-lg-5 col-md-5 col-sm-5">
-    <img src="images/list.jpg" class="img-responsive">
-    </div>
-    <div class="col-lg-7 col-md-7 col-sm-7">
-    <div class="profileico"><img src="images/profile.jpg" class="img-responsive"></div>
-    <h4 class="flo"><a href="<?php echo e(route('profile')); ?>">Crisp Architects</a> <br><img src="images/reviews.jpg"></h4>
-    <p class="pull-right">(845) 677-8256</p>
-    <div class="clearfix"></div>
-    <p><strong>Millbook,NY,123565</strong></p>
-    <p class="read">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an un...<a href="<?php echo e(route('profile')); ?>">Read More</a> </p>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-12 col-md-12 col-sm-12"><hr></div>
-    </div>
-    </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+  <?php if($vendors->count()): ?>
 
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <?php foreach($vendors as $vendor): ?>
+    <!-- Vendor Loops -->
+
     <div class="row">
     <div class="col-lg-5 col-md-5 col-sm-5">
-    <img src="images/list.jpg" class="img-responsive">
+         
+          <?php if($vendor->picture): ?>
+          <img src="<?php echo e(url('/images/uploads')); ?>/<?php echo e($vendor->picture->base_dir); ?>/V325_<?php echo e($vendor->picture->file_name); ?>" class="img-responsive">
+          <?php else: ?>
+           <img src="images/list.jpg" class="img-responsive">
+          <?php endif; ?>
     </div>
     <div class="col-lg-7 col-md-7 col-sm-7">
-    <div class="profileico"><img src="images/profile.jpg" class="img-responsive"></div>
-    <h4 class="flo"><a href="<?php echo e(route('profile')); ?>">Crisp Architects</a> <br><img src="images/reviews.jpg"></h4>
-    <p class="pull-right">(845) 677-8256</p>
+    <div class="profileico">
+          <img src="images/profile.jpg" class="img-responsive">
+          
+    </div>
+    <h4 class="flo"><a href="<?php echo e(route('profile',$vendor->id,str_slug($vendor->vendor_name))); ?>"><?php echo e($vendor->vendor_name); ?></a> <br><img src="images/reviews.jpg"></h4>
+    <p class="pull-right"><?php echo e($vendor->contact_number); ?></p>
     <div class="clearfix"></div>
     <p><strong>Millbook,NY,123565</strong></p>
-    <p class="read">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an un...<a href="<?php echo e(route('profile')); ?>">Read More</a> </p>
+    <p class="read"> <?php echo e($vendor->description); ?>
+
+    <br/><a href="<?php echo e(route('profile',$vendor->id,str_slug($vendor->vendor_name))); ?>">Read More</a> </p>
     </div>
     <div class="clearfix"></div>
     <div class="col-lg-12 col-md-12 col-sm-12"><hr></div>
-    </div>
-    </div>    
-    
-    
+    </div> 
+
+   <!-- End Vendor Loops -->
+   <?php endforeach; ?>
+   <?php else: ?>
+    <p class="alert alert-info"> NO RESULT FOUND :(</p>
+   <?php endif; ?>
+  
+        </div> 
     
     
     </div>    
