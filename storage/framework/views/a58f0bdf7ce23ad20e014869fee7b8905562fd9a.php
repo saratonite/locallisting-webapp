@@ -89,6 +89,9 @@
                             <li><a href="<?php echo e(route('admin::list-reviews')); ?>/rejected">Rejected</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="<?php echo e(route('admin::list-images')); ?>">Images</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -125,7 +128,7 @@
 
     <div class="footer">
         <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+        <p class="text-muted">UAE Home Advisor Master Control.</p>
       </div>
 
     </div>

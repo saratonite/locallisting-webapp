@@ -84,6 +84,9 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::delete('vendors/{vendorId}/remove-picture/','VendorController@deletePicture')->name('delete-vendor-picture');
 
 	Route::get('vendors/{vendorId}/enquiries/{status?}','VendorController@enquiries')->name('vendor-enquiries');
+	
+	Route::get('vendors/{vendorId}/reviews/{status?}','VendorController@reviews')->name('vendor-reviews');
+	Route::get('vendors/{vendorId}/images/{status?}','VendorController@images')->name('vendor-images');
 
 	/* Users */
 
@@ -121,6 +124,18 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('reviews/{status?}','ReviewController@index')->name('list-reviews');
 	Route::get('reviews/{reviewId}/show','ReviewController@show')->name('show-review');
 	Route::put('reviews/change-status/{reviewId}','ReviewController@changeStatus')->name('review-chnage-status');
+
+	/**
+	 * Images 
+	 */
+	
+	Route::get('images/{status?}','ImageController@index')->name('list-images');
+	Route::get('images/show/{imageID}','ImageController@show')->name('show-image');
+	Route::put('images/change-status/{imageID}','ImageController@changeStatus')->name('edit-image');
+	Route::get('images/edit/{imageID}','ImageController@edit')->name('edit-image');
+	Route::put('images/update/{imageID}','ImageController@update')->name('update-image');
+	Route::delete('images/delete/{imageID}','ImageController@delete')->name('delete-image');
+	
 
 	/**
 	 * Categorires
@@ -188,6 +203,11 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::put('api/me/vendor','VendorController@update');
 	Route::post('api/me/vendor/picture','VendorController@updatePicture');
 	Route::delete('api/me/vendor/picture',['middleware'=>'api','uses'=>'VendorController@removePicture']);
+
+	// Vendor Images
+	Route::get('api/me/images','ImageController@getMyImages');
+	Route::post('api/me/images/upload','ImageController@doUpload');
+
 
 
 	// API Settings

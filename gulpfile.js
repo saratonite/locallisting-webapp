@@ -26,7 +26,8 @@ elixir(function(mix) {
 
 elixir(function(mix) {
     mix.styles([
-        './vendor/bower_components/select2/dist/css/select2.min.css'
+        './vendor/bower_components/select2/dist/css/select2.min.css',
+        './vendor/bower_components/lightbox2/dist/css/lightbox.css'
 
         ],'public/css/vendor.dashboard.css');
 });
@@ -38,7 +39,8 @@ elixir(function(mix){
 	mix.scripts([
             paths.jquery,
             paths.bootstrap + "javascripts/bootstrap.min.js",
-            './vendor/bower_components/select2/dist/js/select2.min.js'
+            './vendor/bower_components/select2/dist/js/select2.min.js',
+            './vendor/bower_components/lightbox2/dist/js/lightbox.js'
         ],'public/js/vendor.js');
 });
 

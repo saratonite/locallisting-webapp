@@ -6,6 +6,8 @@
 				<li><a href="<?php echo e(route('admin::vendor-profile',$vendor->id)); ?>">Profile</a></li>
 				<li><a href="<?php echo e(route('admin::edit-vendor',$vendor->id)); ?>">Edit Profile</a></li>
 				<li class="active"><a href="<?php echo e(route('admin::vendor-enquiries',$vendor->id)); ?>">Enquiries</a></li>
+				<li class="active"><a href="<?php echo e(route('admin::vendor-reviews',$vendor->id)); ?>">Reviews</a></li>
+				<li class="active"><a href="<?php echo e(route('admin::vendor-images',$vendor->id)); ?>">Images</a></li>
 			</ul>
 		</div>
 	</div>
@@ -134,7 +136,9 @@
 			</div>
 			<div class="panel-body">
 				<?php if($vendor->picture): ?>
-				<img style="width:325px" src="<?php echo e(ImagePath($vendor->picture,'md')); ?>" alt="">
+					<a href="<?php echo e(ImagePath($vendor->picture)); ?>" data-lightbox="profile">
+						<img style="width:325px"   src="<?php echo e(ImagePath($vendor->picture,'md')); ?>" alt="">
+					</a>
 				<?php else: ?> 
 					<strong>No Picture</strong>
 				<?php endif; ?>

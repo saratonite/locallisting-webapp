@@ -77,6 +77,13 @@ class Vendor extends Model
 
     }
 
+    // Vendor Images
+    public function images(){
+
+        return $this->hasMany('\App\Image','user_id','user_id')->where('type','image');
+        
+    }
+
 
 
     /* Scope functions */

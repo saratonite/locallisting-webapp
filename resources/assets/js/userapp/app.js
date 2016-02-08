@@ -28,7 +28,7 @@
 			controller:'VendorController',
 			templateUrl:"app/partials/vendor_profile_edit"
 		})
-		.when('/vendor/images',{
+		.when('/vendor/images/:page?',{
 			controller:'ImagesController',
 			templateUrl:"app/partials/images"
 		})

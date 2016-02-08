@@ -48,6 +48,12 @@ function BS_StarRating($rating = false, $total_rating=5){
 
 }
 
+function ImagesDir(){
+
+	return url('/').'/'.config('settings.uploads.images');
+
+}
+
 function ImagePath(App\Image $image,$version=false){
 
 		$v_type = '';

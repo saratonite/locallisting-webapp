@@ -15,9 +15,11 @@
 			</ul>
 		</nav>
 			<ul class="nav nav-list">
-				<li><a href="">Profile</a></li>
+				<li><a href="{{ route('admin::vendor-profile',$vendor->id)}}">Profile</a></li>
 				<li><a href="{{route('admin::edit-vendor',$vendor->id)}}">Edit Profile</a></li>
 				<li class="active"><a href="{{route('admin::vendor-enquiries',$vendor->id)}}">Enquiries</a></li>
+				<li class="active"><a href="{{route('admin::vendor-reviews',$vendor->id)}}">Reviews</a></li>
+				<li class="active"><a href="{{route('admin::vendor-images',$vendor->id)}}">Images</a></li>
 			</ul>
 		</div>
 	</div>

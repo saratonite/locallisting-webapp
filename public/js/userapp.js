@@ -28,7 +28,7 @@
 			controller:'VendorController',
 			templateUrl:"app/partials/vendor_profile_edit"
 		})
-		.when('/vendor/images',{
+		.when('/vendor/images/:page?',{
 			controller:'ImagesController',
 			templateUrl:"app/partials/images"
 		})
@@ -147,7 +147,97 @@ angular.module("userApp")
 }]);
 angular.module('userApp')
 
-.controller('ImagesController',['$scope',function(){
+.controller('ImagesController',['$scope','$routeParams','toastr','imageService',function($scope,$routeParams,toastr,imageService){
+
+$scope.imageUploading = false;
+	// Fetch Vendor Images
+	
+	$scope.currentPage = parseInt($routeParams.page) || 1;
+	$scope.lastPage=1;
+	
+	$scope.syncData = function(response){
+
+
+		$scope.images = response.data;
+		$scope.initPagination();
+
+	}
+
+	$scope.initPagination = function(){
+
+		$scope.lastPage = $scope.images.last_page;
+
+		$scope.nextPage = $scope.lastPage == $scope.currentPage ? false : $scope.currentPage + 1;
+		$scope.previousPage = $scope.currentPage==1 ? false:$scope.currentPage - 1;
+
+
+	}
+	
+	$scope.fetchImages = function(){
+
+		imageService.getImages($scope.currentPage).then(
+
+			// Success
+			function(response){
+				if(response.status == 200){
+					$scope.syncData(response);
+
+				}
+
+				$scope.requestCompleted = true;
+
+			},
+			//Errror
+			function(){
+
+			}
+
+		);
+
+	}
+
+	// Upload Image
+	
+	$scope.doUpload = function(){
+		$scope.imageUploading = true;
+		imageService.upload($scope.file,$scope.fileMeta,$scope.currentPage).then(
+
+			function(response){
+				console.info("FFFFFF");
+				if(response.status == 200) {
+
+					$scope.syncData(response);
+					toastr.success('Image uploaded');
+					$("#myModal").modal('hide');
+
+				}
+
+				$scope.imageUploading = false;
+
+
+
+			},
+
+			function(){
+				$scope.imageUploading = false;
+			}
+
+		);
+	}
+
+	$scope.cancelUpload = function(){
+
+		$("#myModal").modal('hide');
+		$scope.file = false;
+		$scope.fileMeta = false;
+
+	}
+
+	$scope.showImageUploader = function(){
+		$("#myModal").modal('show');
+	}
+
+	$scope.fetchImages();
 
 	
 }]);
@@ -585,6 +675,29 @@ angular.module("userApp")
 "use strict";
 angular.module("userApp")
 .factory("categoryService",['api',function(){
+
+}]);
+"use strict";
+angular.module('userApp')
+.factory('imageService',['api','Upload',function(api,Upload){
+
+	return {
+		getImages:function(page){
+			var page = page || 1;
+			return api.request('get','api/me/images?page='+page);
+		},
+		upload:function(file,data,page){
+
+			var page = page || 1;
+
+			var requestData = {file:file};
+			angular.extend(requestData,data);
+			return Upload.upload({
+				url:"api/me/images/upload?page="+page,
+				data:requestData
+			});
+		}
+	}
 
 }]);
 "use strict";

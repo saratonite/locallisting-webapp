@@ -8,6 +8,8 @@
 				<li><a href="{{ route('admin::vendor-profile',$vendor->id)}}">Profile</a></li>
 				<li><a href="{{route('admin::edit-vendor',$vendor->id)}}">Edit Profile</a></li>
 				<li class="active"><a href="{{route('admin::vendor-enquiries',$vendor->id)}}">Enquiries</a></li>
+				<li class="active"><a href="{{route('admin::vendor-reviews',$vendor->id)}}">Reviews</a></li>
+				<li class="active"><a href="{{route('admin::vendor-images',$vendor->id)}}">Images</a></li>
 			</ul>
 		</div>
 	</div>
@@ -135,7 +137,9 @@
 			</div>
 			<div class="panel-body">
 				@if($vendor->picture)
-				<img style="width:325px" src="{{ImagePath($vendor->picture,'md')}}" alt="">
+					<a href="{{ImagePath($vendor->picture)}}" data-lightbox="profile">
+						<img style="width:325px"   src="{{ImagePath($vendor->picture,'md')}}" alt="">
+					</a>
 				@else 
 					<strong>No Picture</strong>
 				@endif

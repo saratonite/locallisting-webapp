@@ -167,11 +167,27 @@ class VendorController extends Controller
 
     }
 
-    public function reviews($vendorId,$vendorStatus=false){
+    public function reviews(Request $request,$vendorId,$vendorStatus=false){
 
-        $vendor = \App\Vendor::with('reviews')->findOrFail($vendorId);
+        $vendor = \App\Vendor::with('review')->findOrFail($vendorId);
 
-        return view('admin.vendor.reviews',compact('vendor'));
+        $reviews = $vendor->review()->orderBy('updated_at','DESC')->paginate(config('settings.pagination.per_page'));
+
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+
+        return view('admin.vendor.reviews',compact('vendor','reviews','row_count'));
+
+    }
+
+    public function images(Request $request, $vendorId){
+
+        $vendor = \App\Vendor::with('images')->findOrFail($vendorId);
+
+        $images = $vendor->images()->orderBy('updated_at','DESC')->paginate(config('settings.pagination.per_page'));
+
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+
+        return view('admin.vendor.images.index',compact('vendor','images','row_count'));
 
     }
 

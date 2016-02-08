@@ -12,9 +12,26 @@ class Image extends Model
     protected $table = "images";
 
 
+    public function user(){
+
+        return $this->belongsTo('\App\User','user_id');
+
+    }
+
 
 
     // Scopes
+    
+    public function scopeOnlyImage($query){
+
+        $query->where('type','image');
+    }
+
+    public function scopeByUser($query,$userId){
+
+        $query->where('user_id',$userId);
+    }
+
     
 
     /**

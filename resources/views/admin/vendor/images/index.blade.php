@@ -15,25 +15,30 @@
 		</div>
 	</div>
 	<div class="col-md-10">
-		<h3>Reviews of {{ $vendor->vendor_name }}</h3>
+		<h3>Images of {{ $vendor->vendor_name }}</h3>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th class="col-md-1">Sl.No</th>
+					<th class="col-md-2">Sl.No</th>
 					<th class="col-md-4">Subject</th>
-					<th class="col-md-3">From</th>
 					<th class="col-md-2">Date</th>
 					<th class="col-md-1">Status</th>
 				</tr>
 				<!-- Loop -->
-				@if(count($reviews))
-					@foreach($reviews as $review)
+				@if(count($images))
+					@foreach($images as $image)
 						<tr>
 							<td>{{ $row_count++ }}</td>
-							<td><a href="{{route('admin::show-review',$review->id)}}">{{$review->title}}</a></td>
-							<td>{{$review->user->first_name}}</td>
-							<td>{{$review->created_at->toFormattedDateString()}}</td>
-							<td><label class="label label-{{BS_Enquiry_Status_Class($review->status)}}">{{ucfirst($review->status)}}</label></td>
+							<td>
+								<a href="{{imagePath($image)}}" data-lightbox="image-{{$row_count}}" data-title="{{$image->title}}">
+								<img class="img"  style="width:62px " src="{{imagePath($image,'sm')}}" alt="{{$image->title}}">
+								</a>
+								
+							</td>
+							<td><a href="{{route('admin::show-review',$image->id)}}">{{$image->title}}</a></td>
+							<td>{{$image->created_at->toFormattedDateString()}}</td>
+							<td><label class="label label-{{BS_Enquiry_Status_Class($image->status)}}">{{ucfirst($image->status)}}</label></td>
 						</tr>
 					@endforeach
 				@else
@@ -45,7 +50,7 @@
 			</thead>
 		</table>
 
-		{!! $reviews->links() !!}
+		{!! $images->links() !!}
 	
 	</div>
 </div>

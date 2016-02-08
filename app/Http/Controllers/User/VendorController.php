@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Sarath <sarathtvmala@gmail.com>
+ * @package Sitemanager
+ * @description Vendor controller for api request
+ */
 
 namespace App\Http\Controllers\User;
 
