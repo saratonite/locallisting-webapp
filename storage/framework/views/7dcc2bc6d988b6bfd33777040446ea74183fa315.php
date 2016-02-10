@@ -48,7 +48,7 @@
 							  </ul>
 							</div>
 		<?php endif; ?>
-		<input type="button" class="btn btn-danger" value="DELETE">
+		<input type="button" id="delete-enquiry" data-record-id="<?php echo e($enquiry->id); ?>" class="btn btn-danger" value="DELETE">
 	</div>
 	
 		
@@ -153,13 +153,51 @@
 </form>
 </div><!-- /.modal -->
 <!-- End change status modal  -->
+
+<!-- Delete modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Delete Enquiry ?
+        	</p>
+        	<?php echo e(csrf_field()); ?>
+
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- End Delete modal  -->
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('scripts'); ?>
 <script>
 	$(function(){
+
+	var enquiryBaseURL ="<?php echo e(route('admin::all-enquiries')); ?>/";
 		
 	var changeStatusURL = "<?php echo e(route('admin::all-enquiries')); ?>/change-status/";
+
+
+	var deleteBox = new Confirmbox();
+	deleteBox.create({'el':"#delete-enquiry","modal":"#delete-modal","action_url":enquiryBaseURL+'delete'});
+
+	////////////////////////////////////////////
 	// Chnage status
 	$('.change-status').on('click','li a.status-action',function(e){
 

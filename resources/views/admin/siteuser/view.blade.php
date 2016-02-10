@@ -138,7 +138,7 @@
 					<h3 class="panel-title">Delete Account</h3>
 				</div>
 				<div class="panel-body">
-					<button class="btn btn-danger">Delete Profile</button>
+					<button id="delete-user" data-record-id="{{$user->id}}" class="btn btn-danger">Delete Profile</button>
 					
 				</div>
 			</div>
@@ -177,6 +177,40 @@
 </div><!-- /.modal -->
 <!-- End change status modal  -->
 
+<!-- Delete modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Delete User ?; this will affect the following.
+        	<ul>
+        		<li>Delete enquiries</li>
+        		<li>Delete reviews</li>
+        		<li>Delete images</li>
+        	</ul>
+        	</p>
+        	{{ csrf_field() }}
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- End Delete modal  -->
+
 
 
 
@@ -190,6 +224,14 @@
 	$(function(){
 		
 	var changeStatusURL = "{{ route('admin::all-site-users') }}/change-status/";
+
+	var usersBaseUrl = "{{ route('admin::all-site-users') }}/";
+
+	var deleteBox = new Confirmbox();
+	deleteBox.create({'el':"#delete-user","modal":"#delete-modal","action_url":usersBaseUrl+'delete'});
+
+
+	/////////////////////////
 	// Chnage status
 	$('.change-status').on('click','li a.status-action',function(e){
 

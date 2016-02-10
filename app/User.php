@@ -93,4 +93,37 @@ class User extends Authenticatable
         return $this->statusArray;
 
     }
+
+    public function scopeDeleteSiteUser($query){
+
+        // Delete all enquiries made by user
+        // Delete all Revies made by user
+        // Delete all images by user
+        $reviews = $this->review;
+
+        if($reviews->count()){
+            foreach($reviews as $r){
+                $r->delete();
+            }
+        }
+
+        $enquiries = $this->enquiry;
+
+        if($enquiries->count()){
+            foreach ($enquiries as $e) {
+                $e->delete();
+            }
+        }
+
+        $images = $this->image;
+
+        if($images->count()){
+            foreach ($images as $img) {
+                $img->deleteFromDisk();
+                $img->delete();
+            }
+        }
+
+        $this->delete();
+    }
 }

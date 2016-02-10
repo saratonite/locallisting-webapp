@@ -146,4 +146,13 @@ class SiteuserController extends Controller
 
 
     }
+
+    public function delete(Request $request){
+
+        // Delete all enquireies made by user
+        // Delete all reviews made by user
+        // Delete all images by user
+        // Delete all 
+        
+    }
 }

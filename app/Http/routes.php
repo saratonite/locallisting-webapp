@@ -76,6 +76,8 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('vendors/show/{vendorId}','VendorController@show')->name('vendor-profile');
 
 	Route::put('vendors/change-status/{vendorID}','VendorController@chnageStatus')->name('vendors-change-status');
+	
+	Route::delete('vendors/delete/{vendorID}','VendorController@delete')->name('delete-vendor');
 
 	Route::get('vendors/{vendorId}/edit','VendorController@edit')->name('edit-vendor');
 	Route::put('vendors/{vendorId}/update','VendorController@update')->name('update-vendor');
@@ -114,6 +116,7 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('enquiries/{enquiryId}/view','EnquiryController@view')->name('view-enquiry');
 	
 	Route::put('enquiries/change-status/{enquiryId}','EnquiryController@changeStatus')->name('update-enquiry-enquiry');
+	Route::delete('enquiries/delete/{enquiryId}','EnquiryController@delete')->name('delete-enquiry');
 
 	
 	/**

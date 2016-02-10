@@ -279,6 +279,21 @@ class VendorController extends Controller
     	return redirect()->back();
     }
 
+    public function delete(Request $request, $vendorID){
+
+        $vendor = \App\Vendor::find($vendorID);
+
+        if($vendor){
+
+            $vendor->DeleteVendor();
+            $request->session()->flash('success','Vendor Deleted');
+        }
+
+         return redirect()->route('admin::all-vendors');
+
+
+    }
+
     // Helper functions 
     public function isValidUserStatus($status){
 

@@ -7,11 +7,16 @@
       <div class="col-lg-8 col-md-8 col-sm-8 post">
 
       @if(Auth::check())
-        <a href="{{ route("account::appHome")}}" class="log">MY DASHBOARD</a> 
+          @if(Auth::user()->type == "admin")
+          <a href="{{ route("admin::dashboard")}}" class="log">ADMIN DASHBOARD</a> 
+          @else
+          <a href="{{ route("account::appHome")}}" class="log">MY DASHBOARD</a> 
+          @endif
 
       @else
         <a href="{{url('login')}}" lass="log">LOGIN</a>/
-        <a href="{{ route('user-signup')}}" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+        <a href="{{ route('user-signup')}}" class="log">SIGNUP</a>
+        <a href="#" class="preq">POST A REQUIREMENT</a>
 
       @endif
       </div>

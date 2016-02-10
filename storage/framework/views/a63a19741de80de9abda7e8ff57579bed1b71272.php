@@ -7,11 +7,16 @@
       <div class="col-lg-8 col-md-8 col-sm-8 post">
 
       <?php if(Auth::check()): ?>
-        <a href="<?php echo e(route("account::appHome")); ?>" class="log">MY DASHBOARD</a> 
+          <?php if(Auth::user()->type == "admin"): ?>
+          <a href="<?php echo e(route("admin::dashboard")); ?>" class="log">ADMIN DASHBOARD</a> 
+          <?php else: ?>
+          <a href="<?php echo e(route("account::appHome")); ?>" class="log">MY DASHBOARD</a> 
+          <?php endif; ?>
 
       <?php else: ?>
         <a href="<?php echo e(url('login')); ?>" lass="log">LOGIN</a>/
-        <a href="<?php echo e(route('user-signup')); ?>" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
+        <a href="<?php echo e(route('user-signup')); ?>" class="log">SIGNUP</a>
+        <a href="#" class="preq">POST A REQUIREMENT</a>
 
       <?php endif; ?>
       </div>

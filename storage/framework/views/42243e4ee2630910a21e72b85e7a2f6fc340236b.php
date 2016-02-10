@@ -231,7 +231,7 @@
 			<h3 class="panel-title">Delete Account</h3>
 		</div>
 		<div class="panel-body">
-			<button class="btn btn-danger">Delete Profile</button>
+			<button id="delete-vendor" data-record-id="<?php echo e($vendor->id); ?>" class="btn btn-danger">Delete Profile</button>
 			
 		</div>
 	</div>
@@ -272,6 +272,40 @@
 </form>
 </div><!-- /.modal -->
 <!-- End change status modal  -->
+<!-- Delete modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Delete Vendor ?; this will affect the following.
+        	<ul>
+        		<li>Delete enquiries</li>
+        		<li>Delete reviews</li>
+        		<li>Delete images</li>
+        	</ul>
+        	</p>
+        	<?php echo e(csrf_field()); ?>
+
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- End Delete modal  -->
 
 <?php $__env->stopSection(); ?>
 
@@ -280,6 +314,16 @@
 <?php $__env->startSection('scripts'); ?>
 <script>
 	$(function(){
+
+	var vendorBaseUrl = "<?php echo e(route('admin::all-vendors')); ?>";
+
+
+	var deleteBox = new Confirmbox();
+	deleteBox.create({'el':"#delete-vendor","modal":"#delete-modal","action_url":vendorBaseUrl+'/delete'});
+
+
+
+	///////////////////
 		
 	var changeStatusURL = "<?php echo e(route('admin::all-vendors')); ?>/change-status/";
 	// Chnage status

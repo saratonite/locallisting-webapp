@@ -81,5 +81,21 @@ class EnquiryController extends Controller
         return redirect()->back()->with('success','Enquiry status updated');
 
     }
+
+    public function delete(Request $request,$enquiryId){
+
+
+        $enquiry = \App\Enquiry::find($enquiryId);
+
+        if($enquiry){
+            $enquiry->delete();
+            $this->request->session()->flash('success','Enquiry Deleted.');
+        }
+
+        return redirect()->route('admin::all-enquiries');
+
+
+
+    }
 }
 

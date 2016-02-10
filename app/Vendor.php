@@ -252,4 +252,47 @@ class Vendor extends Model
         
     }
 
+    public function scopeDeleteVendor($query){
+
+        // Delete user
+        // Delete Vendor enquiries
+        
+        $enquiries = $this->enquiry;
+        if($enquiries->count()){
+            foreach ($enquiries as $e) {
+                $e->delete();
+            }
+        }
+        // Delete Vendor Reviews
+        $reviews = $this->review;
+        if($reviews->count()){
+            foreach ($reviews as $r) {
+                $r->delete();
+            }
+        }
+        
+        // Delete VedorCategory
+        $vendorCategories = $this->categories;
+        if($vendorCategories->count()){
+            foreach ($vendorCategories as $vc) {
+                $vc->delete();
+            }
+        }
+        // Delete VendorCity
+        $vendorCities = $this->cities;
+        if($vendorCities->count()){
+            foreach ($vendorCities as $vc) {
+                $vc->delete();
+            }
+        }
+
+        // Delete user
+        $user = $this->user;
+        $user->deleteSiteUser();
+
+        $this->delete();
+        
+
+    }
+
 }
