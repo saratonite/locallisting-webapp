@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-4 logo">
-        <a href="{{url('/')}}"><img src="images/logo.png"></a>
+        <a href="{{url('/')}}"><img src="{{url('/')}}/images/logo.png"></a>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8 post">
 

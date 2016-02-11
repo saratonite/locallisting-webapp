@@ -1,46 +1,4 @@
-
-<!doctype html>
-<html lang="en-US">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>UAE HomeAdvisor</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="">
-<link rel="icon" type="image/png" href="images/icon.png">
-<link rel="stylesheet" href="<?php echo e(asset('css/stayle.css')); ?>" type="text/css">
-<link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>" type="text/css">
-<link rel="stylesheet" href="<?php echo e(asset('css/bootstrap-theme.min.css')); ?>" type="text/css">
-<link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-<script src="<?php echo e(asset('js/bootstrap.min.js')); ?>" type="text/javascript"></script>
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]--> 
-  
-</head>
-<body>
-<div class="container-fluid head">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-4 logo">
-        <img src="images/logo.png">
-      </div>
-      <div class="col-lg-8 col-md-8 col-sm-8 post">
-        <?php if(Auth::check()): ?>
-        <a href="<?php echo e(route("account::appHome")); ?>" class="log">MY DASHBOARD</a> 
-
-      <?php else: ?>
-        <a href="http://sewesys.com/homeadvisor/public/login" class="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
-
-      <?php endif; ?>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid inner">
   <div class="container">
     <div class="row">
@@ -51,7 +9,7 @@
       <?php if($categories->count()): ?>
 
         <?php foreach($categories as $category): ?>
-        <a href="<?php echo e(route('search')); ?>?categoy=<?php echo e($category->id); ?><?php if($city): ?>&city=<?php echo e($city); ?><?php endif; ?>"><?php echo e($category->name); ?></a><br>
+        <a href="<?php echo e(route('search')); ?>?category=<?php echo e($category->id); ?><?php if($city): ?>&city=<?php echo e($city); ?><?php endif; ?>"><?php echo e($category->name); ?></a><br>
         <?php endforeach; ?>
 
       <?php endif; ?>
@@ -118,7 +76,7 @@
     <div class="col-lg-5 col-md-5 col-sm-5">
          
           <?php if($vendor->picture): ?>
-          <img src="<?php echo e(url('/images/uploads')); ?>/<?php echo e($vendor->picture->base_dir); ?>/V325_<?php echo e($vendor->picture->file_name); ?>" class="img-responsive">
+          <img src="<?php echo e(url('/images/uploads')); ?>/<?php echo e($vendor->picture->base_dir); ?>/<?php echo e($vendor->picture->file_name); ?>" class="img-responsive" style="width:325px;height:175px">
           <?php else: ?>
            <img src="images/list.jpg" class="img-responsive">
           <?php endif; ?>
@@ -129,10 +87,10 @@
           
     </div>
     <h4 class="flo"><a href="<?php echo e(route('profile',$vendor->id,str_slug($vendor->vendor_name))); ?>"><?php echo e($vendor->vendor_name); ?></a> <br><img src="images/reviews.jpg"></h4>
-    <p class="pull-right"><?php echo e($vendor->contact_number); ?></p>
+    <p class="pull-right"><?php if($vendor->contact_number): ?> <?php echo e($vendor->contact_number); ?> <?php else: ?> <?php echo e($vendor->mobile); ?> <?php endif; ?></p>
     <div class="clearfix"></div>
-    <p><strong>Millbook,NY,123565</strong></p>
-    <p class="read"> <?php echo e($vendor->description); ?>
+    <p><strong><?php echo e($vendor->addr_line1); ?>,<?php echo e($vendor->addr_line2); ?>,<?php echo e($vendor->addr_line3); ?></strong></p>
+    <p class="read"> <?php echo e(str_limit($vendor->description,210  )); ?>
 
     <br/><a href="<?php echo e(route('profile',$vendor->id,str_slug($vendor->vendor_name))); ?>">Read More</a> </p>
     </div>
@@ -147,109 +105,17 @@
    <?php endif; ?>
   
         </div> 
-    
-    
-    </div>    
-    
-    
 
+
+    
+    
+    </div>
+    <nav class="pull-right">
+      <?php echo e($vendors->links()); ?>
+
+    </nav>    
     </div>
   </div>
 </div>
-
-<div class="container-fluid ftbg">
-  <div class="container">
-    <div class="row">
-    <div class="col-lg-7 col-md-7 col-sm-7"><h1>No obligations. No contracts.</h1>
-<p>Just quality service for your conference calling.</p></div>
-<div class="col-lg-5  col-md-5 col-sm-5 cs"><a href="#"  class="gets pull-right">Get Started</a>
-</div>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid footer">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
-        <h5><strong>Services</strong></h5>
-        <p>
-        <a href="#">Moving</a><br>
-        <a href="#">Storage</a><br>
-        <a href="#">Car Shipping</a><br>
-        <a href="#">Cleaning</a><br>
-        <a href="#">Pest Control</a><br>
-        <a href="#">More..</a><br>
-        </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
-        <h5><strong>Support</strong></h5>
-        <p>
-        <a href="#">Help & Support</a><br>
-        <a href="#">Getting Started</a><br>
-        <a href="#">FAQ</a><br>
-        <a href="#">Contact Us</a><br>
-        <a href="#">I Need Support</a><br>
-        <a href="#">Write a Review</a><br>
-        </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 mar">
-        <h5><strong>Contact Us</strong></h5>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          @
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <p>info@homeowner.com
-          </P>
-        </div>
-        
-         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          A
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>1800-1800155-00<br>    
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          T
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>Maria Tower, Jew Street, Al Nama City UAE - 55
-        </div>
-
-
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-3 mar">
-        <h5><strong>Newsletter</strong></h5>
-        <p>Subscribe to our Newsletter -<br>
-and all the cool updates </p>
-
-<p><input type="text" class="form-control nelet" placeholder="Enter Email"></p>
-       
-                <div class="social-links pull-left" style="margin-top:5px;">
-          <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
-          <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
-          <a href="#"><i class="fa fa-skype fa-lg"></i></a>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <hr>
-      <div class="col-lg-7 col-md-7 col-sm-7">
-        <P>  <img src="images/logo.png"> All Rights Reserved to the HomeOwner.com LLC</P>
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
-        <p class="pull-right ftfoot">
-<a href="#">Home</a>
-<a href="#">Terms</a>
-<a href="#">Privacy Policy</a>
-<a href="#">Partners & Affiliates</a>
-<a href="#">SiteMap</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.frontend', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

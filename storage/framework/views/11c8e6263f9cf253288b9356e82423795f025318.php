@@ -1,9 +1,3 @@
-<?php $__env->startSection('header'); ?>
-  <?php echo $__env->make('site.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php $__env->stopSection(); ?>
-
-
-
 <?php $__env->startSection('content'); ?>
 
 <div class="container-fluid banner">
@@ -149,20 +143,7 @@
   </div>
 </div>
 
-<div class="container-fluid ftbg">
-  <div class="container">
-    <div class="row">
-    <div class="col-lg-7 col-md-7 col-sm-7"><h1>No obligations. No contracts.</h1>
-<p>Just quality service for your conference calling.</p></div>
-<div class="col-lg-5  col-md-5 col-sm-5 cs"><a href="#"  class="gets pull-right">Get Started</a>
-</div>
-    </div>
-  </div>
-</div>
-
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('footer'); ?>
-  <?php echo $__env->make('site.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.frontend', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

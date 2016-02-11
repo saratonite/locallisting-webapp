@@ -28,13 +28,15 @@
     </script>
 </head>
 <body>
-@yield('header')
+@include('site.partials.header')
+
 
 
 @yield('content')
 
 
-@yield('footer')
+@include('site.partials.footer')
+
 
 </body>
 </html>

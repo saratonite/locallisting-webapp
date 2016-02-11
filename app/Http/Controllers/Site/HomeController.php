@@ -28,8 +28,26 @@ class HomeController extends Controller
     	$categories = \App\Category::all();
     	$cities = \App\City::all();
 
+        $per_page = 1;
 
-    	$vendors = \App\Vendor::byCategory($cat)->byCity($city)->with('picture')->onlyactive()->paginate(10);
+
+        if(!$cat && !$city){
+            $vendors = \App\Vendor::with('picture')->onlyactive()->paginate($per_page);
+        }
+        elseif($cat && !$city){
+            $vendors = \App\Vendor::byCategory($cat)->with('picture')->onlyactive()->paginate($per_page);
+
+        }
+        elseif(!$cat && $city){
+
+            $vendors = \App\Vendor::byCity($city)->with('picture')->onlyactive()->paginate($per_page);
+
+        }
+        else{
+            $vendors = \App\Vendor::byCity($city)->byCategory($cat)->with('picture')->onlyactive()->paginate($per_page);
+        }
+
+        $vendors->appends($request->except('page'));
 
     	return view('site.search',compact('vendors','categories','cities','cat','city'));
 
@@ -37,9 +55,21 @@ class HomeController extends Controller
 
     public function service_provider(Request $request,$vendorId=null,$vendorName=""){
 
-    	$vendor = \App\Vendor::onlyactive()->find($vendorId); 
+    	$vendor = \App\Vendor::onlyactive()->with(['categories','cities','images'=>function($q){
+                $q->where('status','accepted');
 
-    	return view('site.service_provider.profile',compact('vendor'));
+        },'review'=>function($q){
+                $q->where('status','accepted');
+                $q->with('user');
+
+        },'cover'])->findOrFail($vendorId);
+
+        //dd($vendor->cover);
+
+
+        $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
+
+    	return view('site.service_provider.profile',compact('vendor','categories'));
 
     }
 }

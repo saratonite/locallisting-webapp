@@ -27,9 +27,9 @@ class ImageController extends Controller
 
     public function doUpload(Request $request){
 
-    	$vendor = \App\Vendor::find(Auth::user()->id);
+    	$vendor = \App\Vendor::where('user_id',Auth::user()->id)->first();
 
-    	if($vendor){
+    	if(!$vendor){
     		return response()->json(['message'=>'Resource Not Found.'])->setStatusCode(404);
     	}
 

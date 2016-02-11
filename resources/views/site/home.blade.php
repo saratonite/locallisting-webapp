@@ -2,9 +2,6 @@
 @extends('layouts.frontend')
 
 
-@section('header')
-  @include('site.partials.header')
-@endsection
 
 
 
@@ -153,19 +150,5 @@
   </div>
 </div>
 
-<div class="container-fluid ftbg">
-  <div class="container">
-    <div class="row">
-    <div class="col-lg-7 col-md-7 col-sm-7"><h1>No obligations. No contracts.</h1>
-<p>Just quality service for your conference calling.</p></div>
-<div class="col-lg-5  col-md-5 col-sm-5 cs"><a href="#"  class="gets pull-right">Get Started</a>
-</div>
-    </div>
-  </div>
-</div>
-
 @endsection
 
-@section('footer')
-  @include('site.partials.footer')
-@endsection

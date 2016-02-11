@@ -20,7 +20,13 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 	Route::get('/','HomeController@home');
 	Route::get('search','HomeController@search')->name('search');
 	Route::get('service_provider/red-earth-gardening','HomeController@service_provider')->name('profile1');
-	Route::get('service_provider/{vendorId}/{vendorName?}','HomeController@service_provider')->name('profile');
+	Route::get('service_provider/{vendorId}','HomeController@service_provider')->name('profile');
+
+
+	// Auth pages
+	Route::get('service_provider/{vendorID}/submit_review',['uses'=>'ReviewController@writeReview'])->name('submit_review');
+	Route::post('service_provider/{vendorID}/submit_review',['uses'=>'ReviewController@submitReview']);
+
 
 	// User Registration
 	Route::get('signup',['middleware'=>['guest'],'uses'=>'RegistrationController@userSignup'])->name('user-signup');

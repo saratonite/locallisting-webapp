@@ -1,71 +1,30 @@
-
-<!doctype html>
-<html lang="en-US">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>UAE HomeAdvisor</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="">
-<link rel="icon" type="image/png" href="images/icon.png">
-<link rel="stylesheet" href="{{asset('css/stayle.css')}}" type="text/css">
-<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
-<link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}" type="text/css">
-<link rel="stylesheet" href="{{asset('css/font-awesome/css/font-awesome.min.css')}}" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]--> 
-</head>
-<body>
-<div class="container-fluid head">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-4 logo">
-        <img src="{{url('/')}}/images/logo.png">
-      </div>
-      <div class="col-lg-8 col-md-8 col-sm-8 post">
-        @if(Auth::check())
-        <a href="{{ route("account::appHome")}}" class="log">MY DASHBOARD</a> 
-
-      @else
-        <a href="http://sewesys.com/homeadvisor/public/login" class="log">LOGIN</a>/<a href="#" class="log">SIGNUP</a>  <a href="#" class="preq">POST A REQUIREMENT</a>
-
-      @endif
-      </div>
-    </div>
-  </div>
-</div>
+@extends('layouts.frontend')
 
 
+
+
+@section('content')
 <div class="container-fluid inner">
   <div class="container">
     <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="col-lg-3 col-md-3 col-sm-3" style="min-height:440px">
     <strong>Filter By type <i class="fa fa-chevron-down"></i></strong><br><br>
     <p class="lem"><a href="#">All Professionals</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">All Professionals</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
-<a href="#">All Professionals</a><br>
-<a href="#">Architicts & Building Designers</a><br>
-<a href="#">Design-Build Firms</a><br>
-<a href="#">General Constractors</a><br>
+ @if($categories->count())
+
+        @foreach($categories as $key=>$cat)
+        <a href="{{route('search')}}?category={{$key}}">{{$cat}}</a><br>
+        @endforeach
+
+      @endif
+
 </p>
 <hr>
     </div>
    <div class="col-lg-9 col-md-9 col-sm-9"> 
    <div class="row">
 <div class="col-lg-9 col-md-9 col-sm-9">
-    <input type="text" class="form-control searchbx" placeholder="Architicts & Building Designers">
+    <input type="text" class="form-control searchbx" placeholder="Architicts &amp; Building Designers">
     </div>  
     
 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -75,77 +34,117 @@
     </div>
 <div class="col-lg-9 col-md-9 col-sm-9 inner">
 <a href="#">Home <i class="fa fa-chevron-right"></i></a>
-<a href="#">Service Provider <i class="fa fa-chevron-right"></i></a>
-<a href="#" style="color:#2C7300;">  {{$vendor->vendor_name}} </a>
+<a href="#">Service Providers <i class="fa fa-chevron-right"></i></a>
+<a href="#" style="color:#2C7300;">{{$vendor->vendor_name}}</a>
 
 </div>
   
 <div class="col-lg-3 col-md-3 col-sm-3">
+<p>&nbsp;</p>
 </div>
-<div class="col-lg-9 col-md-9 col-sm-9 inner">
-<img src="{{url('/')}}/images/category1.jpg" class="img-responsive">
+<div class="col-lg-9 col-md-9 col-sm-9">
+<div class="banner_t" style="@if($vendor->cover)background: url('{{imagePath($vendor->cover)}}') no-repeat center center ; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;@endif">
+<div class="col-lg-8 col-md-8 col-sm-8">
+<div class="col-lg-4 topma">
+          @if($vendor->picture)
+
+          <img src="{{ imagePath($vendor->picture) }}" class="img-responsive img-circle" style="width:148px;height:148px">
+
+          @else
+            <img src="{{url('/')}}/images/logder.jpg" class="img-responsive img-circle">
+          @endif
+</div>
+<div class="col-lg-8 topma">
+<span class="seh">{{$vendor->vendor_name}}</span><br><br>
+<span style="background:#FFFFFF; padding:5px;">{{$vendor->addr_line1}} @if($vendor->addr_line2), {{$vendor->addr_line2}}@endif @if($vendor->addr_line2), {{$vendor->addr_line3}}@endif</span>
+</div>
+
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 socico">
+    <a href="#"><img src="{{url('/')}}/images/facebook.jpg"> </a> 
+    <a href="#"><img src="{{url('/')}}/images/twitter.jpg"></a>
+    <a href="#"> <img src="{{url('/')}}/images/googleplus.jpg"></a>
+
+<p class="pt"><a href="#"> <img src="{{url('/')}}/images/fdhdh.jpg"></a></p>
+
+</div>
+</div>
+
 </div>  
   
 <div class="col-lg-6 col-md-6 col-sm-6">
 <h4><strong>Overview</strong></h4>
-<P>
-    {{$vendor->description}}
-</P>
+<p>
+  {{{ $vendor->description }}}
+</p>
 
-<P><strong>Services Provided</strong></P>
-  @if($vendor->categories->count())
-    <ul>
-    @foreach($vendor->categories as $category)
-      <li>{{$category->category->name}}</li>
-
-    @endforeach
-    </ul>
-  @endif
-
-<a href="#" style="color:#2C7300">Read More <i class="fa fa-chevron-down"></i></a>
+<p><strong>Services Provided</strong></p>
+    @if($vendor->categories->count())
+      <ul>
+          @foreach($vendor->categories as $cate)
+            <li>{{$cate->category->name}}</li>
+          @endforeach
+      </ul>
+    @else
+    Non specified.
+    @endif
 </div>
 <div class="col-lg-3 col-md-3 col-sm-3">
-<h5><strong>{{$vendor->addr_line1}}
+<h5><strong>
+  @if($vendor->contact_number) {{$vendor->contact_number}} @else {{$vendor->mobile}} @endif
 <br>
 <br>
-UAE</strong></h5>
-<P style="line-height:25px;">Architects & Building Designers
-<br>
-Contact:  {{ $vendor->user->first_name }} {{ $vendor->user->last_name }}
+  <?php 
+    $ServiceCities = array();
+  if($vendor->cities->count())
+        {
+          foreach ($vendor->cities as $city) {
+            $ServiceCities[]= $city->city->name;
+          }
+        }
+   ?>
+   {{ implode(',',$ServiceCities)}}
+</strong></h5>
+<p style="line-height:25px;">
+<strong><i class="fa fa-user"></i> Contact</strong>: @if($vendor->user) {{$vendor->user->first_name}} {{$vendor->user->last_name}} @endif
 <br>
 
-Location: {{$vendor->addr_line1}}
-<br>
-{{$vendor->addr_line2}}<br/>
-{{$vendor->addr_line3}}
+<strong><i class="fa fa-map-marker"></i> Location</strong>:
+  {{$vendor->addr_line1}} @if($vendor->addr_line2), {{$vendor->addr_line2}}@endif @if($vendor->addr_line2), {{$vendor->addr_line3}}@endif
 
-</P>
+  <br>
+  <a href="{{route('submit_review',$vendor->id)}}"><i>Write Review </i></a>
+
+</p>
 </div>   
 </div>
 
 <br>
-<P>&nbsp;&nbsp;</P>
+<p>&nbsp;&nbsp;</p>
 <div class="row">
 <div class="col-lg-3 col-md-3 col-sm-3">
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6">
 
-<h4><strong>05 projects</strong></h4>
+<h4><strong>{{$vendor->images->count()}} projects</strong></h4>
 <div class="row">
-<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:10px;" >
-<img src="{{url('/')}}/images/inner1.jpg" class="img-responsive">
-<div class="col-lg-12 col-md-12 col-sm-12 back">
-<h5><strong>Low Ceiling Kitchen</strong></h5>
-</div>
-</div>
-
-<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:10px;">
-<img src="{{url('/')}}/images/inner2.jpg" class="img-responsive">
-<div class="col-lg-12 col-md-12 col-sm-12 back">
-<h5><strong>Greek Revival Pool House</strong></h5>
-</div>
-</div>
+      @if($vendor->images->count())
+        @foreach($vendor->images as $image)
+          <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:10px;">
+            <img src="{{ImagePath($image)}}" class="img-responsive" style="height:208px">
+            <div class="col-lg-12 col-md-12 col-sm-12 back">
+            <h5><strong>{{str_limit($image->title,100)}}</strong></h5>
+            </div>
+          </div>
+        @endforeach
+      @endif
+  
 </div>
 
 
@@ -154,113 +153,24 @@ Location: {{$vendor->addr_line1}}
 
 <div class="col-lg-3 col-md-3 col-sm-3">
 
-<h4><strong>02 Reviews</strong></h4>
-<img src="{{url('/')}}/images/star.png" class="img-responsive">
-<P>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been hen an unknown printer took a galley of type and scrambled it to make a type specimen book</P>
-<a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a>
-<P>&nbsp;&nbsp;&nbsp;</P>
-<img src="{{url('/')}}/images/star.png" class="img-responsive">
-<P>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been hen an unknown printer took a galley of type and scrambled it to make a type specimen book</P>
-<a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a>
+<h4><strong>{{$vendor->review->count()}} Reviews</strong> <small><a href="{{route('submit_review',$vendor->id)}}">Write Review</a></small></h4>
+  @if($vendor->review->count())
+      @foreach($vendor->review as $re)
+        <div>
+          <strong>{{$re->title}}</strong> @if($re->user) <span> <i>by {{$re->user->first_name}}</i></span> @endif
+          <img src="{{url('/')}}/images/star.png" class="img-responsive">
+          <p>{{$re->body}}</p>
+          <a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a>
+          <p>&nbsp;&nbsp;&nbsp;</p>
+        </div>
+      @endforeach
+  @endif
 </div>
 
 
 </div>
 </div>
 </div>
-<div class="container-fluid ftbg">
-  <div class="container">
-    <div class="row">
-    <div class="col-lg-7 col-md-7 col-sm-7"><h1>No obligations. No contracts.</h1>
-<p>Just quality service for your conference calling.</p></div>
-<div class="col-lg-5  col-md-5 col-sm-5 cs"><a href="#"  class="gets pull-right">Get Started</a>
-</div>
-    </div>
-  </div>
-</div>
 
-<div class="container-fluid footer">
-  <div class="container">
-    <div class="row">
+@endsection
 
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
-        <h5><strong>Services</strong></h5>
-        <p>
-        <a href="#">Moving</a><br>
-        <a href="#">Storage</a><br>
-        <a href="#">Car Shipping</a><br>
-        <a href="#">Cleaning</a><br>
-        <a href="#">Pest Control</a><br>
-        <a href="#">More..</a><br>
-        </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
-        <h5><strong>Support</strong></h5>
-        <p>
-        <a href="#">Help & Support</a><br>
-        <a href="#">Getting Started</a><br>
-        <a href="#">FAQ</a><br>
-        <a href="#">Contact Us</a><br>
-        <a href="#">I Need Support</a><br>
-        <a href="#">Write a Review</a><br>
-        </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 mar">
-        <h5><strong>Contact Us</strong></h5>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          @
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <p>info@homeowner.com
-          </P>
-        </div>
-        
-         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          A
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>1800-1800155-00<br>    
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          T
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>Maria Tower, Jew Street, Al Nama City UAE - 55
-        </div>
-
-
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-3 mar">
-        <h5><strong>Newsletter</strong></h5>
-        <p>Subscribe to our Newsletter -<br>
-and all the cool updates </p>
-
-<p><input type="text" class="form-control nelet" placeholder="Enter Email"></p>
-       
-                <div class="social-links pull-left" style="margin-top:5px;">
-          <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
-          <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
-          <a href="#"><i class="fa fa-skype fa-lg"></i></a>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <hr>
-      <div class="col-lg-7 col-md-7 col-sm-7">
-        <P>  <img src="{{url('/')}}/images/logo.png"> All Rights Reserved to the HomeOwner.com LLC</P>
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
-        <p class="pull-right ftfoot">
-<a href="#">Home</a>
-<a href="#">Terms</a>
-<a href="#">Privacy Policy</a>
-<a href="#">Partners & Affiliates</a>
-<a href="#">SiteMap</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
