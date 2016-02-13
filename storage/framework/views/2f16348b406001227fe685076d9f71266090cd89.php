@@ -129,6 +129,40 @@
 
 	<!-- Picture update section -->
 	<div class="col-md-4">
+	<!-- Logo -->
+		<form action="<?php echo e(route('admin::update-vendor-logo',$vendor->id)); ?>" method="post" enctype="multipart/form-data">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Logo
+			</div>
+			<div class="panel-body">
+				<?php if($vendor->logo): ?>
+					<a href="<?php echo e(ImagePath($vendor->logo)); ?>" data-lightbox="profile">
+						<img style="width:325px;"   src="<?php echo e(ImagePath($vendor->logo,'md')); ?>" alt="">
+					</a>
+				<?php else: ?> 
+					<strong>No Picture</strong>
+				<?php endif; ?>
+				<input type="file" name="file_logo">
+				<?php echo e(csrf_field()); ?>
+
+
+				<?php if($errors->has('file_logo')): ?>
+					<span class="text-danger"> <?php echo e($errors->first('file_logo')); ?></span>
+				<?php endif; ?>
+			</div>
+			<div class="panel-footer">
+
+					<button type="submit" class="btn">Upload</button>
+					<?php if($vendor->logo): ?>
+					<button type="button" class="btn btn-danger	" id="remove-logo" data-record-id="<?php echo e($vendor->id); ?>">Remove</button>
+					<?php endif; ?>
+				</div>
+		</div>
+	</form>
+
+	<!-- End Logo -->
+	<!-- Feature Image -->
 	<form action="<?php echo e(route('admin::update-vendor-picture',$vendor->id)); ?>" method="post" enctype="multipart/form-data">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -157,6 +191,40 @@
 				</div>
 		</div>
 	</form>
+	<!-- End Featues image -->
+	<!-- Cover Image -->
+		<form action="<?php echo e(route('admin::update-vendor-cover',$vendor->id)); ?>" method="post" enctype="multipart/form-data">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Cover Image
+			</div>
+			<div class="panel-body">
+				<?php if($vendor->cover): ?>
+					<a href="<?php echo e(ImagePath($vendor->cover)); ?>" data-lightbox="profile">
+						<img style="width:325px;"   src="<?php echo e(ImagePath($vendor->cover,'md')); ?>" alt="">
+					</a>
+				<?php else: ?> 
+					<strong>No Picture</strong>
+				<?php endif; ?>
+				<input type="file" name="file_cover">
+				<?php echo e(csrf_field()); ?>
+
+
+				<?php if($errors->has('file_cover')): ?>
+					<span class="text-danger"> <?php echo e($errors->first('file_cover')); ?></span>
+				<?php endif; ?>
+			</div>
+			<div class="panel-footer">
+
+					<button type="submit" class="btn">Upload</button>
+					<?php if($vendor->cover): ?>
+					<button type="button" class="btn btn-danger	" id="remove-cover" data-record-id="<?php echo e($vendor->id); ?>">Remove</button>
+					<?php endif; ?>
+				</div>
+		</div>
+	</form>
+
+	<!-- End Cover Image -->
 	</div>
 	<!-- End Picture update section -->
 </div>
@@ -191,6 +259,65 @@
   </form>
 </div>
 	<!-- End Modal 1 -->
+
+	<!-- Remove Logo 1 -->
+	<div class="modal fade" id="removeLogoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="<?php echo e(route('admin::all-vendors')); ?>" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete Vendor Logo</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Delete picture . Are you sure ?;
+        	</p>
+        	<?php echo e(csrf_field()); ?>
+
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+	<!-- End Remove Logo 1 -->
+		<!-- Remove Cover 1 -->
+	<div class="modal fade" id="removeCoverModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="<?php echo e(route('admin::all-vendors')); ?>" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete Vendor Cover Image</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Delete picture . Are you sure ?;
+        	</p>
+        	<?php echo e(csrf_field()); ?>
+
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+	<!-- End Remove Cover 1 -->
 <!-- End Modals -->
 <?php $__env->stopSection(); ?>
 
@@ -205,6 +332,17 @@
 		 var removePic = new Confirmbox();
 		 removePic.setActionUrl('remove-picture');
 		 removePic.create({'el':'#remove-pic','modal':'#removePicModal','action_url':'remove-picture'});
+
+
+		 
+
+		 var removeLogo = new Confirmbox();
+		 removeLogo.setActionUrl('remove-logo');
+		 removeLogo.create({'el':'#remove-logo','modal':'#removeLogoModal','action_url':'remove-logo'});
+
+		 var removeCover = new Confirmbox();
+		 removeCover.setActionUrl('remove-cover');
+		 removeCover.create({'el':'#remove-cover','modal':'#removeCoverModal','action_url':'remove-cover'});
 	});
 </script>
 <?php $__env->stopSection(); ?>

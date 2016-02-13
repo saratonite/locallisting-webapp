@@ -76,7 +76,7 @@ class VendorController extends Controller
      */
     public function edit($vendorId){
 
-        $vendor = \App\Vendor::with(['categories','cities','picture'])->find($vendorId);
+        $vendor = \App\Vendor::with(['categories','cities','picture','logo','cover'])->find($vendorId);
 
         $categories = \App\Category::lists('name','id');
         $cities = \App\City::lists('name','id');
@@ -245,6 +245,117 @@ class VendorController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     *
+     * Vendor logo
+     */
+    public function uploadLogo(Request $request,$vendorId){
+
+        $vendor = \App\Vendor::with('logo','user')->findOrFail($vendorId);
+
+        $this->validate($request,[
+            'file_logo' => 'required |mimes:jpg,jpeg,png|max:5000'
+            ]);
+
+        $logo = $vendor->logo;
+        if(!$logo){
+
+            $logo = new \App\Image();
+             $logo->type = "logo";
+             $logo->user_id = $vendor->user->id;
+        }
+
+        // Delete old logo
+        $logo->DeleteFromDisk();
+        
+
+        $file = $request->file('file_logo');
+
+        //$realPath = $file->getRealPath();
+        
+        $logo->SaveToDisk($file);
+        // Save Image Details to DB
+        if($logo->save()){
+            $request->session()->flash('success','Logo updated');
+
+        }
+        return redirect()->back();
+
+
+    }
+
+    public function deleteLogo(Request $request,$vendorId){
+
+        $vendor = \App\Vendor::with('logo')->findOrFail($vendorId);
+
+        if($vendor->logo){
+            $vendor->logo()->DeleteFromDisk();
+            $vendor->logo()->delete();
+            $request->session()->flash('success','Logo removed');
+
+        }
+
+        return redirect()->back();
+    }
+    /** End Logo  */
+
+
+    /**
+     *
+     * Vendor Cover
+     */
+    public function uploadCover(Request $request,$vendorId){
+
+        $vendor = \App\Vendor::with('cover','user')->findOrFail($vendorId);
+
+        $this->validate($request,[
+            'file_cover' => 'required |mimes:jpg,jpeg,png|max:5000'
+            ]);
+
+        $cover = $vendor->cover;
+        if(!$cover){
+
+            $cover = new \App\Image();
+             $cover->type = "cover";
+             $cover->user_id = $vendor->user->id;
+        }
+
+        // Delete old cover
+        $cover->DeleteFromDisk();
+        
+
+        $file = $request->file('file_cover');
+
+        //$realPath = $file->getRealPath();
+        
+        $cover->SaveToDisk($file);
+        // Save Image Details to DB
+        if($cover->save()){
+            $request->session()->flash('success','Logo updated');
+
+        }
+        return redirect()->back();
+
+
+    }
+
+    public function deleteCover(Request $request,$vendorId){
+
+        $vendor = \App\Vendor::with('cover')->findOrFail($vendorId);
+
+        if($vendor->cover){
+            $vendor->cover()->DeleteFromDisk();
+            $vendor->cover()->delete();
+            $request->session()->flash('success','Cover removed');
+
+        }
+
+        return redirect()->back();
+    }
+    /** End Cover  */
+
+
 
 
     /*

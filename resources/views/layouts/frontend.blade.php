@@ -16,16 +16,8 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]--> 
+  @yield('stylesheets')
 
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/vendor.scripts.js"></script>
-
-    <script type="text/javascript">
-    	$(function(){
-    		$('select[multiple]').select2();
-    	});
-    </script>
 </head>
 <body>
 @include('site.partials.header')
@@ -36,6 +28,19 @@
 
 
 @include('site.partials.footer')
+
+    <script src="{{asset('js/jquery-1.10.2.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/vendor.scripts.js')}}"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        $('select[multiple]').select2();
+      });
+    </script>
+  @yield('scripts')
+
+
 
 
 </body>

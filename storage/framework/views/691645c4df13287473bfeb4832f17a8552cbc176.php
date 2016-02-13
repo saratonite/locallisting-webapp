@@ -16,16 +16,8 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]--> 
+  <?php echo $__env->yieldContent('stylesheets'); ?>
 
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/vendor.scripts.js"></script>
-
-    <script type="text/javascript">
-    	$(function(){
-    		$('select[multiple]').select2();
-    	});
-    </script>
 </head>
 <body>
 <?php echo $__env->make('site.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -36,6 +28,19 @@
 
 
 <?php echo $__env->make('site.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <script src="<?php echo e(asset('js/jquery-1.10.2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor.scripts.js')); ?>"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        $('select[multiple]').select2();
+      });
+    </script>
+  <?php echo $__env->yieldContent('scripts'); ?>
+
+
 
 
 </body>

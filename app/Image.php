@@ -11,6 +11,8 @@ class Image extends Model
 
     protected $table = "images";
 
+    protected $fillable = ['title','description','type'];
+
 
     public function user(){
 

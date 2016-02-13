@@ -70,7 +70,46 @@
     <a href="#"><img src="{{url('/')}}/images/twitter.jpg"></a>
     <a href="#"> <img src="{{url('/')}}/images/googleplus.jpg"></a>
 
-<p class="pt"><a href="#"> <img src="{{url('/')}}/images/fdhdh.jpg"></a></p>
+    <div class="review-widget" class="pull-right" style="
+        background: #d5d5d5;
+    text-align: left;
+    width: 170px  ;
+    margin-left: 80px;
+    margin-top: 70px;
+    ">
+      <div style="
+      background:#fff;
+      color:green;
+      padding-left:3px;
+      padding-right:3px
+      ">
+          <span>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+          </span>
+          <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
+          </div>
+      <div style="
+      text-align:center;
+      background:green;
+      ">
+          <a href="{{ route('submit-enquiry',$vendor->id)}}" style="
+                font-size:22px;
+      color:#fff;
+          ">Contact me</a> 
+      </div>
+    </div>
+
+<!-- <p class="pt">
+    <div style="width:150px;background:#fff">
+      hel
+    </div>
+    <a href="#"> <img src="{{url('/')}}/images/fdhdh.jpg"></a>
+</p> -->
+
 
 </div>
 </div>
@@ -78,6 +117,15 @@
 </div>  
   
 <div class="col-lg-6 col-md-6 col-sm-6">
+
+@if(Session::has('success'))
+  <br>
+  <br>
+  <p class="alert alert-success">
+      {{ Session::get('success')}}
+  </p>
+@endif
+
 <h4><strong>Overview</strong></h4>
 <p>
   {{{ $vendor->description }}}

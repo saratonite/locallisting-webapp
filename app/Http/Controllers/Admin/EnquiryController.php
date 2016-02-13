@@ -89,7 +89,7 @@ class EnquiryController extends Controller
 
         if($enquiry){
             $enquiry->delete();
-            $this->request->session()->flash('success','Enquiry Deleted.');
+            $request->session()->flash('success','Enquiry Deleted.');
         }
 
         return redirect()->route('admin::all-enquiries');

@@ -32,6 +32,10 @@
 			controller:'ImagesController',
 			templateUrl:"app/partials/images"
 		})
+		.when('/vendor/images/edit/:imageId',{
+			controller:"ImageController",
+			templateUrl:'app/partials/image_edit'
+		})
 		.when('/settings',{
 			controller:"SettingsController",
 			templateUrl:"app/partials/settings"
@@ -41,7 +45,11 @@
 		});
 
 		
-	}).config(function($httpProvider){
+	})
+
+	// Http interceptor
+
+	.config(function($httpProvider){
 
 		$httpProvider.interceptors.push(function(){
 			return {

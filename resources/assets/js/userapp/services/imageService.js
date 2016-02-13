@@ -17,6 +17,20 @@ angular.module('userApp')
 				url:"api/me/images/upload?page="+page,
 				data:requestData
 			});
+		},
+		getImage:function(imageId){
+			return api.request('get','api/me/images/get/'+imageId);
+
+
+
+		},
+		update:function(imageId,data){
+			return api.request('put','api/me/images/update/'+imageId,data);
+		},
+		delete:function(imageId,page){
+
+			return api.request('delete','api/me/images/delete/'+imageId+'?page='+page);
+
 		}
 	}
 

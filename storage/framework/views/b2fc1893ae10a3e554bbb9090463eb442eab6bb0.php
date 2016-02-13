@@ -22,16 +22,15 @@
 			<!-- Thumbnail element -->
 			 <div class="col-md-4 pull-left" ng-repeat="image in images.data">
 			    <div class="thumbnail">
-			      <img src="<?php echo e(ImagesDir()); ?>{{image.base_dir}}/{{image.file_name}}"" alt="...">
+			      <img class="img-responsive" style="max-height:110px" src="<?php echo e(ImagesDir()); ?>{{image.base_dir}}/{{image.file_name}}" alt="...">
 			      <div class="caption">
 			        <h5>{{image.title}}</h5>
 			        <p>{{image.description | limitTo:30}}
 			        	<span ng-if="image.description.length > 30">...</span>
 			        </p>
 			        <p>
-			        	<a href="<?php echo e(ImagesDir()); ?>{{image.base_dir}}/{{image.file_name}}" class="btn btn-xs btn-default" role="button">View</a>
-			        	<a href="#" class="btn btn-xs btn-primary" role="button">Edit</a> 
-			        	<button type="button" class="btn btn-xs btn-danger" role="button">Delete</button> 
+			        	<a href="#/vendor/images/edit/{{image.id}}" class="btn btn-xs btn-primary" role="button">Edit</a> 
+			        	<button type="button" class="btn btn-xs btn-danger" role="button" ng-click="confirmDelete(image.id)">Delete</button> 
 			        	</p>
 			      </div>
 			    </div>

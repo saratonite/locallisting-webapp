@@ -15,6 +15,8 @@ class Enquiry extends Model
     
     public $statusArray = ['pending','accepted','rejected','spam'];
 
+    public $fillable = ['subject','message'];
+
 
 
     /* Relations */

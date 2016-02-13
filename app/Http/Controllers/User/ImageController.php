@@ -62,4 +62,64 @@ class ImageController extends Controller
     	
 
     }
+
+    public function getImage($ImageId){
+
+         $image = \App\Image::where('user_id',Auth::user()->id)->findOrfail($ImageId);
+
+         if(!$image){
+
+            return response()->json(['message'=>'Image Not found'])->setStatusCode(404);
+
+         }
+            return response()->json($image)->setStatusCode(200);
+         
+
+
+
+
+
+
+    }
+
+    public function updateImage(Request $request ,$ImageId){
+        $image = \App\Image::where('user_id',Auth::user()->id)->findOrfail($ImageId);
+
+         if(!$image){
+
+            return response()->json(['message'=>'Image Not found'])->setStatusCode(404);
+
+         }
+
+         $image->fill($request->all());
+
+         $image->update();
+
+         return response()->json($image)->setStatusCode(200);
+
+
+
+
+    }
+
+    /**
+     * Delete image
+     */
+    
+    public function delete(Request $request,$ImageId){
+
+
+
+        $image = \App\Image::where('user_id',Auth::user()->id)->findOrfail($ImageId);
+
+        if($image){
+
+            $image->deleteFromDisk();
+            $image->delete();
+            return $this->getMyImages();
+        }
+
+
+
+    }
 }

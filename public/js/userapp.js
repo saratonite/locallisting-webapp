@@ -32,6 +32,10 @@
 			controller:'ImagesController',
 			templateUrl:"app/partials/images"
 		})
+		.when('/vendor/images/edit/:imageId',{
+			controller:"ImageController",
+			templateUrl:'app/partials/image_edit'
+		})
 		.when('/settings',{
 			controller:"SettingsController",
 			templateUrl:"app/partials/settings"
@@ -41,7 +45,11 @@
 		});
 
 		
-	}).config(function($httpProvider){
+	})
+
+	// Http interceptor
+
+	.config(function($httpProvider){
 
 		$httpProvider.interceptors.push(function(){
 			return {
@@ -147,6 +155,64 @@ angular.module("userApp")
 }]);
 angular.module('userApp')
 
+.controller('ImageController',['$scope','$routeParams','toastr','imageService',function($scope,$routeParams,toastr,imageService){
+
+	$scope.imageId = $routeParams.imageId;
+
+	$scope.image = false;
+
+	$scope.fetchImage = function(){
+		 imageService.getImage($scope.imageId).then(
+		 	function(response){
+
+		 		if(response.status == 200){
+
+		 			$scope.image = response.data;
+
+		 			console.info($scope.image);
+
+
+		 		}
+
+		 		$scope.requestCompleted = true;
+
+		 	},
+		 	function(){
+		 		$scope.requestCompleted = true;
+
+		 	}
+		 );
+	}
+
+	$scope.update = function(){
+
+
+		imageService.update($scope.imageId,$scope.image).then(
+			function(response){
+
+		 		if(response.status == 200){
+
+		 			$scope.image = response.data;
+
+		 			toastr.success('Image updated');
+
+
+		 		}
+
+		 		$scope.requestCompleted = true;
+
+		 	},
+		 	function(){
+		 		$scope.requestCompleted = true;
+
+		 	});
+	}
+
+	$scope.fetchImage();
+	
+}]);
+angular.module('userApp')
+
 .controller('ImagesController',['$scope','$routeParams','toastr','imageService',function($scope,$routeParams,toastr,imageService){
 
 $scope.imageUploading = false;
@@ -235,6 +301,37 @@ $scope.imageUploading = false;
 
 	$scope.showImageUploader = function(){
 		$("#myModal").modal('show');
+	}
+
+	/**
+	 * Delete image
+	 */
+	
+	$scope.confirmDelete = function(id){
+		if(confirm('Delete image , are you sure?')){
+			$scope.deleteImage(id);
+		}
+	}
+	
+	$scope.deleteImage = function(id){
+
+
+		imageService.delete(id,$scope.currentPage).then(
+
+			function(response){
+				if(response.status == 200){
+					$scope.syncData(response);
+
+				}
+
+				$scope.requestCompleted = true;
+
+			},
+			function(){
+
+			}
+
+		);
 	}
 
 	$scope.fetchImages();
@@ -696,6 +793,20 @@ angular.module('userApp')
 				url:"api/me/images/upload?page="+page,
 				data:requestData
 			});
+		},
+		getImage:function(imageId){
+			return api.request('get','api/me/images/get/'+imageId);
+
+
+
+		},
+		update:function(imageId,data){
+			return api.request('put','api/me/images/update/'+imageId,data);
+		},
+		delete:function(imageId,page){
+
+			return api.request('delete','api/me/images/delete/'+imageId+'?page='+page);
+
 		}
 	}
 

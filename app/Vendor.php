@@ -77,6 +77,13 @@ class Vendor extends Model
 
     }
 
+    public function logo(){
+
+        return $this->hasOne("\App\Image",'user_id','user_id')->where('type','=','logo');
+        
+
+    }
+
     public function cover(){
         
         return $this->hasOne("\App\Image",'user_id','user_id')->where('type','=','cover');

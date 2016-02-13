@@ -24,8 +24,12 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 
 	// Auth pages
-	Route::get('service_provider/{vendorID}/submit_review',['uses'=>'ReviewController@writeReview'])->name('submit_review');
-	Route::post('service_provider/{vendorID}/submit_review',['uses'=>'ReviewController@submitReview']);
+	Route::get('service_provider/{vendorID}/submit_review',['middleware'=>'auth','uses'=>'ReviewController@writeReview'])->name('submit_review');
+	Route::post('service_provider/{vendorID}/submit_review',['middleware'=>'auth','uses'=>'ReviewController@submitReview']);
+
+	Route::get('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@contact'])->name('submit-enquiry');
+	Route::post('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@submitContact']);
+
 
 
 	// User Registration
@@ -88,8 +92,15 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('vendors/{vendorId}/edit','VendorController@edit')->name('edit-vendor');
 	Route::put('vendors/{vendorId}/update','VendorController@update')->name('update-vendor');
 
-	Route::post('vendors/{vendorId}/upload-picture','VendorController@uploadPicture')->name('update-vendor-picture');
-	Route::delete('vendors/{vendorId}/remove-picture/','VendorController@deletePicture')->name('delete-vendor-picture');
+		// Feature image
+		Route::post('vendors/{vendorId}/upload-picture','VendorController@uploadPicture')->name('update-vendor-picture');
+		Route::delete('vendors/{vendorId}/remove-picture/','VendorController@deletePicture')->name('delete-vendor-picture');
+		// Logo
+		Route::post('vendors/{vendorId}/upload-logo','VendorController@uploadLogo')->name('update-vendor-logo');
+		Route::delete('vendors/{vendorId}/remove-logo/','VendorController@deleteLogo')->name('delete-vendor-logo');
+		// Cover
+		Route::post('vendors/{vendorId}/upload-cover','VendorController@uploadCover')->name('update-vendor-cover');
+		Route::delete('vendors/{vendorId}/remove-cover/','VendorController@deleteCover')->name('delete-vendor-cover');
 
 	Route::get('vendors/{vendorId}/enquiries/{status?}','VendorController@enquiries')->name('vendor-enquiries');
 	
@@ -216,6 +227,9 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	// Vendor Images
 	Route::get('api/me/images','ImageController@getMyImages');
 	Route::post('api/me/images/upload','ImageController@doUpload');
+	Route::delete('api/me/images/delete/{imageId}','ImageController@delete');
+	Route::get('api/me/images/get/{imageId}','ImageController@getImage');
+	Route::put('api/me/images/update/{imageId}','ImageController@updateImage');
 
 
 

@@ -80,9 +80,7 @@
 <!--  -->
 <div class="col-lg-7 col-md-7 col-sm-7"><br>
 <form method="post" action="{{route('submit_review',$vendor->id)}}">
-<h4>POST YOUR RIVEWS</h4>
-
-<br>
+<h4>POST YOUR ENQUIRY</h4>
 @if(count($errors))
 	<ul class="alert alert-danger">
 		@foreach($errors->all() as $error)
@@ -90,63 +88,19 @@
 		@endforeach
 	</ul>
 @endif
-<div>
 	{{csrf_field()}}
 
-	<label for="">Rate Price</label>
-	<input id="input-2a" name="rate_price" value="{{ old('rate_price')}}" class="rating rating-md" data-min="0" data-max="5" data-step="1" data-stars="5" data-glyphicon="true">
-</div>
-<div>
 
-	<label for="">Rate Timeliness</label>
-	<input id="input-2a" name="rate_timeliness" value="{{ old('rate_timeliness')}}" class="rating rating-xs" data-min="0" data-max="5" data-step="1" data-stars="5" data-glyphicon="true">
-</div>
-<div>
-
-	<label for="">Rate Quality</label>
-	<input id="input-2a" name="rate_quality" value="{{ old('rate_quality')}}" class="rating rating-xs" data-min="0" data-max="5" data-step="1" data-stars="5" data-glyphicon="true">
-</div>
-<div>
-
-	<label for="">Rate Professionalism</label>
-	<input id="input-2a" name="rate_professionalism" value="{{ old('rate_professionalism')}}"  class="rating rating-xs" data-min="0" data-max="5" data-step="1" data-stars="5" data-glyphicon="true">
-</div>
-<h4>Overall Rating:3.5/5</h4><br>
-
-<h5><strong>Your Review</strong></h5>
-<div style=" color:#999" ;="">
-<h5>Discribe the Service Provided and Specific Details of your experience<br></h5>
-<div style="float:left">
-<ol style=" padding:0px; margin-left:14px;">
-<li>Be Respectfull</li>
-<li>Provide a complete description</li>
-<li>Focus on the fact</li>
-<li>Write at least 20 Words</li>
-</ol></div>
-
-<br></div>
 	<div class="form-group claerfix">
 		<br>
-		<input type="text" name="title" value="{{ old('title')}}" placeholder="Review title" class="form-control">
+    <label for="">Subject</label>
+		<input type="text" name="subject" value="{{ old('subject')}}" placeholder="Subject" class="form-control">
 	</div>
 	<div class="form-group">
-		<textarea class="form-control"  placeholder="Review body" rows="5" name="body">{{ old('body')}}</textarea>
+    <label for="">Message</label>
+		<textarea class="form-control"  placeholder="Message" rows="5" name="message">{{ old('message')}}</textarea>
 		
 	</div>
-<h5><strong>Your relationship to the professional</strong></h5>
- 
-<ul style="color:#999; list-style:none; padding:0px;">
-<li><input type="radio" name="relation" value="hired"> I hired this company</li>
-<li><input type="radio" name="relation" value="worked"> Iam a professional who worked with this company</li>
-<li><input type="radio" name="relation" value="recived_estimation"> I recived an estimate/consultation but did not hire them</li>
-<li><p style="float:left; margin:5px 10px 0 0"><input type="radio" name="relation" value="other"> other</p><input type="text" name="relation_details" class="form-control" style="width:50%"></li>
-</ul>
-<div style="background-color:
-#fcf8e3">&nbsp;
-<p>&nbsp; <input type="checkbox" name="confirm">&nbsp; I conform that the information submited here is true and accurate.I conform that i do not&nbsp;
-work <br>&nbsp; &nbsp; &nbsp; for,am not in complete with and am not related  to this service provider</p><br>
-
-</div>
 <hr>
 <input type="submit" class="btn btn-success" value="Submit">
 <br><br>

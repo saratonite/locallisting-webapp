@@ -90,6 +90,37 @@ $scope.imageUploading = false;
 		$("#myModal").modal('show');
 	}
 
+	/**
+	 * Delete image
+	 */
+	
+	$scope.confirmDelete = function(id){
+		if(confirm('Delete image , are you sure?')){
+			$scope.deleteImage(id);
+		}
+	}
+	
+	$scope.deleteImage = function(id){
+
+
+		imageService.delete(id,$scope.currentPage).then(
+
+			function(response){
+				if(response.status == 200){
+					$scope.syncData(response);
+
+				}
+
+				$scope.requestCompleted = true;
+
+			},
+			function(){
+
+			}
+
+		);
+	}
+
 	$scope.fetchImages();
 
 	
