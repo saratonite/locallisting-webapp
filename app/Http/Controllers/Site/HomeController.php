@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class HomeController extends Controller
 {
@@ -60,11 +61,12 @@ class HomeController extends Controller
 
         },'review'=>function($q){
                 $q->where('status','accepted');
+                $q->orderBy('id','DESC');
                 $q->with('user');
 
-        },'cover'])->findOrFail($vendorId);
 
-        //dd($vendor->cover);
+        }
+        ,'cover'])->findOrFail($vendorId);
 
 
         $categories = \App\Category::orderBy('name','ASC')->lists('name','id');

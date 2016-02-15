@@ -28,7 +28,7 @@ class VendorController extends Controller
     	$vendor = \App\Vendor::where("user_id",Auth::user()->id)->with(['categories','cities'])->first();
 
     	$data['vendor'] = $vendor;
-        $data['picture'] = $vendor->picture;
+        $data['logo'] = $vendor->logo;
     	$data['categories'] = \App\Category::orderBy('name')->get();
     	$data['cities'] = \App\City::orderBy('name')->get();
 
@@ -86,6 +86,146 @@ class VendorController extends Controller
 
     }
 
+    public function updateLogo(Request $request){
+
+        $user = Auth::user();
+
+        $vendor = $user->vendor;
+
+        $logo = $vendor->logo;
+
+        if(!$logo){
+
+            $logo = new \App\Image();
+            $logo->type = "logo";
+            $logo->user_id = $user->id;
+        }
+
+
+        // File Validation
+        $v = Validator::make($request->all(),
+            ['file' => 'required | image|max:'.config('settings.uploads.maxsize',5000)]
+            );
+        //
+        if($v->fails()){
+            return response()->json(['errors'=>$v->errors()])->setStatusCode(422);
+        }
+
+        // Delete old logos
+        $logo->DeleteFromDisk();
+        
+
+        $file = $request->file('file');
+
+        //$realPath = $file->getRealPath();
+        
+        $logo->SaveToDisk($file);
+        // Save Image Details to DB
+        $logo->save();
+
+    
+
+        // if success 
+        return $this->profile();
+
+    }
+
+    /**
+     * Remove Vendor logo
+     */
+    
+    public function removeLogo(){
+
+         $user = Auth::user();
+
+        $vendor = $user->vendor;
+
+
+        $vendor->logo->DeleteFromDisk();
+
+        $vendor->logo()->delete();
+
+        return $this->profile();
+        
+    }
+
+    public function bannerAndPicture(){
+
+        $vendor = \App\Vendor::where("user_id",Auth::user()->id)->first();
+
+        $data['cover'] = $vendor->cover;
+        $data['picture'] = $vendor->picture;
+
+        return $data;
+    }
+
+
+    // Banner
+    public function updateBanner(Request $request){
+
+        $user = Auth::user();
+
+        $vendor = $user->vendor;
+
+        $cover = $vendor->cover;
+
+        if(!$cover){
+
+            $cover = new \App\Image();
+            $cover->type = "cover";
+            $cover->user_id = $user->id;
+        }
+
+
+        // File Validation
+        $v = Validator::make($request->all(),
+            ['file_banner' => 'required | image|max:'.config('settings.uploads.maxsize',5000)]
+            );
+        //
+        if($v->fails()){
+            return response()->json(['errors'=>$v->errors()])->setStatusCode(422);
+        }
+
+        // Delete old covers
+        $cover->DeleteFromDisk();
+        
+
+        $file = $request->file('file_banner');
+
+        //$realPath = $file->getRealPath();
+        
+        $cover->SaveToDisk($file);
+        // Save Image Details to DB
+        $cover->save();
+
+    
+
+        // if success 
+        return $this->bannerAndPicture();
+
+    }
+
+    /**
+     * Remove Vendor logo
+     */
+    
+    public function removeBanner(){
+
+         $user = Auth::user();
+
+        $vendor = $user->vendor;
+
+
+        $vendor->cover->DeleteFromDisk();
+
+        $vendor->cover()->delete();
+
+        return $this->bannerAndPicture();
+        
+    }
+    // End Banner
+    
+    // Picture
     public function updatePicture(Request $request){
 
         $user = Auth::user();
@@ -97,7 +237,7 @@ class VendorController extends Controller
         if(!$picture){
 
             $picture = new \App\Image();
-            $picture->type = "profile";
+            $picture->type = "picture";
             $picture->user_id = $user->id;
         }
 
@@ -126,7 +266,7 @@ class VendorController extends Controller
     
 
         // if success 
-        return $this->profile();
+        return $this->bannerAndPicture();
 
     }
 
@@ -145,7 +285,8 @@ class VendorController extends Controller
 
         $vendor->picture()->delete();
 
-        return $this->profile();
+        return $this->bannerAndPicture();
         
     }
+    //End Picture
 }

@@ -28,6 +28,10 @@
 			controller:'VendorController',
 			templateUrl:"app/partials/vendor_profile_edit"
 		})
+		.when('/vendor/profile/bannerandimage',{
+			controller:'BannerAndImage',
+			templateUrl:'app/partials/banner'
+		})
 		.when('/vendor/images/:page?',{
 			controller:'ImagesController',
 			templateUrl:"app/partials/images"
@@ -74,6 +78,72 @@
 	});
 
 
+angular.module('userApp')
+.controller('BannerAndImage',['$scope','profileImageService',function($scope,profileImageService){
+
+	$scope.fetchData = function(){
+		profileImageService.getData().then(
+
+			function(response){
+
+				if(response.status == 200){
+					$scope.vendor = response.data;
+				}
+
+			},
+			function(){
+
+			}
+
+		);
+	}
+
+
+	$scope.updateBanner = function(){
+
+
+		profileImageService.updateBanner($scope.file_banner).then(
+			function(response){
+
+				if(response.status == 200){
+					$scope.vendor = response.data;
+				}
+
+			},
+			function(){
+
+			}
+		);
+
+
+	}
+
+
+
+
+	$scope.updatePic = function(){
+
+		profileImageService.updatepPicture($scope.file).then(
+			function(response){
+
+
+
+			},
+			function(response){
+
+			}
+		);
+
+	}
+
+
+
+
+	// Init
+	$scope.fetchData();
+
+
+}]);
 "use strict";
 angular.module("userApp")
 .controller('DashboaredController',['$scope',function($scope){
@@ -849,6 +919,42 @@ angular.module("userApp")
 		}
 	}
 }]);
+"use strict";
+angular.module("userApp")
+.factory("profileImageService",["api","Upload",function(api,Upload){
+	return {
+
+		getData:function(){
+			return api.request('get','api/me/vendor/banner-picture');
+			
+		},
+
+		updateBanner:function(file){
+
+
+			return Upload.upload({
+				url:"api/me/vendor/banner",
+				data:{file_banner:file}
+			});
+
+		},
+		removeBanner:function(data){
+			return api.request('delete','api/me/vendor/banner');
+		},
+		updatepPicture:function(file){
+
+
+			return Upload.upload({
+				url:"api/me/vendor/picture",
+				data:{file:file}
+			});
+
+		},
+		removePicture:function(data){
+			return api.request('delete','api/me/vendor/picture');
+		}
+	}
+}]);
 "strict user";
 angular.module("userApp")
 .factory("reviewService",["api",function(api){
@@ -900,13 +1006,13 @@ angular.module("userApp")
 
 
 			return Upload.upload({
-				url:"api/me/vendor/picture",
+				url:"api/me/vendor/logo",
 				data:{file:file}
 			});
 
 		},
 		removePicture:function(data){
-			return api.request('delete','api/me/vendor/picture');
+			return api.request('delete','api/me/vendor/logo');
 		}
 	}
 }]);

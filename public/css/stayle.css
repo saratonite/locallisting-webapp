@@ -176,3 +176,28 @@ border-radius: 90px; overflow:hidden;}
 	}
 
 .lem a:hover{color:#069616 !important;}
+
+
+/* Style widget */
+.review-widget{
+   background: #d5d5d5;
+    text-align: left;
+    width: 170px  ;
+    margin-left: 80px;
+    margin-top: 70px;
+}
+.review-wiget-top{
+      background:#fff;
+      color:green;
+      padding-left:3px;
+      padding-right:3px
+}
+.review-widget-bottom{
+        text-align:center;
+      background:green;
+}
+
+.review-widget-bottom a{
+   font-size:22px;
+      color:#fff;
+}

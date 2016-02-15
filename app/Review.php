@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Review extends Model
 {
@@ -55,11 +56,11 @@ class Review extends Model
 
     }
 
-    public function scopeByVendor($query,$vendor=false){
+    // Rating scopes
+    public function scopeRate($query){
 
-        if($vendor){
-            $query->where('vendor_id',$vendor_id);
-        }
+        $query->select(DB::raw('rate_price+rate_quality as total_rate' ));
+
 
     }
 

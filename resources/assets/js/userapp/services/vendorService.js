@@ -14,13 +14,13 @@ angular.module("userApp")
 
 
 			return Upload.upload({
-				url:"api/me/vendor/picture",
+				url:"api/me/vendor/logo",
 				data:{file:file}
 			});
 
 		},
 		removePicture:function(data){
-			return api.request('delete','api/me/vendor/picture');
+			return api.request('delete','api/me/vendor/logo');
 		}
 	}
 }]);

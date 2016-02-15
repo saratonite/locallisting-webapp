@@ -130,16 +130,16 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			Update Picture
+			Update Logo
 		</div>
 		<div class="panel-body">
 			<div class="col-md-12" style="padding:0px">
 				
 			    <a  class="thumbnail" style="padding:0px">
 			    	<!-- Dummy -->
-			    	<img ng-hide="vendor.picture || file"  ng-src="<?php echo e(url('/')); ?>/images/placeholder.png">
+			    	<img ng-hide="vendor.logo || file"  ng-src="<?php echo e(url('/')); ?>/images/placeholder.png">
 			    	<!-- The Current -->
-			    	<img ng-hide="file || !vendor.picture " ng-src="<?php echo e(url('/').'/'.config('settings.uploads.images')); ?>{{vendor.picture.base_dir}}/{{vendor.picture.file_name}}">
+			    	<img ng-hide="file || !vendor.logo " ng-src="<?php echo e(url('/').'/'.config('settings.uploads.images')); ?>{{vendor.logo.base_dir}}/{{vendor.logo.file_name}}">
 			    	<!-- New -->
 			      <img style="width:200px;height:200px" ng-show="file" ngf-src="file" >
 			    </a>
@@ -147,7 +147,7 @@
 			  <div class="file-selection-area">
 			  	<div class="btn btn-sm btn-primary" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
     ngf-accept="'image/*'" ngf-max-size="20MB" >Select</div>
-    			<button class="btn btn-sm btn-danger" ng-hide="file || !vendor.picture " ng-click="removePic()">Remove</button>
+    			<button class="btn btn-sm btn-danger" ng-hide="file || !vendor.logo " ng-click="removePic()">Remove</button>
     			<button class="btn btn-sm btn-success" ng-show="file" ng-click="updatePic()">Save	</button>
     			<button class="btn btn-sm btn-warning" ng-show="file" ng-click="cancelUpdatePic()">Cancel	</button>
 			  </div>

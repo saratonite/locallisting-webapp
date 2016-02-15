@@ -390,6 +390,36 @@ class VendorController extends Controller
     	return redirect()->back();
     }
 
+    public function setfeatured(Request $request,$vendorID){
+        $vendor = \App\Vendor::find($vendorID);
+
+        if($vendor){
+
+            $vendor->featured = 1;
+            $vendor->save();
+            $request->session()->flash('success','Vendor marked as featured');
+        }
+
+         return redirect()->route('admin::all-vendors');
+
+
+    }
+
+    public function unsetfeatured(Request $request,$vendorID){
+
+        $vendor = \App\Vendor::find($vendorID);
+
+         if($vendor){
+
+            $vendor->featured = 0;
+            $vendor->save();
+            $request->session()->flash('success','Vendor removed from featured');
+        }
+
+         return redirect()->route('admin::all-vendors');
+
+    }
+
     public function delete(Request $request, $vendorID){
 
         $vendor = \App\Vendor::find($vendorID);

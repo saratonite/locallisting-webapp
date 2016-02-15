@@ -26,9 +26,53 @@ function BS_Enquiry_Status_Class($status=null){
 
 }
 
+function FrontStarRating($rating,$total_rating=5){
+
+	$rating = ceil($rating);
+
+	if($rating){
+
+
+		$remaining_starts = $total_rating - $rating;
+
+		// Render Rating stars
+		for($i=0;$i<$rating;$i++){
+			echo '<span class="glyphicon glyphicon-star star-gold"></span>';
+
+		}
+
+		// Render Remaining Starts
+		for ($j=0; $j < $remaining_starts ; $j++) { 
+			echo '<span class="glyphicon glyphicon-star-empty star-gray"></span>';
+			
+
+		}
+
+
+	}
+	else{
+		"No rates";
+	}
+
+
+
+}
+
+function calculateReviewRate($review){
+
+		$total_rate = ($review->rate_price+$review->rate_timeliness+$review->rate_quality+$review->rate_professionalism);
+		
+		$overall_rate = 0;
+		if($total_rate>0){
+			$overall_rate = ceil($total_rate/4);
+		}
+
+		return $overall_rate;
+
+}
 function BS_StarRating($rating = false, $total_rating=5){
 
-	if($rating>$total_rating) return false;
+	if($rating  > $total_rating) return false;
 
 	$remaining_starts = $total_rating - $rating;
 

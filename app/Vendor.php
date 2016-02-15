@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Vendor extends Model
 {
@@ -67,6 +68,16 @@ class Vendor extends Model
 
         return $this->hasMany("\App\Review","vendor_id");
     }
+
+    public function rating(){
+
+        return $this->hasMany("\App\Review","vendor_id")
+            ->select(DB::raw('((rate_price + rate_quality +rate_timeliness + rate_professionalism ) /4) as overall_rate'));
+    }
+
+ 
+
+
 
 
     // Vendor profile picture

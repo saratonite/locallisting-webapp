@@ -28,6 +28,10 @@
 			controller:'VendorController',
 			templateUrl:"app/partials/vendor_profile_edit"
 		})
+		.when('/vendor/profile/bannerandimage',{
+			controller:'BannerAndImage',
+			templateUrl:'app/partials/banner'
+		})
 		.when('/vendor/images/:page?',{
 			controller:'ImagesController',
 			templateUrl:"app/partials/images"

@@ -70,36 +70,15 @@
     <a href="#"><img src="{{url('/')}}/images/twitter.jpg"></a>
     <a href="#"> <img src="{{url('/')}}/images/googleplus.jpg"></a>
 
-    <div class="review-widget" class="pull-right" style="
-        background: #d5d5d5;
-    text-align: left;
-    width: 170px  ;
-    margin-left: 80px;
-    margin-top: 70px;
-    ">
-      <div style="
-      background:#fff;
-      color:green;
-      padding-left:3px;
-      padding-right:3px
-      ">
+    <div class="review-widget" class="pull-right" >
+      <div class="review-wiget-top" style="">
           <span>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
+            {{ FrontStarRating($vendor->rating->avg('overall_rate')) }}
           </span>
           <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
           </div>
-      <div style="
-      text-align:center;
-      background:green;
-      ">
-          <a href="{{ route('submit-enquiry',$vendor->id)}}" style="
-                font-size:22px;
-      color:#fff;
-          ">Contact me</a> 
+      <div class="review-widget-bottom" >
+          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact me</a> 
       </div>
     </div>
 
@@ -206,7 +185,8 @@
       @foreach($vendor->review as $re)
         <div>
           <strong>{{$re->title}}</strong> @if($re->user) <span> <i>by {{$re->user->first_name}}</i></span> @endif
-          <img src="{{url('/')}}/images/star.png" class="img-responsive">
+          <!-- <img src="{{url('/')}}/images/star.png" class="img-responsive"> -->
+          <p style="color=#2C7300;">{{FrontStarRating(calculateReviewRate($re))}}</p>
           <p>{{$re->body}}</p>
           <a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a>
           <p>&nbsp;&nbsp;&nbsp;</p>

@@ -71,7 +71,17 @@
     <a href="#"><img src="{{url('/')}}/images/twitter.jpg"></a>
     <a href="#"> <img src="{{url('/')}}/images/googleplus.jpg"></a>
 
-<p class="pt"><a href="#"> <img src="{{url('/')}}/images/fdhdh.jpg"></a></p>
+<div class="review-widget" class="pull-right" >
+      <div class="review-wiget-top" style="">
+          <span>
+            {{ FrontStarRating($vendor->rating->avg('overall_rate')) }}
+          </span>
+          <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
+          </div>
+      <div class="review-widget-bottom" >
+          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact me</a> 
+      </div>
+    </div>
 
 </div>
 </div>

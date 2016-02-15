@@ -87,6 +87,8 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 
 	Route::put('vendors/change-status/{vendorID}','VendorController@chnageStatus')->name('vendors-change-status');
 	
+	Route::put('vendors/setfeatured/{vendorID}','VendorController@setfeatured');
+	Route::put('vendors/unsetfeatured/{vendorID}','VendorController@unsetfeatured');
 	Route::delete('vendors/delete/{vendorID}','VendorController@delete')->name('delete-vendor');
 
 	Route::get('vendors/{vendorId}/edit','VendorController@edit')->name('edit-vendor');
@@ -221,9 +223,16 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 
 	Route::get('api/me/vendor','VendorController@profile');
 	Route::put('api/me/vendor','VendorController@update');
+	Route::post('api/me/vendor/logo','VendorController@updateLogo');
+	Route::delete('api/me/vendor/logo',['middleware'=>'api','uses'=>'VendorController@removeLogo']);
+
+
+	Route::get('api/me/vendor/banner-picture',['middleware'=>'api','uses'=>'VendorController@bannerAndPicture']);
+
+	Route::post('api/me/vendor/banner','VendorController@updateBanner');
+	Route::delete('api/me/vendor/banner',['middleware'=>'api','uses'=>'VendorController@removeBanner']);
 	Route::post('api/me/vendor/picture','VendorController@updatePicture');
 	Route::delete('api/me/vendor/picture',['middleware'=>'api','uses'=>'VendorController@removePicture']);
-
 	// Vendor Images
 	Route::get('api/me/images','ImageController@getMyImages');
 	Route::post('api/me/images/upload','ImageController@doUpload');
