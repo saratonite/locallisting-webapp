@@ -84,7 +84,11 @@
     </div>
     <div class="col-lg-7 col-md-7 col-sm-7">
     <div class="profileico">
-          <img src="images/profile.jpg" class="img-responsive">
+          @if($vendor->logo)
+              <img style="width:50px;height:50px" src="{{url('/images/uploads')}}/{{$vendor->logo->base_dir}}/{{$vendor->logo->file_name}}" class="img-responsive">
+          @else
+            <img src="images/profile.jpg" class="img-responsive">
+          @endif
           
     </div>
     <h4 class="flo"><a href="{{ route('profile',$vendor->id,str_slug($vendor->vendor_name))}}">{{$vendor->vendor_name}}</a> <br><img src="images/reviews.jpg"></h4>

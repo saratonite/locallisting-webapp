@@ -83,7 +83,11 @@
     </div>
     <div class="col-lg-7 col-md-7 col-sm-7">
     <div class="profileico">
-          <img src="images/profile.jpg" class="img-responsive">
+          <?php if($vendor->logo): ?>
+              <img style="width:50px;height:50px" src="<?php echo e(url('/images/uploads')); ?>/<?php echo e($vendor->logo->base_dir); ?>/<?php echo e($vendor->logo->file_name); ?>" class="img-responsive">
+          <?php else: ?>
+            <img src="images/profile.jpg" class="img-responsive">
+          <?php endif; ?>
           
     </div>
     <h4 class="flo"><a href="<?php echo e(route('profile',$vendor->id,str_slug($vendor->vendor_name))); ?>"><?php echo e($vendor->vendor_name); ?></a> <br><img src="images/reviews.jpg"></h4>

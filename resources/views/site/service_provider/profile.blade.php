@@ -50,9 +50,9 @@
   background-size: cover;@endif">
 <div class="col-lg-8 col-md-8 col-sm-8">
 <div class="col-lg-4 topma">
-          @if($vendor->picture)
+          @if($vendor->logo)
 
-          <img src="{{ imagePath($vendor->picture) }}" class="img-responsive img-circle" style="width:148px;height:148px">
+          <img src="{{ imagePath($vendor->logo) }}" class="img-responsive img-circle" style="width:148px;height:148px">
 
           @else
             <img src="{{url('/')}}/images/logder.jpg" class="img-responsive img-circle">
@@ -73,7 +73,14 @@
     <div class="review-widget" class="pull-right" >
       <div class="review-wiget-top" style="">
           <span>
-            {{ FrontStarRating($vendor->rating->avg('overall_rate')) }}
+            <?php 
+              $star_rating = $vendor->rating->avg('overall_rate');
+            ?>
+            @if($star_rating)
+              {{ FrontStarRating($star_rating)}}
+            @else
+              Not Rated Yet
+            @endif
           </span>
           <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
           </div>
@@ -164,7 +171,9 @@
       @if($vendor->images->count())
         @foreach($vendor->images as $image)
           <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:10px;">
-            <img src="{{ImagePath($image)}}" class="img-responsive" style="height:208px">
+            <a href="{{ImagePath($image)}}" data-lightbox="{{$image->id}}">
+              <img src="{{ImagePath($image)}}" class="img-responsive" style="height:208px">
+            </a>
             <div class="col-lg-12 col-md-12 col-sm-12 back">
             <h5><strong>{{str_limit($image->title,100)}}</strong></h5>
             </div>

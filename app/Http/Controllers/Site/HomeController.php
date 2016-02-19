@@ -17,7 +17,10 @@ class HomeController extends Controller
     	$categories = \App\Category::orderBy('name','ASC')->lists('name','id');
     	$cities = \App\City::orderBy('name','ASC')->lists('name','id');
 
-    	return view('site.home',compact('categories','cities'));
+
+        $featuredVendors = \App\Vendor::featured()->onlyActive()->get();
+
+    	return view('site.home',compact('categories','cities','featuredVendors'));
     }
 
     public function search(Request $request){
@@ -29,7 +32,7 @@ class HomeController extends Controller
     	$categories = \App\Category::all();
     	$cities = \App\City::all();
 
-        $per_page = 1;
+        $per_page = config('frontrnd.pagination.per_page');
 
 
         if(!$cat && !$city){

@@ -90,13 +90,15 @@ elixir(function(mix) {
 // FrontEnd Css
 elixir(function(mix) {
     mix.styles([
-        './vendor/bower_components/select2/dist/css/select2.min.css'
+        './vendor/bower_components/select2/dist/css/select2.min.css',
+        './vendor/bower_components/lightbox2/dist/css/lightbox.css'
 
         ],'public/css/vendor.style.css');
 });
 // FrontEnd Js
 elixir(function(mix) {
     mix.scripts([
-        './vendor/bower_components/select2/dist/js/select2.min.js'
+        './vendor/bower_components/select2/dist/js/select2.min.js',
+        './vendor/bower_components/lightbox2/dist/js/lightbox.js',
         ],'public/js/vendor.scripts.js');
 });

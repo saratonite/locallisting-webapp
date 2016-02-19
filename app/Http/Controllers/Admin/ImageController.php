@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @package Locallisting\Admin
+ * @author Sarath <sarathtvmala@gmail.com>
+ * @descriptionm Admin area image controller , basic CRUD and file operations
+ */
+
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -17,9 +23,12 @@ class ImageController extends Controller
     public function index(Request $request,$ImageStatus=null){
 
 
-    	$images = \App\Image::with('user')->orderBy('id','DESC')->paginate(config('settings.pagination.per_page'));
+        $per_page = config('settings.pagination.per_page');
 
-        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
+
+    	$images = \App\Image::with('user')->orderBy('id','DESC')->paginate($per_page);
+
+        $row_count = pagination_row_num($request->input('page'),$per_page);
 
         return view('admin.images.index',compact('images','row_count'));
     }

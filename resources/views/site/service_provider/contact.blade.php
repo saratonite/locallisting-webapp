@@ -89,7 +89,7 @@
 </div> 
 <!--  -->
 <div class="col-lg-7 col-md-7 col-sm-7"><br>
-<form method="post" action="{{route('submit_review',$vendor->id)}}">
+<form method="post" action="{{route('submit-contact',$vendor->id)}}">
 <h4>POST YOUR ENQUIRY</h4>
 @if(count($errors))
 	<ul class="alert alert-danger">

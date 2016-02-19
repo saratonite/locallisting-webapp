@@ -196,6 +196,12 @@ class Vendor extends Model
         return $this->user()->active();
     }
 
+    public function scopeFeatured($query){
+
+        $query->where('featured',1);
+
+    }
+
     public function scopeOnlyActive($query){
 
         $query->whereHas('user',function($q){

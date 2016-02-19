@@ -55,4 +55,16 @@ class EnquiryController extends Controller
 
 
     }
+
+    public function postRequirements(){
+
+        
+
+    }
+
+    public function processPostRequirements(){
+
+
+
+    }
 }

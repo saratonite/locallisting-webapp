@@ -19,7 +19,6 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 	Route::get('/','HomeController@home');
 	Route::get('search','HomeController@search')->name('search');
-	Route::get('service_provider/red-earth-gardening','HomeController@service_provider')->name('profile1');
 	Route::get('service_provider/{vendorId}','HomeController@service_provider')->name('profile');
 
 
@@ -28,7 +27,11 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 	Route::post('service_provider/{vendorID}/submit_review',['middleware'=>'auth','uses'=>'ReviewController@submitReview']);
 
 	Route::get('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@contact'])->name('submit-enquiry');
-	Route::post('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@submitContact']);
+	Route::post('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@submitContact'])->name('submit-contact');
+
+
+	Route::get('post_requirements','EnquiryController@postRequirements');
+	Route::post('post_requirements','EnquiryController@proccessPostRequirements');
 
 
 

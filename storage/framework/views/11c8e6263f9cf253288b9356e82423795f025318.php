@@ -84,11 +84,23 @@
 <div class="container-fluid">
   <div class="container">
     <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12"><h4 class="topse">Top Service Provider's</h4></div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6"><img src="images/logo1.jpg" class="img-responsive center-block"></div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6"><img src="images/logo2.jpg"class="img-responsive center-block"></div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6"><img src="images/logo3.jpg"class="img-responsive center-block"></div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6"><img src="images/logo4.jpg"class="img-responsive center-block"></div>
+    
+
+        <?php if($featuredVendors && count($featuredVendors)): ?>
+        <div class="col-lg-12 col-md-12 col-sm-12"><h4 class="topse">Top Service Provider's</h4></div>
+            <?php foreach($featuredVendors as $topV): ?>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clearfix">
+                      <a href="<?php echo e(route('profile',$topV->id)); ?>" title="<?php echo e($topV->vendor_name); ?>">
+                           <?php if($topV->logo): ?>
+                              <img style="width:150px;hiegth:80px" src="<?php echo e(imagePath($topV->logo)); ?>"class="img-responsive center-block">
+                
+                           <?php else: ?>
+                              <img style="width:150px;hiegth:80px" src="<?php echo e(url('/')); ?>/images/logder.jpg" class="img-responsive center-block">
+                           <?php endif; ?>
+                      </a>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
   </div>
 </div>
