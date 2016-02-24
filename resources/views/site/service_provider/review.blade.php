@@ -9,7 +9,7 @@
     <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3" style="min-height:440px">
     <strong>Filter By type <i class="fa fa-chevron-down"></i></strong><br><br>
-    <p class="lem"><a href="#">All Professionals</a><br>
+    <p class="lem"><a href="{{route('search')}}">All Professionals</a><br>
  @if($categories->count())
 
         @foreach($categories as $key=>$cat)
@@ -71,7 +71,21 @@
     <a href="#"><img src="{{url('/')}}/images/twitter.jpg"></a>
     <a href="#"> <img src="{{url('/')}}/images/googleplus.jpg"></a>
 
-<p class="pt"><a href="#"> <img src="{{url('/')}}/images/fdhdh.jpg"></a></p>
+    <div class="review-widget" class="pull-right" >
+      <div class="review-wiget-top" style="">
+          <span>
+            @if($vendor->rate)
+              {{ FrontStarRating($vendor->rate)}}
+            @else
+              Not Rated Yet
+            @endif
+          </span>
+          <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
+          </div>
+      <div class="review-widget-bottom" >
+          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact me</a> 
+      </div>
+    </div>
 
 </div>
 </div>
@@ -111,7 +125,6 @@
 	<label for="">Rate Professionalism</label>
 	<input id="input-2a" name="rate_professionalism" value="{{ old('rate_professionalism')}}"  class="rating rating-xs" data-min="0" data-max="5" data-step="1" data-stars="5" data-glyphicon="true">
 </div>
-<h4>Overall Rating:3.5/5</h4><br>
 
 <h5><strong>Your Review</strong></h5>
 <div style=" color:#999" ;="">
@@ -133,14 +146,7 @@
 		<textarea class="form-control"  placeholder="Review body" rows="5" name="body">{{ old('body')}}</textarea>
 		
 	</div>
-<h5><strong>Your relationship to the professional</strong></h5>
- 
-<ul style="color:#999; list-style:none; padding:0px;">
-<li><input type="radio" name="relation" value="hired"> I hired this company</li>
-<li><input type="radio" name="relation" value="worked"> Iam a professional who worked with this company</li>
-<li><input type="radio" name="relation" value="recived_estimation"> I recived an estimate/consultation but did not hire them</li>
-<li><p style="float:left; margin:5px 10px 0 0"><input type="radio" name="relation" value="other"> other</p><input type="text" name="relation_details" class="form-control" style="width:50%"></li>
-</ul>
+
 <div style="background-color:
 #fcf8e3">&nbsp;
 <p>&nbsp; <input type="checkbox" name="confirm">&nbsp; I conform that the information submited here is true and accurate.I conform that i do not&nbsp;

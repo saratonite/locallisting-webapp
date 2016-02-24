@@ -9,7 +9,7 @@
     <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3" style="min-height:440px">
     <strong>Filter By type <i class="fa fa-chevron-down"></i></strong><br><br>
-    <p class="lem"><a href="#">All Professionals</a><br>
+    <p class="lem"><a href="{{route('search')}}">All Professionals</a><br>
  @if($categories->count())
 
         @foreach($categories as $key=>$cat)
@@ -74,7 +74,7 @@
       <div class="review-wiget-top" style="">
           <span>
             <?php 
-              $star_rating = $vendor->rating->avg('overall_rate');
+              $star_rating = $vendor->rate;
             ?>
             @if($star_rating)
               {{ FrontStarRating($star_rating)}}

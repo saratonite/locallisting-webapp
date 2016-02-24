@@ -58,8 +58,8 @@
   <div class="container">
     <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4"><i class="fa fa-check-circle-o"></i> Always Free !</div>
-    <div class="col-lg-4 col-md-4 col-sm-4"><i class="fa fa-check-circle-o"></i> Verified Service Provider's</div>
-    <div class="col-lg-4 col-md-4 col-sm-4"><i class="fa fa-check-circle-o"></i> Preffered choice of UAE Residents</div>
+    <div class="col-lg-4 col-md-4 col-sm-4"><i class="fa fa-check-circle-o"></i> Verified  Service Providers</div>
+    <div class="col-lg-4 col-md-4 col-sm-4"><i class="fa fa-check-circle-o"></i> Preferred choice of UAE Residents</div>
     </div>
   </div>
 </div>
@@ -75,7 +75,7 @@
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"> <a href="#"><img src="images/category.jpg"class="img-responsive center-block">PEST CONTROL</a></div>
     <div class="clearfix"></div>
      <div class="col-lg-12 col-md-12 col-sm-12 ct">
-    <a href="#"  class="cata">See All Categories</a></div>
+    <a href="<?php echo e(route('categories')); ?>"  class="cata">See All Categories</a></div>
     </div>
 
   </div>

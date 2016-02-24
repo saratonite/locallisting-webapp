@@ -5,10 +5,10 @@
     <div class="col-lg-3 col-md-3 col-sm-3">
     <strong>Filter By Category <i class="fa fa-chevron-down"></i></strong><br><br>
     <p class="lem">
+      <a href="<?php echo e(route('search')); ?>">All</a><br>
+      <?php if($categoriesSide->count()): ?>
 
-      <?php if($categories->count()): ?>
-
-        <?php foreach($categories as $category): ?>
+        <?php foreach($categoriesSide as $category): ?>
         <a href="<?php echo e(route('search')); ?>?category=<?php echo e($category->id); ?><?php if($city): ?>&city=<?php echo e($city); ?><?php endif; ?>"><?php echo e($category->name); ?></a><br>
         <?php endforeach; ?>
 
@@ -26,44 +26,45 @@
     <h2 class="inh1">216,347 Architects and Building Designers</h2>
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br><br></p>
     <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4">
-    <input type="text" class="form-control " placeholder="Architicts & Building Designers">
+    <form action="<?php echo e(route('search')); ?>">
+    <div class="col-lg-3 col-md-3 col-sm-3">
+      <select name="category" class="form-control">
+        <option disabled> Category</option>
+        <?php if(count($categories)): ?>
+          <?php foreach($categories as $key=> $cate): ?>
+          <option <?php if($cat==$key): ?> selected <?php endif; ?> value="<?php echo e($key); ?>"><?php echo e($cate); ?></option>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </select>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
+    <div class="col-lg-3 col-md-3 col-sm-3">
      <div class="row">
-    <div class=" col-lg-2 col-md-2 col-sm-2" style="margin-top:5px;">Near</div><div class="col-lg-10 col-md-10 col-sm-10" > <input type="text" class="form-control " placeholder="City, State"></div>
+    <div class=" col-lg-2 col-md-2 col-sm-2" style="margin-top:5px;">Near</div><div class="col-lg-10 col-md-10 col-sm-10" >
+     <!--  -->
+      <select class="form-control" name="city">
+          <option disabled> City</option>
+          <?php if($cities->count()): ?>
+            <?php foreach($cities as $cit): ?>
+              <option <?php if($cit->id == $city): ?> selected <?php endif; ?> value="<?php echo e($cit->id); ?>"><?php echo e($cit->name); ?></option>
+            <?php endforeach; ?>
+          <?php endif; ?>
+      </select>
+     <!--  -->
     </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-     <div class="row">
-    <div class=" col-lg-4 col-md-4 col-sm-4" style="margin-top:5px;">Within</div> <div class="col-lg-8 col-md-8 col-sm-8" >
-    <select class="form-control ">
-    <option>Anywhere</option>
-    </select>
-    </div>
-    </div>
-    </div>
-    <div class="clearfix"></div><P>&nbsp;</P>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-     <div class="row">
-    <div class=" col-lg-4 col-md-4 col-sm-4" style="margin-top:5px;">Sort By</div> <div class="col-lg-8 col-md-8 col-sm-8" >
-    <select class="form-control ">
-    <option>Best Match</option>
-    </select>
-    </div>
-    </div>
+
+
     </div>
     
-    <div class="col-lg-4 col-md-4 col-sm-4">
-     <div class="row">
-    <div class=" col-lg-4 col-md-4 col-sm-4">
+  
+    <div class="clearfix"></div><P>&nbsp;</P>
+
+    
+    
+    </div>
+        <div class=" col-lg-2 col-md-2 col-sm-2">
     <button class="btn btn-success">Search</button>
     </div>
-    </div>
-    </div>
-    
-    
-    </div>
+      </form>
     <hr>
     </div>
         <div class="col-lg-12 col-md-12 col-sm-12">

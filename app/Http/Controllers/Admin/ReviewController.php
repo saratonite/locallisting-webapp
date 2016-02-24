@@ -59,6 +59,13 @@ class ReviewController extends Controller
     		$review->update();
     	}
 
+        //  -- Calculate / Update Vendor rating ---
+        $vendor = \App\Vendor::find($review->vendor_id);
+        if($vendor){
+           $vendor->rate = $vendor->rating->avg('overall_rate');
+           $vendor->update();
+        }
+
     	return redirect()->back();
 
     }

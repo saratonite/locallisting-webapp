@@ -21,7 +21,10 @@ class RegistrationController extends Controller
     public function userSignup(){
 
 
-    	return view('site.registration.user');
+         $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
+
+
+    	return view('site.registration.user',compact('categories'));
 
     }
 

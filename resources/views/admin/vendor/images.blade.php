@@ -36,7 +36,7 @@
 								</a>
 								
 							</td>
-							<td><a href="{{route('admin::show-review',$image->id)}}">{{$image->title}}</a></td>
+							<td><a href="{{route('admin::show-image',$image->id)}}">{{$image->title}}</a></td>
 							<td>{{$image->created_at->toFormattedDateString()}}</td>
 							<td><label class="label label-{{BS_Enquiry_Status_Class($image->status)}}">{{ucfirst($image->status)}}</label></td>
 						</tr>

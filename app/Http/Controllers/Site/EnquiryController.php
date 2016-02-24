@@ -58,11 +58,62 @@ class EnquiryController extends Controller
 
     public function postRequirements(){
 
+
+        $vendors = \App\Vendor::with('picture')->onlyactive()->get();
+
+        $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
+
+
+
+        return view('site.postrequirements',compact('vendors','categories'));
+
         
 
     }
 
-    public function processPostRequirements(){
+    public function proccessPostRequirements(Request $request){
+
+
+
+        $v = Validator::make($request->all(),[
+
+            'subject' => 'required',
+            'message' =>'required'
+
+            ]);
+
+        if($v->fails()){
+            return redirect()->back()->withErrors($v)->withInput();
+        }
+
+        $vendors = $request->input('vendor');
+
+        if(count($vendors) == 0){
+            return redirect()->back()->withInput()->with('error','Please select at least 1 vendor');
+        }
+
+        foreach($vendors as $vendor){
+
+            $vnd = \App\Vendor::find($vendor);
+
+            if($vnd){
+
+                $enquiry = new \App\Enquiry();
+
+                $enquiry->from_user = Auth::user()->id;
+                $enquiry->to_vendor = $vnd->id;
+
+                $enquiry->subject = $request->input('subject');
+                $enquiry->message = $request->input('message');
+
+                $enquiry->save();
+
+
+            }
+
+        }
+
+        return redirect()->back()->with('success','Your requirement submited to vendors');
 
 
 

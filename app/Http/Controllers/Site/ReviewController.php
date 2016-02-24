@@ -64,9 +64,6 @@ class ReviewController extends Controller
     	return redirect()->route('profile',$vendor->id)->with('success','You review has been submitted , Thank you');
 
 
-    	$categories = \App\Category::orderBy('name','ASC')->lists('name','id');
-
-
 
     }
 }

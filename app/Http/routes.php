@@ -29,9 +29,11 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 	Route::get('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@contact'])->name('submit-enquiry');
 	Route::post('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@submitContact'])->name('submit-contact');
 
+	Route::get('post_requirements',['middleware'=>'auth','uses'=>'EnquiryController@postRequirements'])->name('post-requirement');
+	Route::post('post_requirements',['middleware'=>'auth','uses'=>'EnquiryController@proccessPostRequirements']);
 
-	Route::get('post_requirements','EnquiryController@postRequirements');
-	Route::post('post_requirements','EnquiryController@proccessPostRequirements');
+
+	Route::get('categories','CategoryController@index')->name('categories');
 
 
 

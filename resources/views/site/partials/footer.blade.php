@@ -15,12 +15,15 @@
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
         <h5><strong>Services</strong></h5>
         <p>
-        <a href="#">Moving</a><br>
-        <a href="#">Storage</a><br>
-        <a href="#">Car Shipping</a><br>
-        <a href="#">Cleaning</a><br>
-        <a href="#">Pest Control</a><br>
-        <a href="#">More..</a><br>
+        @if(isset($categories) && count($categories))
+        <?php $i=1;?>
+          @foreach($categories as $key => $cat)
+
+              @if($i<=5)<a href="{{route('search')}}?category={{$key}}">{{$cat}}</a><br/>@endif
+            <?php $i++;?>
+          @endforeach
+        @endif
+        <a href="{{route('categories')}}">More..</a><br>
         </p>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">

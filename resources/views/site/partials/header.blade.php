@@ -16,9 +16,8 @@
       @else
         <a href="{{url('login')}}" lass="log">LOGIN</a>/
         <a href="{{ route('user-signup')}}" class="log">SIGNUP</a>
-        <a href="#" class="preq">POST A REQUIREMENT</a>
-
       @endif
+         <a href="{{ route('post-requirement') }}" class="preq">POST A REQUIREMENT</a>
       </div>
     </div>
   </div>

@@ -18,6 +18,8 @@
 
 		cb.prototype.create = function(options){
 
+			this.options = options;
+
 			this.modal = options.modal || ".modal";
 			this.bindEl = $(options.el);
 			this.action =  $(this.bindEl).data('action') || "default";
@@ -28,6 +30,7 @@
 
 			$(this.bindEl).on('click',function(){
 				self.action =  $(this).data('action') || "default";
+				self.recordId =  $(this).data('record-id') || self.options.recordId || null;
 				self.fillModalForm(this);
 				self.showModal();
 

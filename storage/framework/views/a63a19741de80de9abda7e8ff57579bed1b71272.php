@@ -16,9 +16,8 @@
       <?php else: ?>
         <a href="<?php echo e(url('login')); ?>" lass="log">LOGIN</a>/
         <a href="<?php echo e(route('user-signup')); ?>" class="log">SIGNUP</a>
-        <a href="#" class="preq">POST A REQUIREMENT</a>
-
       <?php endif; ?>
+         <a href="<?php echo e(route('post-requirement')); ?>" class="preq">POST A REQUIREMENT</a>
       </div>
     </div>
   </div>

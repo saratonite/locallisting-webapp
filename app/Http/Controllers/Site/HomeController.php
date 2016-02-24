@@ -29,7 +29,8 @@ class HomeController extends Controller
     	$city =$request->input('city');
 
 
-    	$categories = \App\Category::all();
+    	$categoriesSide = \App\Category::all();
+        $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
     	$cities = \App\City::all();
 
         $per_page = config('frontrnd.pagination.per_page');
@@ -53,7 +54,7 @@ class HomeController extends Controller
 
         $vendors->appends($request->except('page'));
 
-    	return view('site.search',compact('vendors','categories','cities','cat','city'));
+    	return view('site.search',compact('vendors','categories','cities','cat','city','categoriesSide'));
 
     }
 

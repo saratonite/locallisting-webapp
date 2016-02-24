@@ -6,10 +6,10 @@
     <div class="col-lg-3 col-md-3 col-sm-3">
     <strong>Filter By Category <i class="fa fa-chevron-down"></i></strong><br><br>
     <p class="lem">
+      <a href="{{route('search')}}">All</a><br>
+      @if($categoriesSide->count())
 
-      @if($categories->count())
-
-        @foreach($categories as $category)
+        @foreach($categoriesSide as $category)
         <a href="{{route('search')}}?category={{$category->id}}@if($city)&city={{$city}}@endif">{{$category->name}}</a><br>
         @endforeach
 
@@ -27,44 +27,45 @@
     <h2 class="inh1">216,347 Architects and Building Designers</h2>
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br><br></p>
     <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4">
-    <input type="text" class="form-control " placeholder="Architicts & Building Designers">
+    <form action="{{route('search')}}">
+    <div class="col-lg-3 col-md-3 col-sm-3">
+      <select name="category" class="form-control">
+        <option disabled> Category</option>
+        @if(count($categories))
+          @foreach($categories as $key=> $cate)
+          <option @if($cat==$key) selected @endif value="{{$key}}">{{$cate}}</option>
+          @endforeach
+        @endif
+      </select>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
+    <div class="col-lg-3 col-md-3 col-sm-3">
      <div class="row">
-    <div class=" col-lg-2 col-md-2 col-sm-2" style="margin-top:5px;">Near</div><div class="col-lg-10 col-md-10 col-sm-10" > <input type="text" class="form-control " placeholder="City, State"></div>
+    <div class=" col-lg-2 col-md-2 col-sm-2" style="margin-top:5px;">Near</div><div class="col-lg-10 col-md-10 col-sm-10" >
+     <!--  -->
+      <select class="form-control" name="city">
+          <option disabled> City</option>
+          @if($cities->count())
+            @foreach($cities as $cit)
+              <option @if($cit->id == $city) selected @endif value="{{$cit->id}}">{{$cit->name}}</option>
+            @endforeach
+          @endif
+      </select>
+     <!--  -->
     </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-     <div class="row">
-    <div class=" col-lg-4 col-md-4 col-sm-4" style="margin-top:5px;">Within</div> <div class="col-lg-8 col-md-8 col-sm-8" >
-    <select class="form-control ">
-    <option>Anywhere</option>
-    </select>
-    </div>
-    </div>
-    </div>
-    <div class="clearfix"></div><P>&nbsp;</P>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-     <div class="row">
-    <div class=" col-lg-4 col-md-4 col-sm-4" style="margin-top:5px;">Sort By</div> <div class="col-lg-8 col-md-8 col-sm-8" >
-    <select class="form-control ">
-    <option>Best Match</option>
-    </select>
-    </div>
-    </div>
+
+
     </div>
     
-    <div class="col-lg-4 col-md-4 col-sm-4">
-     <div class="row">
-    <div class=" col-lg-4 col-md-4 col-sm-4">
+  
+    <div class="clearfix"></div><P>&nbsp;</P>
+
+    
+    
+    </div>
+        <div class=" col-lg-2 col-md-2 col-sm-2">
     <button class="btn btn-success">Search</button>
     </div>
-    </div>
-    </div>
-    
-    
-    </div>
+      </form>
     <hr>
     </div>
         <div class="col-lg-12 col-md-12 col-sm-12">

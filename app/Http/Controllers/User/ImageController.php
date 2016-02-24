@@ -37,9 +37,7 @@ class ImageController extends Controller
     	
     	$v = Validator::make($request->all(),[
 
-    			'file' =>'required |mimes:jpg,jpeg,png|max:5000',
-    			'title' =>'required|max:128',
-    			'description' => 'required'
+    			'file' =>'required |mimes:jpg,jpeg,png|max:5000'
     	]);
 
     	if($v->fails()){

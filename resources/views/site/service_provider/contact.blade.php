@@ -9,8 +9,8 @@
     <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3" style="min-height:440px">
     <strong>Filter By type <i class="fa fa-chevron-down"></i></strong><br><br>
-    <p class="lem"><a href="#">All Professionals</a><br>
- @if($categories->count())
+    <p class="lem"><a href="{{route('search')}}">All Professionals</a><br>
+ @if(isset($categories) && $categories->count())
 
         @foreach($categories as $key=>$cat)
         <a href="{{route('search')}}?category={{$key}}">{{$cat}}</a><br>
@@ -74,7 +74,11 @@
 <div class="review-widget" class="pull-right" >
       <div class="review-wiget-top" style="">
           <span>
-            {{ FrontStarRating($vendor->rating->avg('overall_rate')) }}
+            @if($vendor->rate)
+              {{ FrontStarRating($vendor->rate)}}
+            @else
+              Not Rated Yet
+            @endif
           </span>
           <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
           </div>
