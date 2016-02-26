@@ -29,7 +29,7 @@
     <form action="<?php echo e(route('search')); ?>">
     <div class="col-lg-3 col-md-3 col-sm-3">
       <select name="category" class="form-control">
-        <option disabled> Category</option>
+        <option disabled selected> Category</option>
         <?php if(count($categories)): ?>
           <?php foreach($categories as $key=> $cate): ?>
           <option <?php if($cat==$key): ?> selected <?php endif; ?> value="<?php echo e($key); ?>"><?php echo e($cate); ?></option>
@@ -42,7 +42,7 @@
     <div class=" col-lg-2 col-md-2 col-sm-2" style="margin-top:5px;">Near</div><div class="col-lg-10 col-md-10 col-sm-10" >
      <!--  -->
       <select class="form-control" name="city">
-          <option disabled> City</option>
+          <option disabled selected> City</option>
           <?php if($cities->count()): ?>
             <?php foreach($cities as $cit): ?>
               <option <?php if($cit->id == $city): ?> selected <?php endif; ?> value="<?php echo e($cit->id); ?>"><?php echo e($cit->name); ?></option>
@@ -91,7 +91,18 @@
           <?php endif; ?>
           
     </div>
-    <h4 class="flo"><a href="<?php echo e(route('profile',$vendor->id,str_slug($vendor->vendor_name))); ?>"><?php echo e($vendor->vendor_name); ?></a> <br><img src="images/reviews.jpg"></h4>
+    <h4 class="flo"><a href="<?php echo e(route('profile',$vendor->id,str_slug($vendor->vendor_name))); ?>"><?php echo e($vendor->vendor_name); ?></a> <br><!-- <img src="images/reviews.jpg"> -->
+        <p >
+            <small style="color:green">  
+              <?php if($vendor->rate): ?>
+              <?php echo e(FrontStarRating($vendor->rate)); ?>
+
+              <?php else: ?>
+              Not Rated Yet
+              <?php endif; ?> <?php echo e($vendor->review->count()); ?> Reviews</small>
+        </p>
+    </h4>
+    
     <p class="pull-right"><?php if($vendor->contact_number): ?> <?php echo e($vendor->contact_number); ?> <?php else: ?> <?php echo e($vendor->mobile); ?> <?php endif; ?></p>
     <div class="clearfix"></div>
     <p><strong><?php echo e($vendor->addr_line1); ?>,<?php echo e($vendor->addr_line2); ?>,<?php echo e($vendor->addr_line3); ?></strong></p>

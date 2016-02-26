@@ -10,12 +10,13 @@ use App\Http\Controllers\Controller;
 class EnquiryController extends Controller
 {
     
-    public function index(){
+    public function index(Request $request){
 
     	$enquiries = \App\Enquiry::with('vendor')->bydate()->paginate(config('settings.pagination.per_page'));
     	//return $enquiries;
+        $row_count = pagination_row_num($request->input('page'),config('settings.pagination.per_page'));
 
-    	return view('admin.enquiry.index',compact('enquiries'));
+    	return view('admin.enquiry.index',compact('enquiries','row_count'));
     }
 
 
@@ -26,34 +27,34 @@ class EnquiryController extends Controller
      * Get accepted enquiries
      */
     
-    public function accepted(){
+    public function accepted(Request $request){
         $enquiries = \App\Enquiry::with('vendor')->bydate()->bystatus('accepted')->paginate(config('settings.pagination.per_page'));
         //return $enquiries;
 
-        return view('admin.enquiry.index',compact('enquiries'));
+        return view('admin.enquiry.index',compact('enquiries','row_count'));
     }
 
     /**
      * get rejected
      */
     
-    public function rejected(){
+    public function rejected(Request $request){
         $enquiries = \App\Enquiry::with('vendor')->bydate()->bystatus('rejected')->paginate(config('settings.pagination.per_page'));
         //return $enquiries;
 
-        return view('admin.enquiry.index',compact('enquiries'));
+        return view('admin.enquiry.index',compact('enquiries','row_count'));
     }
 
     /**
      * get pending 
      */
     
-    public function pending(){
+    public function pending(Request $request){
 
         $enquiries = \App\Enquiry::with('vendor')->bydate()->bystatus('pending')->paginate(config('settings.pagination.per_page'));
         //return $enquiries;
 
-        return view('admin.enquiry.index',compact('enquiries'));
+        return view('admin.enquiry.index',compact('enquiries','row_count'));
 
     }
 

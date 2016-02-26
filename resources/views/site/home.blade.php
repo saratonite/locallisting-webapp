@@ -12,7 +12,10 @@
     <div class="row">
     <div class="col-lg-12 text-right">
 <p>Are you a Qualified Service Professional ?</p></div>
-<div class="col-lg-12 cs"><a href="{{route('vendor-signup')}}"  class="join pull-right">JOIN WITH US</a>
+<div class="col-lg-12 cs">
+  @if(!Auth::check())
+    <a href="{{route('vendor-signup')}}"  class="join pull-right">JOIN  US</a>
+  @endif
 </div>
 <div class="clearfix"></div>
 <div class="col-lg-12"><h1 class="sehed">Find a trusted service provider</h1></div>
@@ -131,7 +134,7 @@
                        
 				    	<blockquote>
 				    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                            <a href="#"  class="tem">Write a review</a>
+                            <a href="{{route('categories')}}"  class="tem">Write a review</a>
 				    	</blockquote>
                         	
 				    </div>
@@ -139,14 +142,14 @@
                       
 				    	<blockquote>
 				    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                             <a href="#"  class="tem">Write a review</a>
+                             <a href="{{route('categories')}}"  class="tem">Write a review</a>
 				    	</blockquote>
 				    </div>
 				    <div class="active item">
                        
 				    	<blockquote>
 				    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                             <a href="#"  class="tem">Write a review</a>
+                             <a href="{{route('categories')}}"  class="tem">Write a review</a>
 				    	</blockquote>
 				    </div>
 				  </div>

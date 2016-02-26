@@ -84,9 +84,9 @@ and all the cool updates </p>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5">
         <p class="pull-right ftfoot">
-<a href="#">Home</a>
-<a href="#">Terms</a>
-<a href="#">Privacy Policy</a>
+<a href="{{ url('/') }}">Home</a>
+<a href="{{route('terms-conditions')}}">Terms</a>
+<a href="{{route('privacy-policy')}}">Privacy Policy</a>
 <a href="#">Partners & Affiliates</a>
 <a href="#">SiteMap</a></p>
       </div>

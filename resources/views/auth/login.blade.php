@@ -57,6 +57,13 @@
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                             </div>
                         </div>
+                        <p>
+                            Not Registered yet ? <a href="{{route('user-signup')}}">User Sign up</a>  
+                        </p>
+                        <p>
+                            Are  you a service provider then
+                            <a href="{{route('vendor-signup')}}">Sign up as Service Provider</a>
+                        </p>
                     </form>
                 </div>
             </div>

@@ -30,7 +30,7 @@
     <form action="{{route('search')}}">
     <div class="col-lg-3 col-md-3 col-sm-3">
       <select name="category" class="form-control">
-        <option disabled> Category</option>
+        <option disabled selected> Category</option>
         @if(count($categories))
           @foreach($categories as $key=> $cate)
           <option @if($cat==$key) selected @endif value="{{$key}}">{{$cate}}</option>
@@ -43,7 +43,7 @@
     <div class=" col-lg-2 col-md-2 col-sm-2" style="margin-top:5px;">Near</div><div class="col-lg-10 col-md-10 col-sm-10" >
      <!--  -->
       <select class="form-control" name="city">
-          <option disabled> City</option>
+          <option disabled selected> City</option>
           @if($cities->count())
             @foreach($cities as $cit)
               <option @if($cit->id == $city) selected @endif value="{{$cit->id}}">{{$cit->name}}</option>
@@ -92,7 +92,17 @@
           @endif
           
     </div>
-    <h4 class="flo"><a href="{{ route('profile',$vendor->id,str_slug($vendor->vendor_name))}}">{{$vendor->vendor_name}}</a> <br><img src="images/reviews.jpg"></h4>
+    <h4 class="flo"><a href="{{ route('profile',$vendor->id,str_slug($vendor->vendor_name))}}">{{$vendor->vendor_name}}</a> <br><!-- <img src="images/reviews.jpg"> -->
+        <p >
+            <small style="color:green">  
+              @if($vendor->rate)
+              {{ FrontStarRating($vendor->rate)}}
+              @else
+              Not Rated Yet
+              @endif {{ $vendor->review->count() }} Reviews</small>
+        </p>
+    </h4>
+    
     <p class="pull-right">@if($vendor->contact_number) {{ $vendor->contact_number}} @else {{$vendor->mobile}} @endif</p>
     <div class="clearfix"></div>
     <p><strong>{{$vendor->addr_line1}},{{$vendor->addr_line2}},{{$vendor->addr_line3}}</strong></p>

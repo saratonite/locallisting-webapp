@@ -17,12 +17,13 @@
 		<!-- Loop through enquiries -->
 		@foreach($enquiries as $enquiry)
 		<tr>
-			<td>1</td>
+			<td>{{$row_count}}</td>
 			<td><a href="{{route('admin::view-enquiry',$enquiry->id)}}">{{$enquiry->subject}}</a></td>
 			<td>{{ $enquiry->from->first_name}}</td>
 			<td>{{ $enquiry->vendor->vendor_name }}</td>
 			<td>{{ $enquiry->created_at->format('d-M-Y')}}</td>
 		</tr>
+			<?php $row_count++;?>
 		@endforeach
 		<!-- End Loop through enquiries -->
 		@else

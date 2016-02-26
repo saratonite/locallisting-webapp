@@ -25,6 +25,10 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 	// Auth pages
 	Route::get('service_provider/{vendorID}/submit_review',['middleware'=>'auth','uses'=>'ReviewController@writeReview'])->name('submit_review');
 	Route::post('service_provider/{vendorID}/submit_review',['middleware'=>'auth','uses'=>'ReviewController@submitReview']);
+	
+	// Route::post('service_provider/{vendorID}/reviews',['middleware'=>'auth','uses'=>'VendorController@reviews']);
+	// Route::post('service_provider/{vendorID}/images',['middleware'=>'auth','uses'=>'VendorController@images']);
+
 
 	Route::get('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@contact'])->name('submit-enquiry');
 	Route::post('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@submitContact'])->name('submit-contact');
@@ -34,6 +38,9 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 
 	Route::get('categories','CategoryController@index')->name('categories');
+
+	Route::get('terms-conditions','PageController@termsandconditions')->name('terms-conditions');
+	Route::get('privacy-policy','PageController@privacypolicy')->name('privacy-policy');
 
 
 

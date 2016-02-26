@@ -15,12 +15,13 @@
 		<!-- Loop through enquiries -->
 		<?php foreach($enquiries as $enquiry): ?>
 		<tr>
-			<td>1</td>
+			<td><?php echo e($row_count); ?></td>
 			<td><a href="<?php echo e(route('admin::view-enquiry',$enquiry->id)); ?>"><?php echo e($enquiry->subject); ?></a></td>
 			<td><?php echo e($enquiry->from->first_name); ?></td>
 			<td><?php echo e($enquiry->vendor->vendor_name); ?></td>
 			<td><?php echo e($enquiry->created_at->format('d-M-Y')); ?></td>
 		</tr>
+			<?php $row_count++;?>
 		<?php endforeach; ?>
 		<!-- End Loop through enquiries -->
 		<?php else: ?>

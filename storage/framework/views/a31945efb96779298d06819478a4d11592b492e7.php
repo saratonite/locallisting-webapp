@@ -56,6 +56,13 @@
                                 <a class="btn btn-link" href="<?php echo e(url('/password/reset')); ?>">Forgot Your Password?</a>
                             </div>
                         </div>
+                        <p>
+                            Not Registered yet ? <a href="<?php echo e(route('user-signup')); ?>">User Sign up</a>  
+                        </p>
+                        <p>
+                            Are  you a service provider then
+                            <a href="<?php echo e(route('vendor-signup')); ?>">Sign up as Service Provider</a>
+                        </p>
                     </form>
                 </div>
             </div>
