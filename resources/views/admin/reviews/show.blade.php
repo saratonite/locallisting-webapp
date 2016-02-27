@@ -91,7 +91,7 @@
 							  </ul>
 							</div>
 		@endif
-		<input type="button" class="btn btn-danger" value="DELETE">
+		<input type="button" class="btn btn-danger" id="delete-action"  value="DELETE">
 	</div>
 	
 		
@@ -199,6 +199,35 @@
   </form>
 </div>
 <!-- End change status modal  -->
+
+<!-- Delete Review modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete Review</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Change review status ?;
+        	</p>
+        	{{ csrf_field() }}
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-danger">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- End Delete Review modal  -->
 @endsection
 
 @section('scripts')
@@ -206,10 +235,15 @@
 	$(function(){
 
 		// Chnage status
-		var reviewBase = "{{ route("admin::list-reviews")}}/change-status";
+		var reviewBase = "{{ route("admin::list-reviews")}}";
 		var reviewId = {{ $review->id}};
 		var changeStatusBox = new Confirmbox();
-		changeStatusBox.create({"el":".status-action",'modal':"#chnage-status-modal","action_url":reviewBase,"recordId":reviewId});
+		changeStatusBox.create({"el":".status-action",'modal':"#chnage-status-modal","action_url":reviewBase+"/change-status","recordId":reviewId});
+
+
+		// Del
+		var delebox = new Confirmbox();
+		delebox.create({"el":"#delete-action","modal":"#delete-modal","action_url":reviewBase+"/delete","recordId":reviewId});
 
 
 	});

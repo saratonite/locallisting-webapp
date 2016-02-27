@@ -51,6 +51,8 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 	Route::get('service-signup',['middleware'=>['guest'],'uses'=>'RegistrationController@vendorSignup'])->name('vendor-signup');
 	Route::post('service-signup',['middleware'=>['guest'],'uses'=>'RegistrationController@vendorSignupProcess'])->name('vendor-signup-process');
 
+	Route::get('confirm_email/{code}','HomeController@confirmemail')->name('confirm-email');
+
 
 });
 
@@ -134,6 +136,8 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 
 	Route::put('siteusers/change-status/{userId}','SiteuserController@changeStatus')->name('update-user-status');
 
+	Route::delete('siteusers/delete/{userId}','SiteuserController@delete')->name('delete-user');
+
 	/**
 	 *
 	 * Enquiry 
@@ -158,6 +162,8 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('reviews/{status?}','ReviewController@index')->name('list-reviews');
 	Route::get('reviews/{reviewId}/show','ReviewController@show')->name('show-review');
 	Route::put('reviews/change-status/{reviewId}','ReviewController@changeStatus')->name('review-chnage-status');
+	Route::delete('reviews/delete/{reviewId}','ReviewController@delete')->name('review-delete');
+
 
 	/**
 	 * Images 
@@ -230,6 +236,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::get('api/me/reviews','ReviewController@getReviewsByMe');
 	Route::get('api/me/reviews/find/{reviewId}','ReviewController@getMyReview');
 	Route::put('api/me/reviews/find/{reviewId}','ReviewController@updateMyReview');
+	Route::delete('api/me/reviews/delete/{reviewId}','ReviewController@delete');
 
 
 

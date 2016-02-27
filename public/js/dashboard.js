@@ -1,5 +1,4 @@
 (function(window,$){
-	console.log('Confirm box');
 
 	var Confirmbox = (function(){
 
@@ -31,6 +30,7 @@
 			$(this.bindEl).on('click',function(){
 				self.action =  $(this).data('action') || "default";
 				self.recordId =  $(this).data('record-id') || self.options.recordId || null;
+				self.submit_url = self.options.action_url+"/"+self.recordId || '/'+self.recordId;
 				self.fillModalForm(this);
 				self.showModal();
 
@@ -43,7 +43,7 @@
 			var idFeild = form.find('[name=id]');
 			var actionFeild = form.find('[name=action]');
 
-			console.log(idFeild);
+			
 			if(!this.url){
 				form.attr('action',this.submit_url);
 			}

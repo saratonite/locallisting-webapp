@@ -78,4 +78,27 @@ class HomeController extends Controller
     	return view('site.service_provider.profile',compact('vendor','categories'));
 
     }
+
+    public function confirmemail(Request $request, $code){
+
+
+        $user = \App\User::where('email_verification',trim($code))->first();
+
+        $alertClass = "danger";
+
+        if($user){
+            $user->email_verification = null;
+            $user->update();
+
+            $message = "Email Verified Successfully";
+            $alertClass ="success";
+
+        }
+        else{
+            $message= "Invalid Verification Link";
+        }
+
+        return view('site.confirm_email.index',compact('alertClass','message'));
+
+    }
 }

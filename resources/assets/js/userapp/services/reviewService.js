@@ -24,6 +24,13 @@ angular.module("userApp")
 			return api.request('put','api/me/reviews/find/'+id,data);
 		},
 
+		deleteMyReview:function(id){
+
+			var id = id;
+			return api.request('delete','api/me/reviews/delete/'+id);
+
+		},
+
 		/*
 		 Return vendors reviews
 		 */

@@ -15,7 +15,6 @@
 				<th class="col-md-1">#</th>
 				<th class="col-md-3">Name</th>
 				<th class="col-md-4">Description</th>
-				<th class="col-md-2">Status</th>
 				<th class="col-md-2">Action</th>
 			
 			</thead>
@@ -27,7 +26,6 @@
 					<td>{{$row_count++}}</td>
 					<td><a href="{{route('admin::category-edit',$category->id)}}">{{$category->name}}</a></td>
 					<td>{{$category->description}}</td>
-					<td>{{$category->status}}</td>
 					<td><a href="#delete" class="delete" data-record-id="{{$category->id}}"><i class="glyphicon glyphicon-remove-circle"></a></td>
 				</tr>
 			@endforeach

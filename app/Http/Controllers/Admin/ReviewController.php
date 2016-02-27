@@ -33,8 +33,6 @@ class ReviewController extends Controller
     	$review = \App\Review::findOrfail($reviewId);
 
     	return view('admin.reviews.show',compact('review'));
-
-    	return "review::show".$reviewId;
     }
 
     /**
@@ -67,6 +65,37 @@ class ReviewController extends Controller
         }
 
     	return redirect()->back();
+
+    }
+
+    public function delete(Request $request , $reviewId){
+
+
+
+        $review = \App\Review::find($reviewId);
+        if(!$review){
+            return  redirect()->back();
+
+        }
+
+        if($review->vendor){
+
+            //  -- Calculate / Update Vendor rating ---
+            $vendor = $review->vendor;
+                if($vendor){
+                   $vendor->rate = $vendor->rating->avg('overall_rate');
+                   $vendor->update();
+                }
+
+
+        }
+
+        $review->delete();
+
+
+        return redirect()->route('admin::list-reviews')->with('success','Review deleted');
+
+
 
     }
 }

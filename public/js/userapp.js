@@ -410,7 +410,7 @@ $scope.imageUploading = false;
 }]);
 "use strict";
 angular.module("userApp")
-.controller("MyReviewController",['$scope','$routeParams','reviewService',function($scope,$routeParams,reviewService){
+.controller("MyReviewController",['$scope','$routeParams','reviewService','toastr',function($scope,$routeParams,reviewService,toastr){
 
 	$scope.requestCompleted = false;
 
@@ -461,6 +461,35 @@ angular.module("userApp")
 
 			}
 
+		);
+
+	}
+
+	$scope.showDeleteAlert = function(id){
+
+		if(confirm('Are really want to delete this review?')){
+			$scope.deleteReview(id);
+		}
+
+	}
+
+
+	$scope.deleteReview = function(id){
+
+		reviewService.deleteMyReview(id).then(
+			function(response){
+
+				if(response.status == 200){
+					$scope.getReviews();
+					toastr.success('Review Deleted');
+				}
+
+			},
+			function(response){
+
+				toastr.error('Network error');
+
+			}
 		);
 
 	}
@@ -979,6 +1008,13 @@ angular.module("userApp")
 		updateMyReview:function(id,data){
 			var id = id;
 			return api.request('put','api/me/reviews/find/'+id,data);
+		},
+
+		deleteMyReview:function(id){
+
+			var id = id;
+			return api.request('delete','api/me/reviews/delete/'+id);
+
 		},
 
 		/*

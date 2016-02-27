@@ -147,12 +147,22 @@ class SiteuserController extends Controller
 
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request,$userId){
 
         // Delete all enquireies made by user
         // Delete all reviews made by user
         // Delete all images by user
         // Delete all 
+        $user = \App\User::find($userId);
+
+        if(!$user){
+            return redirect()->back();
+        }
+    
+        $user->deleteSiteUser();
+
+        return redirect()->route('admin::all-site-users')->with('success','User deleted');
+
         
     }
 }

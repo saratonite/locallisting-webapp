@@ -14,7 +14,7 @@
 				<th class="col-md-1">id</th>
 				<th class="col-md-4">Name</th>
 				<th class="col-md-5">Description</th>
-				<th class="col-md-2">Status</th>
+
 				<th>Actions</th>
 			
 			</thead>
@@ -26,7 +26,7 @@
 					<td>{{$row_count++}}</td>
 					<td><a href="{{ route('admin::city-edit',$city->id)}}">{{str_limit($city->name,30)}}</a></td>
 					<td><a href="{{ route('admin::city-edit',$city->id)}}">{{str_limit($city->description,40)}}</a></td>
-					<td><a href="{{ route('admin::city-edit',$city->id)}}">{{$city->status}}</a></td>
+					
 					<td><a href="#del" class="delete" data-record-id="{{$city->id}}"> <i class="glyphicon glyphicon-remove-circle"></i></a</td>
 				</tr>
 			@endforeach

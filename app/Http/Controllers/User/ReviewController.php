@@ -76,9 +76,26 @@ class ReviewController extends Controller
     	return response()->json(['message','Not found'])->setStatusCode(404);
 
     }
+
+    public function delete($id){
+
+        $review = \App\Review::where('id',$id)->byuser(Auth::user()->id)->with('vendor')->first();
+
+        if($review){
+            $review->delete();
+
+            return response()->json(['message','Review Deleted'])->setStatusCode(200);
+        }
+
+            return response()->json(['message','Unable to find revie']);
+
+
+    }
      /* For vendors - their user
      */
     public function getMyUserReviews(){
+
+
 
     }
 }

@@ -11,7 +11,6 @@
 				<th class="col-md-1">#</th>
 				<th class="col-md-3">Name</th>
 				<th class="col-md-4">Description</th>
-				<th class="col-md-2">Status</th>
 				<th class="col-md-2">Action</th>
 			
 			</thead>
@@ -23,7 +22,6 @@
 					<td><?php echo e($row_count++); ?></td>
 					<td><a href="<?php echo e(route('admin::category-edit',$category->id)); ?>"><?php echo e($category->name); ?></a></td>
 					<td><?php echo e($category->description); ?></td>
-					<td><?php echo e($category->status); ?></td>
 					<td><a href="#delete" class="delete" data-record-id="<?php echo e($category->id); ?>"><i class="glyphicon glyphicon-remove-circle"></a></td>
 				</tr>
 			<?php endforeach; ?>
