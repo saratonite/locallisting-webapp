@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 
+use Validator;
+
 class HomeController extends Controller
 {
     
@@ -20,7 +22,9 @@ class HomeController extends Controller
 
         $featuredVendors = \App\Vendor::featured()->onlyActive()->get();
 
-    	return view('site.home',compact('categories','cities','featuredVendors'));
+        $topCats = \App\VendorCategory::select('category_id', DB::raw('count(*) as total'))->groupby('category_id')->orderBy('total','DESC')->limit(6)->get();
+
+    	return view('site.home',compact('categories','cities','featuredVendors','topCats'));
     }
 
     public function search(Request $request){
@@ -98,7 +102,60 @@ class HomeController extends Controller
             $message= "Invalid Verification Link";
         }
 
-        return view('site.confirm_email.index',compact('alertClass','message'));
+        $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
+
+        return view('site.confirm_email.index',compact('alertClass','message','categories'));
+
+    }
+
+
+    public function subscribe(Request $request){
+
+        $v =  Validator::make($request->all(),[
+            'email'=>'required | email'
+        ]);
+
+
+        $email = strtolower(trim($request->input('email')));
+
+
+
+        
+
+        if($v->fails()){
+
+            return response()->json(['errors'=>$v->errors(),'message'=>'Invalid Email Address'])->setStatusCode(422);
+        }
+
+        // check email already existing 
+        $ex = \App\Subscriber::where('email',$email)->first();
+
+        if(!$ex){
+
+            $sub = new \App\Subscriber();
+            $sub->email = $email;
+
+            $sub->save();
+
+        }
+        // if not Save
+
+        return response()->json(['message'=>'Thank you for subscribing news letter']);
+
+    }
+
+    public function about(){
+
+        $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
+        
+        return view('site.about',compact('categories'));
+    }
+
+    public function sitemap(){
+
+        $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
+        return view('site.sitemap',compact('categories'));
+
 
     }
 }

@@ -92,6 +92,9 @@
                     <li>
                         <a href="{{route('admin::list-images')}}">Images</a>
                     </li>
+                    <li>
+                        <a href="{{route('admin::subscribers')}}">Subscribers</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

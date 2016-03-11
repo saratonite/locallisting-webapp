@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="container">
-	<div class="row">
+	<div class="row" style="padding: 10px;margin:10px">
 	
 		<div class="col-md-12">
 			<h3>Categories</h3>

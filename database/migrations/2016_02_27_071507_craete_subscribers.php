@@ -13,7 +13,15 @@ class CraeteSubscribers extends Migration
     public function up()
     {
         Schema::table('subscribers', function (Blueprint $table) {
-            //
+            
+            $table->increments('id');
+            $table->string('email')->unique();
+            $table->tinyInteger('active')->default(1);
+            $table->string('unsubscribe_token',32);
+            $table->timestamps();
+
+            $table->primary('id');
+
         });
     }
 

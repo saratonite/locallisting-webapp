@@ -53,6 +53,12 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 	Route::get('confirm_email/{code}','HomeController@confirmemail')->name('confirm-email');
 
+	Route::post('subscribe','HomeController@subscribe');
+	Route::post('unsubscribe','HomeController@subscribe')->name('unsubscribe');
+
+	Route::get('about-us','HomeController@about')->name('about');
+	Route::get('sitemap','HomeController@sitemap')->name('sitemap');
+
 
 });
 
@@ -205,6 +211,18 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('city/{cityId}/edit','CityController@edit')->name('city-edit');
 	Route::put('city/{cityId}/update','CityController@update')->name('city-update');
 	Route::delete('city/delete/{cityId}','CityController@delete')->name('city-delete');
+
+
+	Route::get('subscribers','SubscriberController@index')->name('subscribers');
+
+	Route::post('subscribers/new','SubscriberController@store')->name('store-subscriber');
+
+	Route::delete('subscribers/delete/{subid}','SubscriberController@delete')->name('store-subscribers');
+
+	Route::post('subscribers/sendnl','SubscriberController@sendNewsLetter')->name('sendnl');
+
+
+
 
 	
 

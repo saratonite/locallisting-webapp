@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
     <div class="col-lg-7 col-md-7 col-sm-7"><h1>No obligations. No contracts.</h1>
-<p>Just quality service for your conference calling.</p></div>
-<div class="col-lg-5  col-md-5 col-sm-5 cs"><a href="#" class="gets pull-right">Get Started</a>
+<p>UAE Home Advisor helps customers find quality professionals by providing a source of reviews and ratings to help make an educated choice.</p></div>
+<div class="col-lg-5  col-md-5 col-sm-5 cs"><a href="<?php echo e(url('/')); ?>#get-start" class="gets pull-right">Get Started</a>
 </div>
     </div>
   </div>
@@ -30,11 +30,11 @@
         <h5><strong>Support</strong></h5>
         <p>
         <a href="#">Help & Support</a><br>
-        <a href="#">Getting Started</a><br>
+        <a href="<?php echo e(route('about')); ?>">About Us</a><br>
         <a href="#">FAQ</a><br>
         <a href="#">Contact Us</a><br>
         <a href="#">I Need Support</a><br>
-        <a href="#">Write a Review</a><br>
+        <a href="<?php echo e(route('categories')); ?>">Write a Review</a><br>
         </p>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 mar">
@@ -44,7 +44,7 @@
           @
         </div>
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <p>info@homeowner.com
+          <p>info@uaehomeadvisor.com
           </P>
         </div>
         
@@ -65,11 +65,13 @@
       </div>
 
       <div class="col-lg-3 col-md-3 col-sm-3 mar">
+        <form id="newsletterapp">
         <h5><strong>Newsletter</strong></h5>
         <p>Subscribe to our Newsletter -<br>
 and all the cool updates </p>
 
-<p><input type="text" class="form-control nelet" placeholder="Enter Email"></p>
+<p><input type="email" class="form-control nelet" placeholder="Enter Email"></p>
+        </form>
        
                 <div class="social-links pull-left" style="margin-top:5px;">
           <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
@@ -80,7 +82,7 @@ and all the cool updates </p>
       <div class="clearfix"></div>
       <hr>
       <div class="col-lg-7 col-md-7 col-sm-7">
-        <P>  <img src="images/logo.png"> All Rights Reserved to the HomeOwner.com LLC</P>
+        <P>  <img src="images/logo.png">UAEHomeAdvisor LLC.</P>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5">
         <p class="pull-right ftfoot">
@@ -88,7 +90,7 @@ and all the cool updates </p>
 <a href="<?php echo e(route('terms-conditions')); ?>">Terms</a>
 <a href="<?php echo e(route('privacy-policy')); ?>">Privacy Policy</a>
 <a href="#">Partners & Affiliates</a>
-<a href="#">SiteMap</a></p>
+<a href="<?php echo e(route('sitemap')); ?>">SiteMap</a></p>
       </div>
     </div>
   </div>

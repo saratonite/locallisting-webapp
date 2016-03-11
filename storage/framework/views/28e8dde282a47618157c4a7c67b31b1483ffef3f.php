@@ -1018,7 +1018,7 @@ body .markdown-body
 <title>email</title></head>
 <body>
   <article class="markdown-body">
-    <h3 id="app-name"><a name="user-content-app-name" href="#app-name" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>App Name</h3>
+    <h3 id="app-name"><a name="user-content-app-name" href="#app-name" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>UAE HomeAdvisor.</h3>
 
 
     <?php echo $__env->yieldContent('content'); ?>

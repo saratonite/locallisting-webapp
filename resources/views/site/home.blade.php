@@ -7,7 +7,7 @@
 
 @section('content')
 
-<div class="container-fluid banner">
+<div class="container-fluid banner" id="get-start">
   <div class="container">
     <div class="row">
     <div class="col-lg-12 text-right">
@@ -22,7 +22,7 @@
 <div class="col-lg-2 col-md-2 col-sm-2">&nbsp;</div>
 <div class="col-lg-8 col-md-8 col-sm-8  sebox">
 <div class="row">
-<form action="{{ route('search')}}">
+<form action="{{ route('search')}}" >
 <div class="col-lg-10 col-md-10 col-sm-10">
 <select class="ctg col-lg-6 col-md-6 col-sm-6 col-xs-12" name="category">
 <option value="0" disabled selected>All Category</option>
@@ -76,13 +76,17 @@
 <div class="container-fluid">
   <div class="container categ">
     <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-    <a href="#"><img src="images/category.jpg" class="img-responsive center-block">MOVING</a></div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"> <a href="#"><img src="images/category.jpg"class="img-responsive center-block">STORAGE</a></div>
-   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"> <a href="#"><img src="images/category.jpg"class="img-responsive center-block">CAR SHIPPING</a></div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"> <a href="#"><img src="images/category.jpg"class="img-responsive center-block">CLEANING</a></div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"> <a href="#"><img src="images/category.jpg"class="img-responsive center-block">MAINTENANCE</a></div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"> <a href="#"><img src="images/category.jpg"class="img-responsive center-block">PEST CONTROL</a></div>
+    @if(count($topCats))
+
+    <center>
+      @foreach($topCats as $tc)
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+        <a href="{{route('search')}}?category={{$tc->category_id}}"><img src="{{url('images/cat-bullet.png')}}" class="img-responsive img-circle center-block" style="width: 42px">{{strtoupper($tc->category->name)}}</a>
+      </div>
+      @endforeach
+    </center>
+      
+    @endif
     <div class="clearfix"></div>
      <div class="col-lg-12 col-md-12 col-sm-12 ct">
     <a href="{{route('categories')}}"  class="cata">See All Categories</a></div>

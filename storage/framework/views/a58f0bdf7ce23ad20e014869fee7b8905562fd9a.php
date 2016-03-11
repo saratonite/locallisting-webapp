@@ -92,6 +92,9 @@
                     <li>
                         <a href="<?php echo e(route('admin::list-images')); ?>">Images</a>
                     </li>
+                    <li>
+                        <a href="<?php echo e(route('admin::subscribers')); ?>">Subscrubers</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

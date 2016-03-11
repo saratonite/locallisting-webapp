@@ -52,6 +52,14 @@ elixir(function(mix){
 
 });
 
+// Editor
+elixir(function(mix){
+
+mix.scripts(['./vendor/bower_components/tinymce/tinymce.min.js','editor/editor.js'],'public/js/editor.js');
+
+
+});
+
 
 // For userapp
 
@@ -101,4 +109,11 @@ elixir(function(mix) {
         './vendor/bower_components/select2/dist/js/select2.min.js',
         './vendor/bower_components/lightbox2/dist/js/lightbox.js',
         ],'public/js/vendor.scripts.js');
+});
+
+
+elixir(function(mix) {
+    mix.scripts([
+        'newsletterApp/newsletterapp.js',
+        ],'public/js/newsletter.js');
 });

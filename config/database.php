@@ -55,7 +55,7 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'dxb2212_demo_uaehome'),
+            'database'  => env('DB_DATABASE', 'dxb2212_new_uaehome'),
             'username'  => env('DB_USERNAME', 'dxb2212_uaehome'),
             'password'  => env('DB_PASSWORD', 'uaehome@123'),
             'charset'   => 'utf8',
