@@ -23,6 +23,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 
 	// Auth pages
+	
 	Route::get('service_provider/{vendorID}/submit_review',['middleware'=>['auth','UserAuth'],'uses'=>'ReviewController@writeReview'])->name('submit_review');
 	Route::post('service_provider/{vendorID}/submit_review',['middleware'=>['auth','UserAuth'],'uses'=>'ReviewController@submitReview']);
 	
@@ -61,6 +62,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 	Route::get('help-and-support','HomeController@helpandsupport')->name('help-support');
 	Route::get('faq','HomeController@faq')->name('faq');
+	Route::get('contact-us','HomeController@contactus')->name('contactus');
 
 	// want authenticated
 	

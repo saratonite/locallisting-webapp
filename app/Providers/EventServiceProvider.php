@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\VendorStatusChanged' => [
             'App\Listeners\Email@vendorStatusChanged'
+        ],
+        'App\Events\ReviewStatusChanged' =>[
+            'App\Listeners\Email@reviewStatusChanged'
         ]
     ];
 

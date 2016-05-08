@@ -194,5 +194,12 @@ class HomeController extends Controller
         return view('site.faq');
     }
 
+    public function contactus(){
+
+
+
+        return view('site.contact_us');
+    }
+
 
 }

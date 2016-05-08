@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Event;
+use App\Events\ReviewStatusChanged;
+
 class ReviewController extends Controller
 {
     /**
@@ -54,7 +57,20 @@ class ReviewController extends Controller
     	
     	if($status && $review->validStatus($status)){
     		$review->status = $status;
-    		$review->update();
+    		if($review->update()){
+
+                $reviewUser =  $review->user;
+
+                if($reviewUser){
+
+                    if($request->input('note')){
+                        $review->note = $request->input('note');
+                    }  
+
+                    Event::fire(new ReviewStatusChanged($review));
+
+                }
+            }
     	}
 
         //  -- Calculate / Update Vendor rating ---

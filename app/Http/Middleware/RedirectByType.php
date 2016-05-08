@@ -51,7 +51,5 @@ class RedirectByType
 
 
         return $response;
-
-        //dd("ddd");
     }
 }

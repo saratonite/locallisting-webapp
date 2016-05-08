@@ -43,7 +43,7 @@
         <a href="{{route('help-support')}}">Help & Support</a><br>
         <a href="{{ route('about')}}">About Us</a><br>
         <a href="{{route('faq')}}">FAQ</a><br>
-        <a href="#">Contact Us</a><br>
+        <a href="{{route('contactus')}}">Contact Us</a><br>
         <a href="{{route('categories')}}">Write a Review</a><br>
         </p>
       </div>

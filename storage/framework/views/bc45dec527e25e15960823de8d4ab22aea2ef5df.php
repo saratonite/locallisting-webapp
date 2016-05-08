@@ -43,7 +43,7 @@
         <a href="<?php echo e(route('help-support')); ?>">Help & Support</a><br>
         <a href="<?php echo e(route('about')); ?>">About Us</a><br>
         <a href="<?php echo e(route('faq')); ?>">FAQ</a><br>
-        <a href="#">Contact Us</a><br>
+        <a href="<?php echo e(route('contactus')); ?>">Contact Us</a><br>
         <a href="<?php echo e(route('categories')); ?>">Write a Review</a><br>
         </p>
       </div>

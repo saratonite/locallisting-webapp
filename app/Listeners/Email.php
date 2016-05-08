@@ -83,4 +83,19 @@ class Email
         // dd($data);
 
     }
+
+    public function reviewStatusChanged($data){
+
+        // Send email to review user
+        //dd("Coool");
+
+        Mail::send('admin.emails.review.statuschanged',['review'=>$data->review],function($message) use($data){
+
+
+            $message->to(trim(strtolower($data->review->user->email)))->subject('Review Status Changed');
+
+        });
+
+
+    }
 }

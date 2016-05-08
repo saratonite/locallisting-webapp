@@ -22,7 +22,6 @@ class UserAuth
 
 
             // Save the url
-            
 
             $request->session()->put('url.intended',$request->fullUrl());
         }
