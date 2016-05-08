@@ -390,6 +390,32 @@ class VendorController extends Controller
     	return redirect()->back();
     }
 
+
+    public function changeVerifiedBadge(Request $request,$vendorID){
+
+        $vendor = \App\Vendor::find($vendorID);
+
+        if($vendor){
+
+            if($vendor->show_verified_badge == 1){
+
+                $vendor->show_verified_badge = 0;
+
+            }
+            else{
+                $vendor->show_verified_badge = 1;
+
+            }
+
+            $vendor->save();
+        }
+
+        return redirect()->back();
+
+
+
+    }
+
     public function setfeatured(Request $request,$vendorID){
         $vendor = \App\Vendor::find($vendorID);
 

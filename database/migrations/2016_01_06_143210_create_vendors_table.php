@@ -21,9 +21,10 @@ class CreateVendorsTable extends Migration
             $table->string('addr_line1')->nullable();
             $table->string('addr_line2')->nullable();
             $table->string('addr_line3')->nullable();        
-            $table->string('zip_code',10)->nullable();        
+            $table->string('zip_code',10)->nullable();      
             $table->string('contact_number',15);
             $table->string('mobile',15);
+            $table->tinyInteger('show_verified_badge',2)->default(0)->unsigned();
             $table->timestamps();
 
 

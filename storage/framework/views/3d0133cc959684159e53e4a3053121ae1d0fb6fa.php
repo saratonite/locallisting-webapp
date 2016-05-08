@@ -20,7 +20,7 @@
     
     <div class="col-lg-9 col-md-9 col-sm-9">
     <div class="col-lg-9 col-md-9 col-sm-9">
-    <input type="text" class="form-control searchbx" placeholder="Architicts & Building Designers">
+    <input type="text" class="form-control searchbx" placeholder="Search..." value="<?php if($searchCategoryName): ?> <?php echo e($searchCategoryName); ?> <?php endif; ?>">
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12">
     <h2 class="inh1">216,347 Architects and Building Designers</h2>
@@ -103,7 +103,7 @@
         </p>
     </h4>
     
-    <p class="pull-right"><?php if($vendor->contact_number): ?> <?php echo e($vendor->contact_number); ?> <?php else: ?> <?php echo e($vendor->mobile); ?> <?php endif; ?></p>
+    <p class="pull-right"> <i class="glyphicon glyphicon-earphone"></i><?php if($vendor->contact_number): ?> <?php echo e($vendor->contact_number); ?> <?php else: ?> <?php echo e($vendor->mobile); ?> <?php endif; ?></p>
     <div class="clearfix"></div>
     <p><strong><?php echo e($vendor->addr_line1); ?>,<?php echo e($vendor->addr_line2); ?>,<?php echo e($vendor->addr_line3); ?></strong></p>
     <p class="read"> <?php echo e(str_limit($vendor->description,210  )); ?>

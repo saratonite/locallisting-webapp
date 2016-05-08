@@ -24,7 +24,7 @@
    <div class="col-lg-9 col-md-9 col-sm-9"> 
    <div class="row">
 <div class="col-lg-9 col-md-9 col-sm-9">
-    <input type="text" class="form-control searchbx" placeholder="Architicts &amp; Building Designers">
+    <input type="text" class="form-control searchbx" placeholder="Search...">
     </div>  
     
 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -83,7 +83,7 @@
           <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
           </div>
       <div class="review-widget-bottom" >
-          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact me</a> 
+          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact us</a> 
       </div>
     </div>
 
@@ -149,8 +149,7 @@
 
 <div style="background-color:
 #fcf8e3">&nbsp;
-<p>&nbsp; <input type="checkbox" name="confirm">&nbsp; I conform that the information submited here is true and accurate.I conform that i do not&nbsp;
-work <br>&nbsp; &nbsp; &nbsp; for,am not in complete with and am not related  to this service provider</p><br>
+<p>&nbsp; <input type="checkbox" name="confirm">&nbsp; I confirm that the information submitted here is true and accurate. I confirm that I do not work for, am not in competition with and am not related to this service provider.</p><br>
 
 </div>
 <hr>

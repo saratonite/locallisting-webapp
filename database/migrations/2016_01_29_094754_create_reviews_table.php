@@ -23,6 +23,7 @@ class CreateReviewsTable extends Migration
             $table->integer('rate_quality')->nullable();
             $table->integer('rate_professionalism')->nullable();
             $table->enum('status',['pending','accepted','rejected'])->default('pending');
+            $table->tinyInteger('featured',2)->default(0);
 
             $table->timestamps();
         });

@@ -83,7 +83,7 @@
           <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
           </div>
       <div class="review-widget-bottom" >
-          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact me</a> 
+          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact us</a> 
       </div>
     </div>
 

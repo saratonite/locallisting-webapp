@@ -162,6 +162,13 @@
 			</tbody>
 		</table>
 		<!-- End Equiry Vendor Details -->
+		<div class="panel panel-default">
+			<div class="panel-heading">Mark As Featured</div>
+			<div class="panel-body">
+
+				<button id="btn-mark-as-featured" class="btn btn-@if($review->featured==0)success @else danger @endif">@if($review->featured==0)Add to Featured @else Remove from featured @endif</button>
+			</div>
+		</div>
 	</div>
 	<!-- End Row 1 right col -->
 </div>
@@ -228,6 +235,34 @@
   </form>
 </div>
 <!-- End Delete Review modal  -->
+<!-- Mark as Featured Review modal -->
+<div class="modal fade" id="mark-featured-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="" method="post">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mark As Featured Review</h4>
+      </div>
+      <div class="modal-body">
+        	<p class="alert alert-danger" id="modalContext">
+
+        	Want Change review featured status?
+        	</p>
+        	{{ csrf_field() }}
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="id" >
+        <input type="hidden" name="action" >
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-primary">Continue</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- End Delete Review modal  -->
 @endsection
 
 @section('scripts')
@@ -244,6 +279,11 @@
 		// Del
 		var delebox = new Confirmbox();
 		delebox.create({"el":"#delete-action","modal":"#delete-modal","action_url":reviewBase+"/delete","recordId":reviewId});
+
+		// Mark as featured 
+		
+		var markFeatured = new Confirmbox();
+		markFeatured.create({"el":"#btn-mark-as-featured","modal":"#mark-featured-modal","action_url":reviewBase+"/mark-featured","recordId":reviewId});
 
 
 	});

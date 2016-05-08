@@ -56,6 +56,12 @@ class Review extends Model
 
     }
 
+    public function scopeFeatured($query){
+
+        $query->where('featured',1);
+
+    }
+
     // Rating scopes
     public function scopeRate($query){
 

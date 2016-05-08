@@ -118,10 +118,10 @@
     </div>
   </div>
 </div>
-<div class="container-fluid testmo">
+<div class="container-fluid testmo" style="    padding-bottom: 20px;">
   <div class="container">
     <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12"><h2 class="testtitle">What our clients say ? <br><i class="fa fa-quote-left"></i></h2>
+    <div class="col-lg-12 col-md-12 col-sm-12"><h2 class="testtitle">LATEST RATINGS AND REVIEWS  <br><i class="fa fa-quote-left"></i></h2>
     <section id="carousel"> 
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
@@ -134,29 +134,37 @@
 				  </ol>
 				  <!-- Carousel items -->
 				  <div class="carousel-inner">
-				    <div class="item">
+
+
+            @if($featuredReviews->count())
+
+              <?php $tmp_count = 0; ?>
+
+              @foreach($featuredReviews as $freview)
+                 <div class="item @if($tmp_count == 0) active @endif">
                        
-				    	<blockquote>
-				    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                            <a href="{{route('categories')}}"  class="tem">Write a review</a>
-				    	</blockquote>
-                        	
-				    </div>
-				    <div class="item">
-                      
-				    	<blockquote>
-				    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                             <a href="{{route('categories')}}"  class="tem">Write a review</a>
-				    	</blockquote>
-				    </div>
-				    <div class="active item">
-                       
-				    	<blockquote>
-				    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                             <a href="{{route('categories')}}"  class="tem">Write a review</a>
-				    	</blockquote>
-				    </div>
+                    <blockquote>
+                      <p>{{str_limit($freview->title,80)}} </p>
+                            
+                    </blockquote>
+                          
+                  </div>
+
+                  <?php $tmp_count++ ;?>
+
+                
+
+              @endforeach
+
+            @else
+
+            <p>No Featured Reviews</p><br>
+
+            @endif
+
 				  </div>
+          <div><a href="{{route('categories')}}"  class="tem">Write a review</a></div>
+          
 				</div>
 			</div>							
 		</div>    

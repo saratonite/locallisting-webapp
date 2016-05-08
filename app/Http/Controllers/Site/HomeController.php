@@ -24,7 +24,16 @@ class HomeController extends Controller
 
         $topCats = \App\VendorCategory::select('category_id', DB::raw('count(*) as total'))->groupby('category_id')->orderBy('total','DESC')->limit(6)->get();
 
-    	return view('site.home',compact('categories','cities','featuredVendors','topCats'));
+
+        // get featured reviews
+        
+        $featuredReviews = \App\Review::featured()->limit(4)->orderBy("id","desc")->get();
+
+
+
+
+
+    	return view('site.home',compact('categories','cities','featuredVendors','topCats','featuredReviews'));
     }
 
     public function search(Request $request){
@@ -58,7 +67,21 @@ class HomeController extends Controller
 
         $vendors->appends($request->except('page'));
 
-    	return view('site.search',compact('vendors','categories','cities','cat','city','categoriesSide'));
+
+        // Getting Current Search category info
+        $searchCategoryName = false;
+        if($cat){
+
+            $searchCategory = \App\Category::find($cat);
+
+            if($searchCategory){
+
+                $searchCategoryName = $searchCategory->name;
+
+            }
+        }
+
+    	return view('site.search',compact('vendors','categories','cities','cat','city','categoriesSide','searchCategoryName'));
 
     }
 
@@ -158,4 +181,18 @@ class HomeController extends Controller
 
 
     }
+
+    public function helpandsupport(){
+
+
+        return view('site.helpandsupport');
+
+    }
+
+
+    public function faq(){
+        return view('site.faq');
+    }
+
+
 }

@@ -93,7 +93,7 @@
                         <a href="<?php echo e(route('admin::list-images')); ?>">Images</a>
                     </li>
                     <li>
-                        <a href="<?php echo e(route('admin::subscribers')); ?>">Subscrubers</a>
+                        <a href="<?php echo e(route('admin::subscribers')); ?>">Subscribers</a>
                     </li>
                 </ul>
 

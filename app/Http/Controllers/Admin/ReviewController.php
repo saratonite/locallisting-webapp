@@ -68,6 +68,31 @@ class ReviewController extends Controller
 
     }
 
+    public function changeFeatured(Request $request,$reviewId){
+
+        $review = \App\Review::find($reviewId);
+
+        //dd($review);
+
+        if($review){
+
+            if($review->featured == 1){
+
+                $review->featured = 0;
+
+            }
+            else{
+
+                $review->featured = 1;
+
+            }
+
+            $review->save();
+        }
+
+        return redirect()->back();
+    }
+
     public function delete(Request $request , $reviewId){
 
 

@@ -33,7 +33,7 @@
 			@else 
 
 				<tr class="info">
-					<td colspan="5">No Record</td>
+					<td colspan="6">No Record</td>
 				</tr>
 
 			@endif

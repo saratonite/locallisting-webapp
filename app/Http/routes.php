@@ -23,17 +23,17 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 
 	// Auth pages
-	Route::get('service_provider/{vendorID}/submit_review',['middleware'=>'auth','uses'=>'ReviewController@writeReview'])->name('submit_review');
-	Route::post('service_provider/{vendorID}/submit_review',['middleware'=>'auth','uses'=>'ReviewController@submitReview']);
+	Route::get('service_provider/{vendorID}/submit_review',['middleware'=>['auth','UserAuth'],'uses'=>'ReviewController@writeReview'])->name('submit_review');
+	Route::post('service_provider/{vendorID}/submit_review',['middleware'=>['auth','UserAuth'],'uses'=>'ReviewController@submitReview']);
 	
 	// Route::post('service_provider/{vendorID}/reviews',['middleware'=>'auth','uses'=>'VendorController@reviews']);
 	// Route::post('service_provider/{vendorID}/images',['middleware'=>'auth','uses'=>'VendorController@images']);
 
 
-	Route::get('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@contact'])->name('submit-enquiry');
-	Route::post('service_provider/{vendorID}/contact',['middleware'=>'auth','uses'=>'EnquiryController@submitContact'])->name('submit-contact');
+	Route::get('service_provider/{vendorID}/contact',['middleware'=>['auth','UserAuth'],'uses'=>'EnquiryController@contact'])->name('submit-enquiry');
+	Route::post('service_provider/{vendorID}/contact',['middleware'=>['auth','UserAuth'],'uses'=>'EnquiryController@submitContact'])->name('submit-contact');
 
-	Route::get('post_requirements',['middleware'=>'auth','uses'=>'EnquiryController@postRequirements'])->name('post-requirement');
+	Route::get('post_requirements',['middleware'=>['UserAuth','auth'],'uses'=>'EnquiryController@postRequirements'])->name('post-requirement');
 	Route::post('post_requirements',['middleware'=>'auth','uses'=>'EnquiryController@proccessPostRequirements']);
 
 
@@ -58,6 +58,12 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 	Route::get('about-us','HomeController@about')->name('about');
 	Route::get('sitemap','HomeController@sitemap')->name('sitemap');
+
+	Route::get('help-and-support','HomeController@helpandsupport')->name('help-support');
+	Route::get('faq','HomeController@faq')->name('faq');
+
+	// want authenticated
+	
 
 
 });
@@ -114,6 +120,8 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('vendors/{vendorId}/edit','VendorController@edit')->name('edit-vendor');
 	Route::put('vendors/{vendorId}/update','VendorController@update')->name('update-vendor');
 
+
+
 		// Feature image
 		Route::post('vendors/{vendorId}/upload-picture','VendorController@uploadPicture')->name('update-vendor-picture');
 		Route::delete('vendors/{vendorId}/remove-picture/','VendorController@deletePicture')->name('delete-vendor-picture');
@@ -128,6 +136,8 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	
 	Route::get('vendors/{vendorId}/reviews/{status?}','VendorController@reviews')->name('vendor-reviews');
 	Route::get('vendors/{vendorId}/images/{status?}','VendorController@images')->name('vendor-images');
+
+	Route::put('vendors/change-verified-badge/{vendorId}','VendorController@changeVerifiedBadge');
 
 	/* Users */
 
@@ -169,6 +179,10 @@ Route::group(['middleware'=>['web','auth','superadmin'],'prefix'=>'admin','names
 	Route::get('reviews/{reviewId}/show','ReviewController@show')->name('show-review');
 	Route::put('reviews/change-status/{reviewId}','ReviewController@changeStatus')->name('review-chnage-status');
 	Route::delete('reviews/delete/{reviewId}','ReviewController@delete')->name('review-delete');
+
+	Route::put('reviews/mark-featured/{reviewId}','ReviewController@changeFeatured')->name('chnage-featured');
+
+
 
 
 	/**
@@ -271,6 +285,7 @@ Route::group(['middleware'=>['web','auth'],'prefix'=>'account','namespace'=>"Use
 	Route::post('api/me/vendor/picture','VendorController@updatePicture');
 	Route::delete('api/me/vendor/picture',['middleware'=>'api','uses'=>'VendorController@removePicture']);
 	// Vendor Images
+	
 	Route::get('api/me/images','ImageController@getMyImages');
 	Route::post('api/me/images/upload','ImageController@doUpload');
 	Route::delete('api/me/images/delete/{imageId}','ImageController@delete');

@@ -21,7 +21,7 @@
     
     <div class="col-lg-9 col-md-9 col-sm-9">
     <div class="col-lg-9 col-md-9 col-sm-9">
-    <input type="text" class="form-control searchbx" placeholder="Architicts & Building Designers">
+    <input type="text" class="form-control searchbx" placeholder="Search..." value="@if($searchCategoryName) {{ $searchCategoryName }} @endif">
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12">
     <h2 class="inh1">216,347 Architects and Building Designers</h2>
@@ -103,7 +103,7 @@
         </p>
     </h4>
     
-    <p class="pull-right">@if($vendor->contact_number) {{ $vendor->contact_number}} @else {{$vendor->mobile}} @endif</p>
+    <p class="pull-right"> <i class="glyphicon glyphicon-earphone"></i>@if($vendor->contact_number) {{ $vendor->contact_number}} @else {{$vendor->mobile}} @endif</p>
     <div class="clearfix"></div>
     <p><strong>{{$vendor->addr_line1}},{{$vendor->addr_line2}},{{$vendor->addr_line3}}</strong></p>
     <p class="read"> {{ str_limit($vendor->description,210  ) }}

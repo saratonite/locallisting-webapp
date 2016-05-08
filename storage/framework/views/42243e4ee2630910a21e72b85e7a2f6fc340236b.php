@@ -226,6 +226,22 @@
 					<!-- End Status switch -->
 		</div>
 	</div>
+	<!-- Verified Badge -->
+	<div class="panel panel-default">
+		<div class="panel-heading">Show Verified Badge</div>
+		<div class="panel-body">
+            <?php if($vendor->show_verified_badge ==0): ?>
+			<button type="button" id="change-verified-badge" class="btn btn-primary">
+				Show Verified Badge?
+			</button>
+			<?php else: ?>
+			<button type="button" id="change-verified-badge" class="btn ">
+				Remove Verified Badge?
+			</button>
+			<?php endif; ?>
+		</div>
+	</div>
+	<!-- End Verified Badge -->
 	<div class="panel panel-danger">
 		<div class="panel-heading">
 			<h3 class="panel-title">Delete Account</h3>
@@ -306,6 +322,34 @@
   </form>
 </div>
 <!-- End Delete modal  -->
+<!-- Show verified badge modal -->
+<div class="modal fade" tabindex="-1" id="show-verified-badge-modal" role="dialog">
+<form  method="post">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Change Verified Badge?</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modalContext">Want to change , verified badge ?, Are you sure ?&hellip;</p>
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="id" id="modal-recordId">
+        <input type="hidden" name="status" id="modal-actionName">
+        <?php echo e(csrf_field()); ?>
+
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form>
+</div><!-- /.modal -->
+<!-- End Show verified badge modal  -->
+
 
 <?php $__env->stopSection(); ?>
 
@@ -326,6 +370,7 @@
 	///////////////////
 		
 	var changeStatusURL = "<?php echo e(route('admin::all-vendors')); ?>/change-status/";
+	var vendorID = <?php echo e($vendor->id); ?>;
 	// Chnage status
 	$('.change-status').on('click','li a.status-action',function(e){
 
@@ -358,6 +403,11 @@
 		$('#chnage-status-modal').modal('show');
 
 	});
+
+
+	var VerifiedBadge = new Confirmbox();
+		VerifiedBadge.create({"el":"#change-verified-badge","modal":"#show-verified-badge-modal","action_url":vendorBaseUrl+"/change-verified-badge","recordId":vendorID});
+
 });
 </script>
 <?php $__env->stopSection(); ?>

@@ -3,7 +3,18 @@
     <div class="row">
     <div class="col-lg-7 col-md-7 col-sm-7"><h1>No obligations. No contracts.</h1>
 <p>UAE Home Advisor helps customers find quality professionals by providing a source of reviews and ratings to help make an educated choice.</p></div>
-<div class="col-lg-5  col-md-5 col-sm-5 cs"><a href="<?php echo e(url('/')); ?>#get-start" class="gets pull-right">Get Started</a>
+<div class="col-lg-5  col-md-5 col-sm-5 cs">
+      
+       <?php if(Auth::check()): ?>
+          <?php if(Auth::user()->type == "admin"): ?>
+          <a href="<?php echo e(route("admin::dashboard")); ?>" class="gets pull-right">Get Started</a> 
+          <?php else: ?>
+          <a href="<?php echo e(route("account::appHome")); ?>" class="gets pull-right">Get Started</a> 
+          <?php endif; ?>
+
+      <?php else: ?>
+        <a href="<?php echo e(route('user-signup')); ?>" class="gets pull-right">Get Started</a>
+      <?php endif; ?>
 </div>
     </div>
   </div>
@@ -29,11 +40,10 @@
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mar">
         <h5><strong>Support</strong></h5>
         <p>
-        <a href="#">Help & Support</a><br>
+        <a href="<?php echo e(route('help-support')); ?>">Help & Support</a><br>
         <a href="<?php echo e(route('about')); ?>">About Us</a><br>
-        <a href="#">FAQ</a><br>
+        <a href="<?php echo e(route('faq')); ?>">FAQ</a><br>
         <a href="#">Contact Us</a><br>
-        <a href="#">I Need Support</a><br>
         <a href="<?php echo e(route('categories')); ?>">Write a Review</a><br>
         </p>
       </div>

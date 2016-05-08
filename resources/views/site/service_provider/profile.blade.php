@@ -23,12 +23,11 @@
     </div>
    <div class="col-lg-9 col-md-9 col-sm-9"> 
    <div class="row">
-<div class="col-lg-9 col-md-9 col-sm-9">
-    <input type="text" class="form-control searchbx" placeholder="Architicts &amp; Building Designers">
+<div class="col-lg-12 col-md-12 col-sm-12">
+    <input type="text" class="form-control searchbx" placeholder="Search...">
     </div>  
     
 <div class="col-lg-3 col-md-3 col-sm-3">
-    <a href="#">Back to Advanced Search</a>
     </div>
     </div>
     </div>
@@ -85,7 +84,7 @@
           <span class="pull-right"><small>{{$vendor->review->count() }}  Reviews</small></span>
           </div>
       <div class="review-widget-bottom" >
-          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact me</a> 
+          <a href="{{ route('submit-enquiry',$vendor->id)}}" >Contact us</a> 
       </div>
     </div>
 
@@ -130,7 +129,8 @@
 </div>
 <div class="col-lg-3 col-md-3 col-sm-3">
 <h5><strong>
-  @if($vendor->contact_number) {{$vendor->contact_number}} @else {{$vendor->mobile}} @endif
+  
+  <h4> <i class="glyphicon glyphicon-earphone"></i>&nbsp;@if($vendor->contact_number) {{$vendor->contact_number}} @else {{$vendor->mobile}} @endif</h4>
 <br>
 <br>
   <?php 
@@ -148,18 +148,22 @@
 <strong><i class="fa fa-user"></i> Contact</strong>: @if($vendor->user) {{$vendor->user->first_name}} {{$vendor->user->last_name}} @endif
 <br>
 
-<strong><i class="fa fa-map-marker"></i> Location</strong>:
-  {{$vendor->addr_line1}} @if($vendor->addr_line2), {{$vendor->addr_line2}}@endif @if($vendor->addr_line2), {{$vendor->addr_line3}}@endif
+<strong><i class="fa fa-map-marker"></i> Location</strong>:{{$vendor->addr_line1}} <br/>
+@if($vendor->addr_line2) {{$vendor->addr_line2}} <br> @endif
+@if($vendor->addr_line2) {{$vendor->addr_line3}} <br> @endif
 
-  <br>
-  <a href="{{route('submit_review',$vendor->id)}}"><i>Write Review </i></a>
-
+  <!-- <a href="{{route('submit_review',$vendor->id)}}"><i>Review us</i></a> -->
+  @if($vendor->show_verified_badge)
+  <p>
+  <img style="width:100%;" src="{{url('/images/screened.jpg')}}" alt="UAE HomeAdvisor Verified">
+  </p>
+  @endif
 </p>
+<hr>
+
 </div>   
 </div>
 
-<br>
-<p>&nbsp;&nbsp;</p>
 <div class="row">
 <div class="col-lg-3 col-md-3 col-sm-3">
 </div>
@@ -189,7 +193,7 @@
 
 <div class="col-lg-3 col-md-3 col-sm-3">
 
-<h4><strong>{{$vendor->review->count()}} Reviews</strong> <small><a href="{{route('submit_review',$vendor->id)}}">Write Review</a></small></h4>
+<h4><strong>{{$vendor->review->count()}} Reviews</strong> <small><a href="{{route('submit_review',$vendor->id)}}">Review us</a></small></h4>
   @if($vendor->review->count())
       @foreach($vendor->review as $re)
         <div>
@@ -197,9 +201,9 @@
           <!-- <img src="{{url('/')}}/images/star.png" class="img-responsive"> -->
           <p style="color=#2C7300;">{{FrontStarRating(calculateReviewRate($re))}}</p>
           <p>{{$re->body}}</p>
-          <a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a>
-          <p>&nbsp;&nbsp;&nbsp;</p>
+          <!-- <a href="#" style="color:#2C7300">More <i class="fa fa-chevron-right"></i></a> -->  
         </div>
+        <hr>
       @endforeach
   @endif
 </div>

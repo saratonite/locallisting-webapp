@@ -17,15 +17,30 @@ class RedirectByType
     public function handle($request, Closure $next)
     {
         //dd($request->user()->type);
+        
+
+
+        $intendedRedirect = $request->session()->get('url.intended');
+
        
 
         $response = $next($request);
+
+        //echo session('url.intended');
+
 
         // Perform action
          if($request->user()){
 
             if($request->user()->type != "admin"){
-                
+
+                if($intendedRedirect){
+
+                    $request->session()->forget('url.intended');
+
+                    return redirect($intendedRedirect);
+                }
+
                 return redirect()->route("account::appHome");
             }
 
