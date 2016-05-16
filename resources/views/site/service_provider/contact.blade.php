@@ -23,13 +23,19 @@
     </div>
    <div class="col-lg-9 col-md-9 col-sm-9"> 
    <div class="row">
-<div class="col-lg-9 col-md-9 col-sm-9">
-    <input type="text" class="form-control searchbx" placeholder="Architicts &amp; Building Designers">
-    </div>  
-    
-<div class="col-lg-3 col-md-3 col-sm-3">
-    <a href="#">Back to Advanced Search</a>
+ <div class="col-lg-12 col-md-12 col-sm-12">
+    <form action="{{route('search')}}">
+      <div class="col-md-10">
+        <input type="text" class="form-control searchbx" name="q" placeholder="Search..." value="" >
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success">Search</button>
+
+      </div>
+      </form>
     </div>
+    
+
     </div>
     </div>
 <div class="col-lg-9 col-md-9 col-sm-9 inner">

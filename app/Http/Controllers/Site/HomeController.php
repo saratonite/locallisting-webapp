@@ -41,6 +41,8 @@ class HomeController extends Controller
     	$cat = $request->input('category');
     	$city =$request->input('city');
 
+        $q = $request->input('q');
+
 
     	$categoriesSide = \App\Category::all();
         $categories = \App\Category::orderBy('name','ASC')->lists('name','id');
@@ -50,19 +52,48 @@ class HomeController extends Controller
 
 
         if(!$cat && !$city){
-            $vendors = \App\Vendor::with('picture')->onlyactive()->paginate($per_page);
+            $tmp =  \App\Vendor::with('picture')->onlyactive();
+            if($q){
+
+                $tmp->where('vendor_name','like',"%$q%");
+
+            }
+            $vendors = $tmp->paginate($per_page);
         }
         elseif($cat && !$city){
-            $vendors = \App\Vendor::byCategory($cat)->with('picture')->onlyactive()->paginate($per_page);
+
+            $tmp = \App\Vendor::byCategory($cat)->with('picture')->onlyactive();
+
+            if($q){
+
+                $tmp->where('vendor_name','like',"%$q%");
+
+            }
+
+            $vendors = $tmp->paginate($per_page);
 
         }
         elseif(!$cat && $city){
 
-            $vendors = \App\Vendor::byCity($city)->with('picture')->onlyactive()->paginate($per_page);
+            $tmp = \App\Vendor::byCity($city)->with('picture')->onlyactive();
+            if($q){
+
+                $tmp->where('vendor_name','like',"%$q%");
+            }
+            $vendors = $tmp->paginate($per_page);
 
         }
         else{
-            $vendors = \App\Vendor::byCity($city)->byCategory($cat)->with('picture')->onlyactive()->paginate($per_page);
+
+
+                $tmp = \App\Vendor::byCity($city)->byCategory($cat)->with('picture')->onlyactive();
+
+                 if($q){
+
+                         $tmp->where('vendor_name','like',"%$q%");
+                 }
+                $vendors = $tmp->paginate($per_page);
+
         }
 
         $vendors->appends($request->except('page'));
@@ -81,7 +112,7 @@ class HomeController extends Controller
             }
         }
 
-    	return view('site.search',compact('vendors','categories','cities','cat','city','categoriesSide','searchCategoryName'));
+    	return view('site.search',compact('vendors','categories','cities','cat','city','categoriesSide','searchCategoryName','q'));
 
     }
 
