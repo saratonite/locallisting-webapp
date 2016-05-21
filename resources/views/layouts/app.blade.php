@@ -41,7 +41,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Uae Home Advisor
+                    Home Page
                 </a>
             </div>
 

@@ -41,7 +41,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                    Uae Home Advisor
+                    Home Page
                 </a>
             </div>
 

@@ -41,15 +41,15 @@
         <h5><strong>Support</strong></h5>
         <p>
         <a href="{{route('help-support')}}">Help & Support</a><br>
-        <a href="{{ route('about')}}">About Us</a><br>
+        <a href="{{route('about')}}">About Us</a><br>
         <a href="{{route('faq')}}">FAQ</a><br>
         <a href="{{route('contactus')}}">Contact Us</a><br>
-        <a href="{{route('categories')}}">Write a Review</a><br>
+        <a href="{{route('search')}}">Write a Review</a><br>
         </p>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 mar">
         <h5><strong>Contact Us</strong></h5>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+        <p>Have questions about UAE Home Advisor? Let us help. Email us with as much detail as you can so we can give you the best help possible.</p>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
           @
         </div>
@@ -58,18 +58,7 @@
           </P>
         </div>
         
-         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          A
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>1800-1800155-00<br>    
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          T
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <P>Maria Tower, Jew Street, Al Nama City UAE - 55
-        </div>
+       
 
 
       </div>
@@ -77,29 +66,29 @@
       <div class="col-lg-3 col-md-3 col-sm-3 mar">
         <form id="newsletterapp">
         <h5><strong>Newsletter</strong></h5>
-        <p>Subscribe to our Newsletter -<br>
-and all the cool updates </p>
-
-<p><input type="email" class="form-control nelet" placeholder="Enter Email"></p>
-        </form>
        
-                <div class="social-links pull-left" style="margin-top:5px;">
+<p><input type="email" class="form-control nelet" placeholder="Enter Email"></p>
+   <div class="social-links pull-left" style="margin-top:5px;">
           <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
           <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+          <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
+          <a href="#"><i class="fa fa-google-plus fa-lg"></i></a>
           <a href="#"><i class="fa fa-skype fa-lg"></i></a>
         </div>
+        </form>
+       
+
       </div>
       <div class="clearfix"></div>
       <hr>
       <div class="col-lg-7 col-md-7 col-sm-7">
-        <P>  <img src="images/logo.png">UAEHomeAdvisor LLC.</P>
+        <P>  <img src="images/logo.png"></P>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5">
         <p class="pull-right ftfoot">
 <a href="{{ url('/') }}">Home</a>
 <a href="{{route('terms-conditions')}}">Terms</a>
 <a href="{{route('privacy-policy')}}">Privacy Policy</a>
-<a href="#">Partners & Affiliates</a>
 <a href="{{route('sitemap')}}">SiteMap</a></p>
       </div>
     </div>

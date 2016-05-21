@@ -1,4 +1,3 @@
-
 @extends('layouts.frontend')
 
 
@@ -10,15 +9,16 @@
 <div class="container-fluid banner" id="get-start">
   <div class="container">
     <div class="row">
-    <div class="col-lg-12 text-right">
-<p>Are you a Qualified Service Professional ?</p></div>
 <div class="col-lg-12 cs">
-  @if(!Auth::check())
-    <a href="{{route('vendor-signup')}}"  class="join pull-right">JOIN  US</a>
-  @endif
+
+    <a href="{{route('about')}}"  class="join pull-right">Are you a Qualified Service Professional?</a>
+ 
 </div>
 <div class="clearfix"></div>
-<div class="col-lg-12"><h1 class="sehed">Find a trusted service provider</h1></div>
+<div class="col-lg-2 col-md-2 col-sm-2">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-8  hedbox"><h1 class="sehed">Find a Trusted Service Provider</h1></div>
+<div class="col-lg-2 col-md-2 col-sm-2">&nbsp;</div>
+<div class="clearfix"></div>
 <div class="col-lg-2 col-md-2 col-sm-2">&nbsp;</div>
 <div class="col-lg-8 col-md-8 col-sm-8  sebox">
 <div class="row">
@@ -64,6 +64,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="container-fluid treef text-center">
   <div class="container">
     <div class="row">
@@ -71,20 +73,57 @@
     <div class="col-lg-4 col-md-4 col-sm-4"><i class="fa fa-check-circle-o"></i> Verified  Service Providers</div>
     <div class="col-lg-4 col-md-4 col-sm-4"><i class="fa fa-check-circle-o"></i> Preferred choice of UAE Residents</div>
     </div>
+
   </div>
+</div>
+
+<div class="container-fluid howit">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12"><h2 class="topse topse1">How it Works</h2></div>    
+    </div>
+    <div class="row">
+       <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="numberCircle">1</div>
+        <h3>Search</h3>
+        <p>For top rated service providers in your area</p>
+       </div>
+       <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="numberCircle">2</div>
+        <h3>Verify</h3>
+        <p>Check review and ratings by other customers just like you, to help you make an informed decision</p>
+       </div>
+       <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="numberCircle">3</div>
+        <h3>Select</h3>
+        <p>Select your Preferred Provider</p>
+       </div>
+       <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="numberCircle">4</div>
+        <h3>Hire</h3>
+        <p>Hire with Confidence</p>
+       </div>
+    </div>
+     <div class="row prominent">
+     UAE Home Advisor is a word of mouth network to help you find the best service providers in the your city. Ratings are based on authentic customer reviews, and its FREE!
+     </div>
+  </div>
+
 </div>
 <div class="container-fluid">
   <div class="container categ">
+    <div class="row"> <div class="col-lg-12 col-md-12 col-sm-12"><h2 class="topse topse1">Top Categories</h2></div>
+        </div>
     <div class="row">
     @if(count($topCats))
 
-    <center>
+    <div class="concenterd">
       @foreach($topCats as $tc)
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-        <a href="{{route('search')}}?category={{$tc->category_id}}"><img src="{{url('images/cat-bullet.png')}}" class="img-responsive img-circle center-block" style="width: 42px">{{strtoupper($tc->category->name)}}</a>
+      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 col-centered">
+        <a href="{{route('search')}}?category={{$tc->category_id}}"><img src="{{url('images/cat-bullet.png')}}" class="img-responsive img-circle center-block" style="width: 42px"><br>{{strtoupper($tc->category->name)}}</a>
       </div>
       @endforeach
-    </center>
+    </div>
       
     @endif
     <div class="clearfix"></div>
@@ -98,12 +137,15 @@
 <div class="container-fluid">
   <div class="container">
     <div class="row">
-    
+     
 
         @if($featuredVendors && count($featuredVendors))
-        <div class="col-lg-12 col-md-12 col-sm-12"><h4 class="topse">Top Service Provider's</h4></div>
+        <div class="col-lg-12 col-md-12 col-sm-12"><h2 class="topse topse1">Top Service Providers</h2></div>
+        </div>
+        <div class="row">
+         <div class="concenterd">
             @foreach($featuredVendors as $topV)
-               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clearfix">
+               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-centered">
                       <a href="{{route('profile',$topV->id)}}" title="{{$topV->vendor_name}}">
                            @if($topV->logo)
                               <img style="width:150px;hiegth:80px" src="{{imagePath($topV->logo)}}"class="img-responsive center-block">
@@ -115,10 +157,12 @@
                 </div>
             @endforeach
         @endif
+        </div>
+                <div class="clearfix"></div>
     </div>
   </div>
 </div>
-<div class="container-fluid testmo" style="    padding-bottom: 20px;">
+<div class="container-fluid testmo" style="    padding-bottom: 40px;">
   <div class="container">
     <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12"><h2 class="testtitle">LATEST RATINGS AND REVIEWS  <br><i class="fa fa-quote-left"></i></h2>
@@ -163,7 +207,7 @@
             @endif
 
 				  </div>
-          <div><a href="{{route('categories')}}"  class="tem">Write a review</a></div>
+          <div><a href="{{route('search')}}"  class="tem">Write a review</a></div>
           
 				</div>
 			</div>							

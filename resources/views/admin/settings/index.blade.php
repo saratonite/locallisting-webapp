@@ -15,7 +15,7 @@
 		<!-- Chnage password -->
 	<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Chnage Password</h3>
+				<h3 class="panel-title">Change Password</h3>
 			</div>
 			<div class="panel-body">
 				<form method="post" action="{{ route('admin::change-password')}}" >
@@ -57,7 +57,7 @@
 			<!-- Change email -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Chnage Email</h3>
+				<h3 class="panel-title">Change Email</h3>
 			</div>
 			<div class="panel-body">
 				<form method="post" action="{{route('admin::change-email')}}" autocomplete="off" >

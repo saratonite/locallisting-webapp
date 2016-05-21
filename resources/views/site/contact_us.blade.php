@@ -6,45 +6,68 @@
 
 
 @section('content')
+<?php 
+
+	$name = " ";
+	$email = " ";
+	$message = " ";
+	if( isset($_POST['name']) ){
+		$name = $_POST['name'];
+	}
+    if( isset($_POST['email']) ){
+		$email = $_POST['email'];
+	}
+    if( isset($_POST['message']) ){
+		$message = $_POST['message'];
+	}
+
+    $from = 'From: Demo'; 
+    $to = 'urosvelickovic123@gmail.com'; 
+    $subject = 'Hello';
+    $body = "From: $name\n E-Mail: $email\n Message:\n $message";
+
+?>
+
+
+
 <div class="container">
 	<div class="row" style="padding: 15px">
 	
 		<div class="col-md-12">
 			<h2>Contact Us</h2>
 			
-			<div class="row">
-				<div class="col-md-8">
-				
-				<p>info@uaehomeadvisor.com</p>
-				<p>Maria Tower, Jew Street, Al Nama City UAE - 55</p>
-
-
-				<p>
-					UAE Home Advisor will help you grow your business and showcase your projects. We aim to provide your company, a growing base of customers and an exposure in the UAE Service Industry.
-					<p>
-						Many Maintenance and Service Companies and Professionals do not have the time and money to invest in advertising, these costs can be stressful for any company. 
-
-					</p>
-					<p>
-						UAE Home Advisor steps in to provide you with a platform to showcase your work and reach a discerning customer base in the UAE.
-					</p>
-
-				</p>
-					
-				</div>
-				<div class="col-md-4">
-					<ul style="list-style-image: url('images/icon-tick.png');">
-						
-						<li>Leads from Potential Customers</li>
-						<li>Free Listing</li>
-						<li>No Contracts –stop use at any time</li>
-						<li>The ability to import existing reviewss</li>
-					</ul>
-
-					<img src="{{url('/')}}/images/about-us-1.png" alt="">
-				</div>
-			</div>
-				
+			<form method="post" action="" data-validate="parsley" data-persist="garlic">
+<h4>POST YOUR ENQUIRY</h4>
+<div class="form-group claerfix">
+		<br>
+    <label for="">Name</label>
+		<input type="text" name="name" value="" placeholder="Name" class="form-control" required="required">
+	</div>
+	<div class="form-group claerfix">
+		<br>
+    <label for="">Email</label>
+		<input type="email" name="email" value="" placeholder="Email" class="form-control" required="required">
+	</div>
+	<div class="form-group">
+    <label for="">Message</label>
+		<textarea class="form-control"  placeholder="Message" rows="5" name="message" required="required"></textarea>
+		
+	</div>
+<hr>
+<input type="submit" class="btn btn-success" value="Submit">
+<br><br>
+</form>
+<?php
+if( isset($_POST['submit']) ){
+if ($_POST['submit']) {
+    if (mail ($to, $subject, $body, $from)) { 
+        echo '<p>Your message has been sent!</p>';
+    } else { 
+        echo '<p>Something went wrong, go back and try again!</p>'; 
+    }
+}
+}
+?>
 		</div>
    </div>
  </div>
