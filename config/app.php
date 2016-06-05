@@ -160,7 +160,8 @@ return [
         * App Add-On Service Providers
         * 
         */
-       Intervention\Image\ImageServiceProvider::class
+       Intervention\Image\ImageServiceProvider::class,
+       Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -212,7 +213,8 @@ return [
         *
         *  App Add-on Aliases
          */
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
