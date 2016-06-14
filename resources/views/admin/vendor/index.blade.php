@@ -33,15 +33,19 @@
 
 				</td>
 				<td>
-					
+
+					@if($vendor->user)
 					  <span   class="label btn-block label-{{ BS_Status_Class($vendor->user->status) }}" >{{ucfirst($vendor->user->status)}}</span>
-					   
+					@endif
+
 				</td>
-				<td>{{ $vendor->user->created_at->format('d-M-Y')}}</td>
+				<td>@if($vendor->user) {{ $vendor->user->created_at->format('d-M-Y')}} @endif</td>
 				<td>
 					<a title="Vendor profile" href="{{route('admin::vendor-profile',$vendor->id)}}"><i class="glyphicon glyphicon-eye-open"></i></a>
 					<a title="Edit Vendor profile" href="{{ route('admin::edit-vendor',$vendor->id)}}"><i class=" glyphicon glyphicon-pencil"></i></a>
+					@if($vendor->user)
 					<a title="User details" href="{{ route('admin::view-site-user',$vendor->user->id)}}"><i class=" glyphicon glyphicon-user"></i></a>
+					@endif
 				</td>
 			</tr>
 			<?php $row_count++;?>
@@ -132,4 +136,3 @@
 
 </script>
 @endsection
-
