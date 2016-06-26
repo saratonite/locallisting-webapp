@@ -39,6 +39,7 @@
 			<form method="post" action="" data-validate="parsley" data-persist="garlic">
 <h4>POST YOUR ENQUIRY</h4>
 <div class="form-group claerfix">
+{{csrf_field()}}
 		<br>
     <label for="">Name</label>
 		<input type="text" name="name" value="" placeholder="Name" class="form-control" required="required">

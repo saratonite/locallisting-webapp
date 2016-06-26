@@ -2,7 +2,7 @@
 
 @section('content')
 <h3>Users</h3>
-
+@include('admin.partials.alert')
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
@@ -73,7 +73,7 @@
         		<li>Delete images</li>
         	</ul>
         	</p>
-        	<input type="hidden" name="_token" value="TZcSgcr3JnJUcL7qtJBaWqOKR2eEFp5VEKZ4AlMh">
+        	{{csrf_field()}}
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="id" >
         <input type="hidden" name="action" >

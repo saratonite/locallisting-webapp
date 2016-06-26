@@ -62,7 +62,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Site'],function(){
 
 	Route::get('help-and-support','HomeController@helpandsupport')->name('help-support');
 	Route::get('faq','HomeController@faq')->name('faq');
-	Route::get('contact-us','HomeController@contactus')->name('contactus');
+	Route::match(['get','post'],'contact-us','HomeController@contactus')->name('contactus');
 
 	// want authenticated
 	

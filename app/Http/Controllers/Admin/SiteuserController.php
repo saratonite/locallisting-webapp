@@ -161,8 +161,7 @@ class SiteuserController extends Controller
     
         $user->deleteSiteUser();
 
-        return redirect()->route('admin::all-site-users')->with('success','User deleted');
-
+        return redirect()->back()->with('success','User deleted');
         
     }
 }

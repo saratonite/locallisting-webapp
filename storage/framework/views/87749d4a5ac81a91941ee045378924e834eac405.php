@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 <h3>Users</h3>
-
+<?php echo $__env->make('admin.partials.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
@@ -73,7 +73,8 @@
         		<li>Delete images</li>
         	</ul>
         	</p>
-        	<input type="hidden" name="_token" value="TZcSgcr3JnJUcL7qtJBaWqOKR2eEFp5VEKZ4AlMh">
+        	<?php echo e(csrf_field()); ?>
+
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="id" >
         <input type="hidden" name="action" >
